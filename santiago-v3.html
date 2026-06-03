@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santiago Hermosilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div id="cur"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div id="intro">
+  <div class="il" id="il1"></div>
+  <div class="il" id="il2"></div>
+  <p class="isub" id="isub">Frontend Developer</p>
+  <div class="ibar"><div class="ibar-fill"></div></div>
+  <div class="iwipe" id="iwipe"></div>
+</div>
+
+<div id="main">
+
+<nav id="nav">
+  <a href="#hero" class="nav-logo">SH<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
+    <li><a href="#tech" data-en="Skills" data-es="Skills">Skills</a></li>
+    <li><a href="#creds" data-en="Certs" data-es="Certs">Certs</a></li>
+    <li><a href="#projects" data-en="Projects" data-es="Proyectos">Projects</a></li>
+    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-panel" id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="status-dot"></span>
+      <span data-en="Available for opportunities" data-es="Disponible para oportunidades">Available for opportunities</span>
+    </div>
+    <h1 class="hero-name">Santiago<br><em>Hermosilla.</em></h1>
+    <p class="hero-role" id="typeEl"></p>
+    <p class="hero-bio" data-en="Frontend developer from Buenos Aires, passionate about building clean and interactive web experiences. I turn ideas into products people love to use." data-es="Desarrollador frontend de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Convierto ideas en productos que la gente disfruta usar.">
+      Frontend developer from Buenos Aires, passionate about building clean and interactive web experiences. I turn ideas into products people love to use.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-glow" data-en="See my work →" data-es="Ver mi trabajo →">See my work →</a>
+      <a href="#contact" class="btn-outline" data-en="Get in touch" data-es="Escribime">Get in touch</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://github.com/santiagohdev" target="_blank" class="social-pill">
+        <span class="si">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        </span> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" class="social-pill">
+        <span class="si">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </span> LinkedIn
+      </a>
+      <a href="mailto:santiago@hermosilla.dev" class="social-pill">
+        <span class="si">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span> Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- ABOUT -->
+<section class="panel" id="about">
+  <div class="panel-inner">
+    <div class="eyebrow" data-en="Who I am" data-es="Quién soy">Who I am</div>
+    <h2 class="sec-title" data-en="About <em>me.</em>" data-es="Sobre <em>mí.</em>">About <em>me.</em></h2>
+    <div class="about-grid">
+      <div>
+        <p class="about-text" data-en="I'm Santiago, a frontend developer based in Buenos Aires, Argentina. I started my path in programming driven by curiosity and a love for design — the moment where logic meets creativity." data-es="Soy Santiago, un desarrollador frontend de Buenos Aires, Argentina. Empecé mi camino en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad.">I'm Santiago, a frontend developer based in Buenos Aires, Argentina. I started my path in programming driven by curiosity and a love for design — the moment where logic meets creativity.</p>
+        <p class="about-text" data-en="Still growing every day, I focus on writing clean, maintainable code and building interfaces that feel intuitive. Currently looking to join a team where I can keep learning and contribute real value." data-es="Creciendo cada día, me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas. Busco unirme a un equipo donde pueda seguir aprendiendo y aportar valor real.">Still growing every day, I focus on writing clean, maintainable code and building interfaces that feel intuitive. Currently looking to join a team where I can keep learning and contribute real value.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-row"><span class="fact-lbl" data-en="Location" data-es="Ubicación">Location</span><span class="fact-val">Buenos Aires 🇦🇷</span></div>
+        <div class="fact-row"><span class="fact-lbl">Email</span><span class="fact-val"><a href="mailto:santiago@hermosilla.dev">santiago@hermosilla.dev</a></span></div>
+        <div class="fact-row"><span class="fact-lbl">GitHub</span><span class="fact-val"><a href="https://github.com/santiagohdev" target="_blank">@santiagohdev</a></span></div>
+        <div class="fact-row"><span class="fact-lbl">LinkedIn</span><span class="fact-val"><a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank">santiagohermosilla</a></span></div>
+        <div class="fact-row"><span class="fact-lbl" data-en="Status" data-es="Estado">Status</span><span class="fact-val green" data-en="✦ Open to work" data-es="✦ Disponible">✦ Open to work</span></div>
+        <div class="fact-row"><span class="fact-lbl" data-en="Languages" data-es="Idiomas">Languages</span><span class="fact-val" data-en="Spanish (native) · English" data-es="Español (nativo) · Inglés">Spanish (native) · English</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- TECH STACK -->
+<section class="panel" id="tech">
+  <div class="panel-inner">
+    <div class="eyebrow" data-en="What I work with" data-es="Con qué trabajo">What I work with</div>
+    <h2 class="sec-title" data-en="My <em>stack.</em>" data-es="Mi <em>stack.</em>">My <em>stack.</em></h2>
+    <div class="tech-grid" id="techGrid">
+
+      <div class="tech-card" style="--pct:92%">
+        <div class="tc-logo">
+          <i class="devicon-react-original colored"></i>
+        </div>
+        <div>
+          <div class="tc-name">React</div>
+          <div class="tc-sub">Hooks · State · Components</div>
+        </div>
+        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
+        <div class="tc-footer"><span class="tc-lvl" data-en="Advanced" data-es="Avanzado">Advanced</span><span class="tc-pct">92%</span></div>
+      </div>
+
+      <div class="tech-card" style="--pct:90%">
+        <div class="tc-logo">
+        <i class="devicon-javascript-plain colored"></i>
+        </div>
+        <div>
+          <div class="tc-name">JavaScript</div>
+          <div class="tc-sub">ES6+ · DOM · Async/Await</div>
+        </div>
+        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
+        <div class="tc-footer"><span class="tc-lvl" data-en="Advanced" data-es="Avanzado">Advanced</span><span class="tc-pct">90%</span></div>
+      </div>
+
+      <div class="tech-card" style="--pct:96%">
+       <div class="tc-logo">
+  <i class="devicon-html5-plain colored"></i>
+</div>
+        <div>
+          <div class="tc-name">HTML5</div>
+          <div class="tc-sub">Semantic · Accessible</div>
+        </div>
+        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
+        <div class="tc-footer"><span class="tc-lvl" data-en="Expert" data-es="Experto">Expert</span><span class="tc-pct">96%</span></div>
+      </div>
+
+      <div class="tech-card" style="--pct:93%">
+        <div class="tc-logo">
+  <i class="devicon-css3-plain colored"></i>
+</div>
+        <div>
+          <div class="tc-name">CSS3</div>
+          <div class="tc-sub">Animations · Variables · Grid</div>
+        </div>
+        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
+        <div class="tc-footer"><span class="tc-lvl" data-en="Expert" data-es="Experto">Expert</span><span class="tc-pct">93%</span></div>
+      </div>
+
+
+      <div class="tech-card" style="--pct:76%">
+        <div class="tc-logo">
+  <i class="devicon-git-plain colored"></i>
+</div>
+        <div>
+          <div class="tc-name">Git</div>
+          <div class="tc-sub">Version control · GitHub</div>
+        </div>
+        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
+        <div class="tc-footer"><span class="tc-lvl" data-en="Solid" data-es="Sólido">Solid</span><span class="tc-pct">76%</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- CREDENTIALS -->
+<section class="panel" id="creds">
+  <div class="panel-inner">
+    <div class="eyebrow" data-en="Credentials" data-es="Credenciales">Credentials</div>
+    <h2 class="sec-title" data-en="What I've <em>earned.</em>" data-es="Lo que <em>conseguí.</em>">What I've <em>earned.</em></h2>
+
+    <!-- FRONTEND CERT + PDF SIDE BY SIDE -->
+    <div class="cert-fe-row">
+      <div class="cert-card cert-fe">
+        <div class="cert-glow"></div>
+        <div class="cert-ring"><div class="cert-ring-inner">🎓</div></div>
+        <div class="utn-badge"><span class="udot"></span>UTN — Universidad Tecnológica Nacional</div>
+        <div class="cert-top-lbl" data-en="Certificate of Completion · 2026" data-es="Certificado de Aprobación · 2026">Certificate of Completion · 2026</div>
+        <div class="cert-name-big" data-en="Frontend Developer" data-es="Desarrollador Frontend">Frontend Developer</div>
+        <p class="cert-body-txt" data-en="Curso de Programador Web Inicial — Front End Developer, Turno Noche. Distance learning, 93 hours. Grade: Excellent." data-es="Curso de Programador Web Inicial — Front End Developer, Turno Noche. Modalidad a distancia, 93 horas. Nota: Excelente.">Curso de Programador Web Inicial — Front End Developer, Turno Noche. Distance learning, 93 hours. Grade: Excellent.</p>
+        <div class="cert-tags">
+          <span class="cert-tag">HTML5</span><span class="cert-tag">CSS3</span>
+          <span class="cert-tag">JavaScript</span><span class="cert-tag">React</span>
+          <span class="cert-tag">Flexbox</span>
+        </div>
+        <div class="cert-divider"></div>
+        <div class="cert-footer">
+          <div class="cert-stamp"><div class="cert-stamp-dot"></div><span data-en="Blockchain verified" data-es="Verificado en blockchain">Blockchain verified</span></div>
+          <span class="cert-meta" data-en="17 March 2026" data-es="17 de marzo de 2026">17 March 2026</span>
+        </div>
+      </div>
+
+      <!-- PDF CARD -->
+      <div class="cert-pdf-card">
+        <div style="font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted2);" data-en="Official Certificate" data-es="Certificado Oficial">Official Certificate</div>
+        <div class="pdf-preview-wrap" style="min-height:220px;padding:0;overflow:hidden;border-radius:14px;">
+          <iframe
+          src="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf#zoom=page-width&toolbar=0&navpanes=0&scrollbar=0"
+          style="width:100%;height:320px;border:none;border-radius:14px;display:block;"
+          title="UTN Frontend Certificate"
+          onload="this.style.opacity=1"
+          onerror="this.style.display='none'"
+          ></iframe>
+        </div>
+        <div class="pdf-id-box">
+          ID: 39d29570-97ab-4f3f-913d-d90180dddd57
+        </div>
+        <a href="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf" download="Santiago_Hermosilla_UTN_Frontend_Certificate.pdf" class="pdf-dl-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-en="Download PDF" data-es="Descargar PDF">Download PDF</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- BACKEND — FULL WIDTH BELOW -->
+    <div class="cert-be-row">
+      <div class="cert-card cert-be">
+        <div class="cert-glow"></div>
+        <div class="cert-ring"><div class="cert-ring-inner">⚙️</div></div>
+        <div class="cert-top-lbl" data-en="In progress · Future goal" data-es="En progreso · Meta futura">In progress · Future goal</div>
+        <div class="cert-name-big" data-en="Backend Developer" data-es="Desarrollador Backend">Backend Developer</div>
+        <p class="cert-body-txt" data-en="Currently expanding into backend development to become a full-stack developer. Learning Node.js, databases, and server-side architecture." data-es="Actualmente expandiendo mis conocimientos en backend para convertirme en full-stack. Aprendiendo Node.js, bases de datos y arquitectura del servidor.">Currently expanding into backend development to become a full-stack developer. Learning Node.js, databases, and server-side architecture.</p>
+        <div class="cert-tags">
+          <span class="cert-tag">Node.js</span><span class="cert-tag">SQL</span>
+          <span class="cert-tag">REST APIs</span><span class="cert-tag">Express</span>
+        </div>
+        <div class="cert-divider"></div>
+        <div class="cert-footer">
+          <div class="cert-stamp"><div class="cert-stamp-dot"></div><span data-en="🚀 On the road to Full-Stack" data-es="🚀 Camino al Full-Stack">🚀 On the road to Full-Stack</span></div>
+        </div>
+      </div>
+      <div></div><!-- spacer -->
+    </div>
+
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- PROJECTS -->
+<section class="panel" id="projects">
+  <div class="panel-inner">
+    <div class="eyebrow" data-en="Selected work" data-es="Trabajos seleccionados">Selected work</div>
+    <h2 class="sec-title" data-en="Things I've <em>built.</em>" data-es="Cosas que <em>construí.</em>">Things I've <em>built.</em></h2>
+    <div class="projects-list">
+
+      <div class="proj-card" data-project="0">
+        <div class="proj-preview">
+          <img src="./images/weather.png" alt="Weather App" onerror="this.parentElement.innerHTML='<div class=\'proj-preview-overlay\' style=\'opacity:1\'></div><div style=\'font-family:Playfair Display,serif;font-size:72px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(168,85,247,.18);user-select:none\'>WA</div>'">
+          <div class="proj-preview-overlay">
+            <div class="proj-overlay-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span data-en="View project" data-es="Ver proyecto">View project</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-num" data-en="Project 01" data-es="Proyecto 01">Project 01</div>
+          <span class="proj-tag">JavaScript · API</span>
+          <div class="proj-name" data-en="Weather Dashboard" data-es="Panel del Tiempo">Weather Dashboard</div>
+          <p class="proj-desc" data-en="Real-time weather app using OpenWeatherMap API. Features animated weather scenes, 30-minute interpolated forecasts, multi-language support, and cinematic background animations per weather condition." data-es="App de clima en tiempo real usando la API de OpenWeatherMap. Incluye escenas animadas de clima, pronóstico interpolado cada 30 minutos, soporte multilenguaje y animaciones cinematográficas de fondo.">Real-time weather app using OpenWeatherMap API. Features animated weather scenes, 30-minute interpolated forecasts, multi-language support, and cinematic background animations per weather condition.</p>
+          <div class="proj-techs">
+            <span class="proj-tech">JavaScript</span><span class="proj-tech">CSS3</span>
+            <span class="proj-tech">HTML5</span><span class="proj-tech">OpenWeather API</span><span class="proj-tech">Canvas</span>
+          </div>
+          <span class="proj-arrow" data-en="View project →" data-es="Ver proyecto →">View project →</span>
+        </div>
+      </div>
+
+      <div class="proj-card" style="direction:rtl" data-project="1">
+        <div class="proj-preview" style="direction:ltr">
+          <img src="./images/task.png" alt="Task Tracker" onerror="this.parentElement.innerHTML='<div style=\'font-family:Playfair Display,serif;font-size:72px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(168,85,247,.18);user-select:none\'>TT</div>'">
+          <div class="proj-preview-overlay">
+            <div class="proj-overlay-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span data-en="View project" data-es="Ver proyecto">View project</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info" style="direction:ltr">
+          <div class="proj-num" data-en="Project 02" data-es="Proyecto 02">Project 02</div>
+          <span class="proj-tag">React · LocalStorage</span>
+          <div class="proj-name" data-en="Task Tracker" data-es="Gestor de Tareas">Task Tracker</div>
+          <p class="proj-desc" data-en="Full-featured task management app built with React. Includes drag-and-drop reordering, priority levels, inline editing, filter tabs, progress tracking, light/dark mode, and full localStorage persistence." data-es="App de gestión de tareas completa en React. Incluye reordenamiento drag & drop, niveles de prioridad, edición en línea, filtros, barra de progreso, modo claro/oscuro y persistencia con localStorage.">Full-featured task management app built with React. Includes drag-and-drop reordering, priority levels, inline editing, filter tabs, progress tracking, light/dark mode, and full localStorage persistence.</p>
+          <div class="proj-techs">
+            <span class="proj-tech">React</span><span class="proj-tech">CSS3</span>
+            <span class="proj-tech">LocalStorage</span><span class="proj-tech">Drag & Drop API</span>
+          </div>
+          <span class="proj-arrow" data-en="View project →" data-es="Ver proyecto →">View project →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- CONTACT -->
+<section class="panel" id="contact">
+  <div class="panel-inner">
+    <div class="eyebrow" data-en="Get in touch" data-es="Contacto">Get in touch</div>
+    <h2 class="sec-title" data-en="Let's build <em>together.</em>" data-es="Construyamos <em>juntos.</em>">Let's build <em>together.</em></h2>
+    <div class="contact-layout">
+      <div>
+        <div class="contact-links">
+          <a href="mailto:santiago@hermosilla.dev" class="c-link">
+            <div class="c-icon">✉️</div>
+            <div class="c-body"><span class="c-lbl">Email</span><span class="c-val">santiago@hermosilla.dev</span></div>
+          </a>
+          <a href="tel:+5491100000000" class="c-link">
+            <div class="c-icon">📱</div>
+            <div class="c-body"><span class="c-lbl" data-en="Phone / WhatsApp" data-es="Teléfono / WhatsApp">Phone / WhatsApp</span><span class="c-val">+54 9 11 0000-0000</span></div>
+          </a>
+          <a href="https://github.com/santiagohdev" target="_blank" class="c-link">
+            <div class="c-icon">🐙</div>
+            <div class="c-body"><span class="c-lbl">GitHub</span><span class="c-val">github.com/santiagohdev</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" class="c-link">
+            <div class="c-icon">💼</div>
+            <div class="c-body"><span class="c-lbl">LinkedIn</span><span class="c-val">linkedin.com/in/santiagohermosilla</span></div>
+          </a>
+        </div>
+      </div>
+        <form class="contact-form-wrap"
+      action="https://formspree.io/f/xykayebj"
+      method="POST">
+
+  <div class="form-title">
+    Got an idea in <em>mind?</em>
+  </div>
+
+  <p class="form-sub">
+    Drop me a message and I'll get back to you as soon as possible.
+  </p>
+
+  <div class="form-grid">
+
+    <div class="form-field">
+      <label class="f-label">Your name</label>
+      <input
+        class="f-input"
+        type="text"
+        name="name"
+        placeholder="Santiago"
+        required>
+    </div>
+
+    <div class="form-field">
+      <label class="f-label">Email</label>
+      <input
+        class="f-input"
+        type="email"
+        name="email"
+        placeholder="hello@example.com"
+        required>
+    </div>
+
+    <div class="form-field full">
+      <label class="f-label">Subject</label>
+      <input
+        class="f-input"
+        type="text"
+        name="subject"
+        placeholder="What's this about?">
+    </div>
+
+    <div class="form-field full">
+      <label class="f-label">Message</label>
+      <textarea
+        class="f-textarea"
+        name="message"
+        placeholder="Tell me about your project or idea..."
+        required></textarea>
+    </div>
+
+  </div>
+
+  <button class="form-submit" type="submit">
+    Send message →
+  </button>
+
+</form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="f-copy" data-en="© 2026 Santiago Hermosilla" data-es="© 2026 Santiago Hermosilla">© 2026 Santiago Hermosilla</span>
+  <span class="f-right" data-en="Made with obsession ✦" data-es="Hecho con obsesión ✦">Made with obsession ✦</span>
+</footer>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
