@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- FONDO ANIMADO SUTIL -->
+<canvas id="bgCanvas"></canvas>
+
 <!-- PROJECT MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
@@ -45,7 +48,13 @@
     <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <div class="lang-toggle">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <!-- moon (default dark mode) -->
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+  <div class="lang-toggle">
       <button class="lang-btn active" data-lang="en">EN</button>
       <button class="lang-btn" data-lang="es">ES</button>
     </div>

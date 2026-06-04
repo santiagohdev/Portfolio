@@ -10,6 +10,59 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;cursor:none;}
 
+/* ── PLANTILLA DE PARTICULAS / LLUVIA DIGITAL ── */
+/* ── CANVAS DE FONDO ── */
+#bgCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Permite clickear los botones del portfolio sin interferencia */
+}
+
+/* Creamos las capas de partículas usando pseudo-elementos */
+/* ── CANVAS DE FONDO ── */
+#bgCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Permite clickear los botones del portfolio sin interferencia */
+}
+
+/* Capa 1: Movimiento lento (Partículas de fondo) */
+/* ── CANVAS DE FONDO ── */
+#bgCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Permite clickear los botones del portfolio sin interferencia */
+}
+/* Animación en diagonal que emula una caída suave o lluvia estelar */
+@keyframes particleDrift {
+  0% {
+    transform: translate(0, 0) rotate(15deg);
+  }
+  100% {
+    transform: translate(-140px, 280px) rotate(15deg); /* Caen hacia abajo a la izquierda */
+  }
+}
+
+/* ── CONFIGURACIÓN CRÍTICA PARA MODO CLARO ── */
+/* ── CANVAS DE FONDO ── */
+#bgCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* Permite clickear los botones del portfolio sin interferencia */
+}
+
 #cur{width:11px;height:11px;background:var(--p1);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s,height .22s,opacity .22s;mix-blend-mode:screen;}
 #cur.big{width:46px;height:46px;opacity:.22;}
 
@@ -423,4 +476,75 @@ footer{padding:28px 52px;border-top:1px solid var(--border);display:flex;align-i
   .form-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:8px;text-align:center;padding:22px;}
   .modal-body{padding:24px;}
+}
+
+/* ══ LIGHT MODE ══ */
+body.light {
+  --bg:      #F2EFF9;
+  --bg2:     #E8E3F5;
+  --surface: rgba(120,80,200,0.06);
+  --border:  rgba(120,80,200,0.15);
+  --border2: rgba(120,80,200,0.32);
+  --p1:      #7C3AED;
+  --p2:      #6D28D9;
+  --p3:      #5B21B6;
+  --glow:    rgba(124,58,237,0.25);
+  --glow2:   rgba(124,58,237,0.08);
+  --text:    #1A1425;
+  --muted:   rgba(26,20,37,0.55);
+  --muted2:  rgba(26,20,37,0.35);
+}
+body.light .orb1{background:rgba(124,58,237,.08);}
+body.light .orb2{background:rgba(168,85,247,.06);}
+body.light .orb3{background:rgba(192,132,252,.05);}
+body.light nav.scrolled{background:rgba(242,239,249,.88);}
+body.light .cert-fe{background:linear-gradient(135deg,#ede0ff 0%,#f5eeff 50%,#f0e8ff 100%);}
+body.light .cert-be{background:linear-gradient(135deg,#fef9e7 0%,#fffbeb 50%,#fdf8e0 100%);}
+body.light .contact-form-wrap{background:linear-gradient(135deg,rgba(124,58,237,.07) 0%,rgba(242,239,249,.9) 100%);}
+body.light .modal{background:#F8F5FF;}
+body.light #intro{background:var(--bg);}
+body.light .f-input,
+body.light .f-textarea{background:rgba(0,0,0,.03);color:var(--text);}
+body.light .cert-pdf-card{background:linear-gradient(135deg,#ede0ff 0%,#f5eeff 100%);}
+
+/* ══ ESTO SOLO SE ACTIVA EN MODO CLARO ══ */
+body.light #cur {
+  background: var(--p3);       /* Cambia el cursor a violeta oscuro */
+  mix-blend-mode: normal;     /* Quita el efecto transparente para que no desaparezca en el blanco */
+  box-shadow: 0 0 8px rgba(91, 33, 182, 0.3);
+}
+
+body.light #cur.big {
+  opacity: 0.15;
+  background: var(--p1);
+}
+
+body.light .cert-fe .cert-name-big {
+  background: linear-gradient(135deg, var(--p3) 0%, #4c1d95 100%); /* Violeta ultra profundo */
+  -webkit-background-clip: text;
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light .cert-be .cert-name-big {
+  background: linear-gradient(135deg, #b45309 0%, #78350f 100%); /* Marrón/Ámbar quemado */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ══ THEME TOGGLE BUTTON ══ */
+.theme-toggle{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:background .22s,border-color .22s,color .22s,transform .18s;
+  flex-shrink:0;
+}
+.theme-toggle:hover{
+  background:var(--glow2);
+  border-color:var(--p1);
+  color:var(--p1);
+  transform:rotate(12deg);
 }

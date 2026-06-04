@@ -146,20 +146,33 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 const pdfFallback=document.getElementById('pdfFallback');
 if(pdfFallback)pdfFallback.style.display='flex';
 
-/* ── CONTACT FORM ── */
-document.getElementById('formSubmit').addEventListener('click',()=>{
-  const n=document.getElementById('fname').value.trim();
-  const e=document.getElementById('femail').value.trim();
-  const m=document.getElementById('fmessage').value.trim();
-  if(!n||!e||!m)return;
-  const succ=document.getElementById('formSuccess');
-  succ.textContent=lang==='es'?'✓ ¡Mensaje enviado! Te respondo pronto.':"✓ Message sent! I'll be in touch soon.";
-  succ.classList.add('show');
-  setTimeout(()=>succ.classList.remove('show'),4000);
-  document.getElementById('fname').value='';
-  document.getElementById('femail').value='';
-  document.getElementById('fsubject').value='';
-  document.getElementById('fmessage').value='';
+/* ── THEME TOGGLE ── */
+const themeBtn   = document.getElementById('themeToggle');
+const themeIcon  = document.getElementById('themeIcon');
+
+const MOON = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+const SUN  = `<circle cx="12" cy="12" r="5"/>
+  <line x1="12" y1="1" x2="12" y2="3"/>
+  <line x1="12" y1="21" x2="12" y2="23"/>
+  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+  <line x1="1" y1="12" x2="3" y2="12"/>
+  <line x1="21" y1="12" x2="23" y2="12"/>
+  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+
+function applyTheme(isLight) {
+  document.body.classList.toggle('light', isLight);
+  themeIcon.innerHTML = isLight ? MOON : SUN;
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+
+// Load saved preference — default is dark
+const savedTheme = localStorage.getItem('theme');
+applyTheme(savedTheme === 'light');
+
+themeBtn.addEventListener('click', () => {
+  applyTheme(!document.body.classList.contains('light'));
 });
 
 /* ── SMOOTH ANCHORS ── */
@@ -169,3 +182,90 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
   });
 });
+
+
+/* ── SISTEMA DE PARTICULAS INTERACTIVAS (CANVAS) ── */
+const canvas = document.getElementById('bgCanvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let count = 120; // <--- AJUSTA ACÁ LA CANTIDAD DE PARTÍCULAS
+  
+  // Objeto para registrar la posición del mouse
+  const mouse = { x: null, y: null, targetX: 0, targetY: 0 };
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Escuchar el movimiento del mouse
+  document.addEventListener('mousemove', (e) => {
+    // Normalizamos las coordenadas respecto al centro de la pantalla
+    mouse.targetX = (e.clientX - window.innerWidth / 2) * 0.05;
+    mouse.targetY = (e.clientY - window.innerHeight / 2) * 0.05;
+  });
+
+  // Estructura de cada partícula
+  class Particle {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * canvas.height; // Distribución inicial vertical
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = -10;
+      this.size = Math.random() * 2 + 0.5; // Tamaños variados (0.5px a 2.5px)
+      this.speedY = Math.random() * 0.5 + 0.3; // Velocidad de caída base
+      this.speedX = (Math.random() * 0.2 - 0.1); // Leve deriva lateral base
+    }
+
+    update() {
+      // Suavizado del movimiento del mouse (Efecto Parallax inercial)
+      mouse.x += (mouse.targetX - mouse.x) * 0.08;
+      mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+      // Caída natural + la influencia del movimiento del mouse
+      this.y += this.speedY + (mouse.y * 0.1);
+      this.x += this.speedX + (mouse.x * 0.1);
+
+      // Si se salen de la pantalla, vuelven a aparecer arriba
+      if (this.y > canvas.height + 10 || this.x < -10 || this.x > canvas.width + 10) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      // Detectamos dinámicamente si el body tiene la clase 'light'
+      const isLight = document.body.classList.contains('light');
+      
+      // Color: Púrpura intenso para modo claro, lavanda brillante para modo oscuro
+      ctx.fillStyle = isLight ? 'rgba(109, 40, 217, 0.45)' : 'rgba(192, 132, 252, 0.5)';
+      
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Inicializar array de partículas
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle());
+  }
+
+  // Bucle de animación principal
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
