@@ -425,6 +425,7 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 .btn--solid:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--fg); }
 .btn--ghost{ background:transparent; color:var(--fg); border-color:var(--line); }
 .btn--ghost:hover{ border-color:var(--accent); color:var(--accent); transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--accent); }
+.btn svg{ width:15px; height:15px; flex-shrink:0; }
 .btn--sm{ padding:11px 20px; font-size:.7rem; }
 .btn--full{ width:100%; }
 

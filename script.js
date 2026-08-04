@@ -79,8 +79,9 @@ $('#langToggle').addEventListener('click', () => applyLang(lang === 'es' ? 'en' 
 /* ─────────────────────────────────────────────
    TEMA
    ───────────────────────────────────────────── */
-const savedTheme = localStorage.getItem('sh-theme')
-  || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+// Oscuro por defecto, sin mirar la preferencia del sistema. Si el visitante
+// tocó el toggle alguna vez, gana su elección guardada.
+const savedTheme = localStorage.getItem('sh-theme') || 'dark';
 document.documentElement.dataset.theme = savedTheme;
 
 $('#themeToggle').addEventListener('click', () => {
