@@ -1,435 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Santiago Hermosilla</title>
-<meta property="og:title" content="Santiago Hermosilla - Frontend Developer">
-<meta property="og:description" content="Portfolio showcasing my projects, skills and frontend development journey.">
-<meta property="og:image" content="https://santiago-hermosilla.vercel.app/images/preview.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://santiago-hermosilla.vercel.app">
+<title>Santiago Hermosilla — Full Stack Developer</title>
+<meta name="description" content="Portafolio de Santiago Hermosilla, Full Stack Developer de Buenos Aires, Argentina.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
-  <!-- FONDO ANIMADO SUTIL -->
-<canvas id="bgCanvas"></canvas>
+<!-- ══════════ CURSOR ══════════ -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-<!-- PROJECT MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modalClose">✕</button>
-    <div id="modalContent"></div>
+<!-- ══════════ LOADER ══════════ -->
+<div class="loader" id="loader">
+  <div class="loader__inner">
+    <h1 class="loader__name" id="loaderName" aria-label="Santiago Hermosilla"></h1>
+    <div class="loader__meta">
+      <span class="mono" data-en="FULL STACK DEVELOPER" data-es="DESARROLLADOR FULL STACK">DESARROLLADOR FULL STACK</span>
+      <span class="mono" id="loaderPct">00</span>
+    </div>
+    <div class="loader__track"><div class="loader__bar" id="loaderBar"></div></div>
   </div>
 </div>
+<div class="wipe" id="wipe" aria-hidden="true"></div>
 
-<div id="cur"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+<!-- ══════════ NAV ══════════ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" data-cursor="link">
+    <span class="nav__logo-mark">S</span>
+    <span class="nav__logo-text">Santiago</span>
+  </a>
 
-<div id="intro">
-  <div class="il" id="il1"></div>
-  <div class="il" id="il2"></div>
-  <p class="isub" id="isub">Frontend Developer</p>
-  <div class="ibar"><div class="ibar-fill"></div></div>
-  <div class="iwipe" id="iwipe"></div>
-</div>
+  <nav class="nav__links" id="navLinks">
+    <a href="#about"      data-en="About"      data-es="Sobre mí"    data-cursor="link">Sobre mí</a>
+    <a href="#stack"      data-en="Skills"     data-es="Stack"       data-cursor="link">Stack</a>
+    <a href="#certs"      data-en="Certs"      data-es="Certificados" data-cursor="link">Certificados</a>
+    <a href="#projects"   data-en="Projects"   data-es="Proyectos"   data-cursor="link">Proyectos</a>
+    <a href="#experience" data-en="Experience" data-es="Experiencia" data-cursor="link">Experiencia</a>
+    <a href="#contact"    data-en="Contact"    data-es="Contacto"    data-cursor="link">Contacto</a>
+  </nav>
 
-<div id="main">
-
-<nav id="nav">
-  <a href="#hero" class="nav-logo">SH<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about" data-en="About" data-es="Sobre mí">About</a></li>
-    <li><a href="#tech" data-en="Skills" data-es="Skills">Skills</a></li>
-    <li><a href="#creds" data-en="Certs" data-es="Certs">Certs</a></li>
-    <li><a href="#projects" data-en="Projects" data-es="Proyectos">Projects</a></li>
-    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <!-- moon (default dark mode) -->
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-    </svg>
-  </button>
-  <div class="lang-toggle">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-    </div>
+  <div class="nav__tools">
+    <button class="toggle toggle--lang" id="langToggle" data-cursor="link" aria-label="Cambiar idioma">
+      <span class="toggle__opt" data-lang-opt="es">ES</span>
+      <span class="toggle__opt" data-lang-opt="en">EN</span>
+      <span class="toggle__pill" id="langPill"></span>
+    </button>
+    <button class="toggle toggle--theme" id="themeToggle" data-cursor="link" aria-label="Cambiar tema">
+      <svg class="ico ico--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      <svg class="ico ico--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.4A8.4 8.4 0 1 1 9.6 4a6.6 6.6 0 0 0 10.4 10.4Z"/></svg>
+    </button>
+    <button class="nav__burger" id="burger" data-cursor="link" aria-label="Menú"><span></span><span></span></button>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero-panel" id="hero">
-  <div class="hero-content">
-    <div class="hero-tag">
-      <span class="status-dot"></span>
-      <span data-en="Available for opportunities" data-es="Disponible para oportunidades">Available for opportunities</span>
+<main id="top">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__wrap">
+
+    <div class="status reveal">
+      <span class="status__dot"></span>
+      <span class="mono" data-en="Available for opportunities" data-es="Disponible para oportunidades">Disponible para oportunidades</span>
     </div>
-    <h1 class="hero-name">Santiago<br><em>Hermosilla.</em></h1>
-    <p class="hero-role" id="typeEl"></p>
-    <p class="hero-bio" data-en="Frontend developer from Buenos Aires, passionate about building clean and interactive web experiences. I turn ideas into products people love to use." data-es="Desarrollador frontend de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Convierto ideas en productos que la gente disfruta usar.">
-      Frontend developer from Buenos Aires, passionate about building clean and interactive web experiences. I turn ideas into products people love to use.
+
+    <h1 class="hero__name reveal">
+      <span class="hero__line">Santiago</span>
+      <span class="hero__line hero__line--out">Hermosilla</span>
+    </h1>
+
+    <p class="hero__type reveal">
+      <span class="hero__type-txt" id="typewriter"></span><span class="caret" aria-hidden="true"></span>
     </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-glow" data-en="See my work →" data-es="Ver mi trabajo →">See my work →</a>
-      <a href="#contact" class="btn-outline" data-en="Get in touch" data-es="Escribime">Get in touch</a>
+
+    <p class="hero__bio reveal"
+       data-en="Full Stack Developer from Buenos Aires, passionate about building clean, interactive web experiences. I got into programming out of curiosity and a love for design — that moment where logic meets creativity. I focus on writing clean, maintainable code and building interfaces that feel intuitive."
+       data-es="Desarrollador Full Stack de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Empecé en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad. Me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas.">
+      Desarrollador Full Stack de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Empecé en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad. Me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas.
+    </p>
+
+    <div class="hero__cta reveal">
+      <a href="#projects" class="btn btn--solid" data-cursor="link" data-en="See my work" data-es="Ver mi trabajo">Ver mi trabajo</a>
+      <a href="#contact" class="btn btn--ghost" data-cursor="link" data-en="Write to me" data-es="Escribime">Escribime</a>
     </div>
-    <div class="hero-socials">
-      <a href="https://github.com/santiagohdev" target="_blank" class="social-pill">
-        <span class="si">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </span> GitHub
+
+    <div class="hero__pills reveal">
+      <a class="pill" href="https://github.com/santiagohdev" target="_blank" rel="noopener" data-cursor="link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.4 4.8 18.4 5.1 18.4 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
       </a>
-      <a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" class="social-pill">
-        <span class="si">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </span> LinkedIn
+      <a class="pill" href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" rel="noopener" data-cursor="link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4V9Z"/></svg>
+        LinkedIn
       </a>
-      <a href="mailto:santiagohermosilla76@gmail.com" class="social-pill">
-        <span class="si">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </span> Email
+      <a class="pill" href="mailto:santiagohermosilla76@gmail.com" data-cursor="link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
+        Email
       </a>
+    </div>
+
+  </div>
+  <div class="hero__scroll mono" aria-hidden="true"><span data-en="SCROLL" data-es="SCROLL">SCROLL</span></div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">01</span>
+      <h2 class="sec__title" data-en="About" data-es="Sobre mí">Sobre mí</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <div class="about">
+      <div class="about__text reveal">
+        <p data-en="I'm Santiago — a Full Stack Developer based in Buenos Aires, Argentina. I got into programming out of pure curiosity and a love for design: that exact point where logic meets creativity is where I like to work. What started as tinkering with layouts turned into building complete products, front to back."
+           data-es="Soy Santiago — Desarrollador Full Stack radicado en Buenos Aires, Argentina. Entré a la programación por pura curiosidad y amor por el diseño: ese punto exacto donde la lógica se encuentra con la creatividad es donde me gusta trabajar. Lo que empezó como jugar con layouts se convirtió en construir productos completos, de punta a punta.">
+          Soy Santiago — Desarrollador Full Stack radicado en Buenos Aires, Argentina. Entré a la programación por pura curiosidad y amor por el diseño: ese punto exacto donde la lógica se encuentra con la creatividad es donde me gusta trabajar. Lo que empezó como jugar con layouts se convirtió en construir productos completos, de punta a punta.
+        </p>
+        <p data-en="Day to day I work with React, TypeScript and Node.js, and I care a lot about clean, maintainable code — the kind you can come back to six months later without flinching. On the interface side I chase the same thing: screens that feel obvious to use, fast on any device, and consistent down to the details."
+           data-es="En el día a día trabajo con React, TypeScript y Node.js, y me importa mucho el código limpio y mantenible — ese al que podés volver seis meses después sin sufrir. Del lado de la interfaz busco lo mismo: pantallas que se sientan obvias de usar, rápidas en cualquier dispositivo y consistentes hasta en los detalles.">
+          En el día a día trabajo con React, TypeScript y Node.js, y me importa mucho el código limpio y mantenible — ese al que podés volver seis meses después sin sufrir. Del lado de la interfaz busco lo mismo: pantallas que se sientan obvias de usar, rápidas en cualquier dispositivo y consistentes hasta en los detalles.
+        </p>
+      </div>
+
+      <dl class="specs reveal">
+        <div class="specs__row">
+          <dt class="mono" data-en="Location" data-es="Ubicación">Ubicación</dt>
+          <dd>Buenos Aires, Argentina 🇦🇷</dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono">Email</dt>
+          <dd><a href="mailto:santiagohermosilla76@gmail.com" data-cursor="link">santiagohermosilla76@gmail.com</a></dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono">GitHub</dt>
+          <dd><a href="https://github.com/santiagohdev" target="_blank" rel="noopener" data-cursor="link">@santiagohdev</a></dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono">LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" rel="noopener" data-cursor="link">/santiagohermosilla</a></dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono" data-en="Status" data-es="Estado">Estado</dt>
+          <dd class="specs__live">
+            <span class="status__dot"></span>
+            <span data-en="Available for opportunities" data-es="Disponible para oportunidades">Disponible para oportunidades</span>
+          </dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono" data-en="Languages" data-es="Idiomas">Idiomas</dt>
+          <dd data-en="Spanish (native) · English" data-es="Español (nativo) · Inglés">Español (nativo) · Inglés</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
 
-<div class="gdiv"></div>
+<!-- ══════════ STACK ══════════ -->
+<section class="sec sec--alt" id="stack">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">02</span>
+      <h2 class="sec__title" data-en="Stack" data-es="Stack">Stack</h2>
+      <span class="sec__rule"></span>
+    </div>
 
-<!-- ABOUT -->
-<section class="panel" id="about">
-  <div class="panel-inner">
-    <div class="eyebrow" data-en="Who I am" data-es="Quién soy">Who I am</div>
-    <h2 class="sec-title" data-en="About <em>me.</em>" data-es="Sobre <em>mí.</em>">About <em>me.</em></h2>
-    <div class="about-grid">
-      <div>
-        <p class="about-text" data-en="I'm Santiago, a frontend developer based in Buenos Aires, Argentina. I started my path in programming driven by curiosity and a love for design — the moment where logic meets creativity." data-es="Soy Santiago, un desarrollador frontend de Buenos Aires, Argentina. Empecé mi camino en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad.">I'm Santiago, a frontend developer based in Buenos Aires, Argentina. I started my path in programming driven by curiosity and a love for design — the moment where logic meets creativity.</p>
-        <p class="about-text" data-en="Still growing every day, I focus on writing clean, maintainable code and building interfaces that feel intuitive. Currently looking to join a team where I can keep learning and contribute real value." data-es="Creciendo cada día, me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas. Busco unirme a un equipo donde pueda seguir aprendiendo y aportar valor real.">Still growing every day, I focus on writing clean, maintainable code and building interfaces that feel intuitive. Currently looking to join a team where I can keep learning and contribute real value.</p>
-      </div>
-      <div class="about-facts">
-        <div class="fact-row"><span class="fact-lbl" data-en="Location" data-es="Ubicación">Location</span><span class="fact-val">Buenos Aires 🇦🇷</span></div>
-        <div class="fact-row"><span class="fact-lbl">Email</span><span class="fact-val"><a href="mailto:santiago@hermosilla.dev">santiagohermosilla76@gmail.com</a></span></div>
-        <div class="fact-row"><span class="fact-lbl">GitHub</span><span class="fact-val"><a href="https://github.com/santiagohdev" target="_blank">@santiagohdev</a></span></div>
-        <div class="fact-row"><span class="fact-lbl">LinkedIn</span><span class="fact-val"><a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank">santiagohermosilla</a></span></div>
-        <div class="fact-row"><span class="fact-lbl" data-en="Status" data-es="Estado">Status</span><span class="fact-val green" data-en="✦ Open to work" data-es="✦ Disponible">✦ Open to work</span></div>
-        <div class="fact-row"><span class="fact-lbl" data-en="Languages" data-es="Idiomas">Languages</span><span class="fact-val" data-en="Spanish (native) · English" data-es="Español (nativo) · Inglés">Spanish (native) · English</span></div>
-      </div>
+    <div class="stack" id="stackGrid">
+      <!-- generado por JS -->
     </div>
   </div>
 </section>
 
-<div class="gdiv"></div>
+<!-- ══════════ CERTIFICADOS ══════════ -->
+<section class="sec" id="certs">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">03</span>
+      <h2 class="sec__title" data-en="Certificates" data-es="Certificados">Certificados</h2>
+      <span class="sec__rule"></span>
+    </div>
 
-<!-- TECH STACK -->
-<section class="panel" id="tech">
-  <div class="panel-inner">
-    <div class="eyebrow" data-en="What I work with" data-es="Con qué trabajo">What I work with</div>
-    <h2 class="sec-title" data-en="My <em>stack.</em>" data-es="Mi <em>stack.</em>">My <em>stack.</em></h2>
-    <div class="tech-grid" id="techGrid">
+    <!-- Cert 1 + PDF -->
+    <div class="cert-pair reveal">
+      <article class="cert" data-cursor="card">
+        <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
+        <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
+        <div class="cert__ring" aria-hidden="true"></div>
 
-      <div class="tech-card" style="--pct:92%">
-        <div class="tc-logo">
-          <i class="devicon-react-original colored"></i>
+        <div class="cert__top">
+          <span class="cert__badge mono">UTN</span>
+          <span class="cert__year mono">2026</span>
         </div>
-        <div>
-          <div class="tc-name">React</div>
-          <div class="tc-sub">Hooks · State · Components</div>
+        <h3 class="cert__title">Frontend Developer</h3>
+        <p class="cert__org" data-en="Universidad Tecnológica Nacional" data-es="Universidad Tecnológica Nacional">Universidad Tecnológica Nacional</p>
+        <p class="cert__desc"
+           data-en="Curso de Programador Web Inicial — Front End Developer, evening shift. Distance learning, 93 hours. Final grade: Excellent."
+           data-es="Curso de Programador Web Inicial — Front End Developer, Turno Noche. A distancia, 93 horas. Nota: Excelente.">
+          Curso de Programador Web Inicial — Front End Developer, Turno Noche. A distancia, 93 horas. Nota: Excelente.
+        </p>
+        <div class="tags">
+          <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+          <span class="tag">React</span><span class="tag">Flexbox</span>
         </div>
-        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
-        <div class="tc-footer"><span class="tc-lvl" data-en="Advanced" data-es="Avanzado">Advanced</span><span class="tc-pct">92%</span></div>
+        <div class="cert__seal cert__seal--ok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m4 12.5 5 5L20 6.5"/></svg>
+          <span data-en="Verified on blockchain · Mar 17, 2026" data-es="Verificado en blockchain · 17 mar 2026">Verificado en blockchain · 17 mar 2026</span>
+        </div>
+      </article>
+
+      <div class="pdf" data-cursor="card">
+        <div class="pdf__bar">
+          <span class="mono">certificado-utn-frontend.pdf</span>
+          <a class="pdf__dl" href="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf" download data-cursor="link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/></svg>
+            <span data-en="Download" data-es="Descargar">Descargar</span>
+          </a>
+        </div>
+        <iframe class="pdf__frame" src="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf#toolbar=0&navpanes=0&view=FitH" title="Certificado UTN Frontend Developer" loading="lazy"></iframe>
       </div>
+    </div>
 
-      <div class="tech-card" style="--pct:90%">
-        <div class="tc-logo">
-        <i class="devicon-javascript-plain colored"></i>
+    <!-- Cert 2 + PDF -->
+    <div class="cert-pair cert-pair--rev reveal">
+      <article class="cert" data-cursor="card">
+        <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
+        <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
+        <div class="cert__ring" aria-hidden="true"></div>
+
+        <div class="cert__top">
+          <span class="cert__badge mono">UTN</span>
+          <span class="cert__year mono" data-en="DIPLOMA 2026" data-es="DIPLOMATURA 2026">DIPLOMATURA 2026</span>
         </div>
-        <div>
-          <div class="tc-name">JavaScript</div>
-          <div class="tc-sub">ES6+ · DOM · Async/Await</div>
+        <h3 class="cert__title">Full Stack Developer</h3>
+        <p class="cert__org" data-en="Universidad Tecnológica Nacional" data-es="Universidad Tecnológica Nacional">Universidad Tecnológica Nacional</p>
+        <p class="cert__desc"
+           data-en="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, JWT authentication, AWS and deployment on Render / Vercel / Heroku. Distance learning."
+           data-es="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.">
+          JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
+          <span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">AWS</span>
         </div>
-        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
-        <div class="tc-footer"><span class="tc-lvl" data-en="Advanced" data-es="Avanzado">Advanced</span><span class="tc-pct">90%</span></div>
+        <div class="cert__seal cert__seal--ok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m4 12.5 5 5L20 6.5"/></svg>
+          <span data-en="Completed · July 2026" data-es="Completado · julio 2026">Completado · julio 2026</span>
+        </div>
+      </article>
+
+      <div class="pdf" data-cursor="card">
+        <div class="pdf__bar">
+          <span class="mono">diplomatura-full-stack-utn.pdf</span>
+          <a class="pdf__dl" href="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf" download data-cursor="link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/></svg>
+            <span data-en="Download" data-es="Descargar">Descargar</span>
+          </a>
+        </div>
+        <iframe class="pdf__frame" src="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf#toolbar=0&navpanes=0&view=FitH" title="Diplomatura Full Stack UTN" loading="lazy"></iframe>
       </div>
+    </div>
 
-      <div class="tech-card" style="--pct:96%">
-       <div class="tc-logo">
-  <i class="devicon-html5-plain colored"></i>
-</div>
-        <div>
-          <div class="tc-name">HTML5</div>
-          <div class="tc-sub">Semantic · Accessible</div>
+    <!-- Cert 3 — pendiente, fila aparte -->
+    <div class="cert-solo reveal">
+      <article class="cert cert--pending" data-cursor="card">
+        <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
+        <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
+        <div class="cert__ring" aria-hidden="true"></div>
+
+        <div class="cert__top">
+          <span class="cert__badge mono">BACKEND</span>
+          <span class="cert__year mono" data-en="IN PROGRESS" data-es="EN CURSO">EN CURSO</span>
         </div>
-        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
-        <div class="tc-footer"><span class="tc-lvl" data-en="Expert" data-es="Experto">Expert</span><span class="tc-pct">96%</span></div>
-      </div>
-
-      <div class="tech-card" style="--pct:93%">
-        <div class="tc-logo">
-  <i class="devicon-css3-plain colored"></i>
-</div>
-        <div>
-          <div class="tc-name">CSS3</div>
-          <div class="tc-sub">Animations · Variables · Grid</div>
+        <h3 class="cert__title">Backend Developer</h3>
+        <p class="cert__org" data-en="Server-side specialization" data-es="Especialización del lado del servidor">Especialización del lado del servidor</p>
+        <p class="cert__desc"
+           data-en="Node.js, Express, MongoDB, MySQL, JWT authentication and server architecture."
+           data-es="Node.js, Express, MongoDB, MySQL, autenticación JWT y arquitectura de servidor.">
+          Node.js, Express, MongoDB, MySQL, autenticación JWT y arquitectura de servidor.
+        </p>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+          <span class="tag">Mongoose</span><span class="tag">MySQL</span><span class="tag">JWT</span>
         </div>
-        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
-        <div class="tc-footer"><span class="tc-lvl" data-en="Expert" data-es="Experto">Expert</span><span class="tc-pct">93%</span></div>
-      </div>
-
-
-      <div class="tech-card" style="--pct:76%">
-        <div class="tc-logo">
-  <i class="devicon-git-plain colored"></i>
-</div>
-        <div>
-          <div class="tc-name">Git</div>
-          <div class="tc-sub">Version control · GitHub</div>
+        <div class="cert__seal cert__seal--wait">
+          <span class="cert__hourglass">⏳</span>
+          <span data-en="Pending blockchain verification" data-es="Pendiente de verificación en blockchain">Pendiente de verificación en blockchain</span>
         </div>
-        <div class="tc-bar-wrap"><div class="tc-bar"></div></div>
-        <div class="tc-footer"><span class="tc-lvl" data-en="Solid" data-es="Sólido">Solid</span><span class="tc-pct">76%</span></div>
-      </div>
-
+      </article>
     </div>
   </div>
 </section>
 
-<div class="gdiv"></div>
+<!-- ══════════ PROYECTOS ══════════ -->
+<section class="sec sec--alt" id="projects">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">04</span>
+      <h2 class="sec__title" data-en="Projects" data-es="Proyectos">Proyectos</h2>
+      <span class="sec__rule"></span>
+    </div>
 
-<!-- CREDENTIALS -->
-<section class="panel" id="creds">
-  <div class="panel-inner">
-    <div class="eyebrow" data-en="Credentials" data-es="Credenciales">Credentials</div>
-    <h2 class="sec-title" data-en="What I've <em>earned.</em>" data-es="Lo que <em>conseguí.</em>">What I've <em>earned.</em></h2>
-
-    <!-- FRONTEND CERT + PDF SIDE BY SIDE -->
-    <div class="cert-fe-row">
-      <div class="cert-card cert-fe">
-        <div class="cert-glow"></div>
-        <div class="cert-ring"><div class="cert-ring-inner">🎓</div></div>
-        <div class="utn-badge"><span class="udot"></span>UTN — Universidad Tecnológica Nacional</div>
-        <div class="cert-top-lbl" data-en="Certificate of Completion · 2026" data-es="Certificado de Aprobación · 2026">Certificate of Completion · 2026</div>
-        <div class="cert-name-big" data-en="Frontend Developer" data-es="Desarrollador Frontend">Frontend Developer</div>
-        <p class="cert-body-txt" data-en="Curso de Programador Web Inicial — Front End Developer, Turno Noche. Distance learning, 93 hours. Grade: Excellent." data-es="Curso de Programador Web Inicial — Front End Developer, Turno Noche. Modalidad a distancia, 93 horas. Nota: Excelente.">Curso de Programador Web Inicial — Front End Developer, Turno Noche. Distance learning, 93 hours. Grade: Excellent.</p>
-        <div class="cert-tags">
-          <span class="cert-tag">HTML5</span><span class="cert-tag">CSS3</span>
-          <span class="cert-tag">JavaScript</span><span class="cert-tag">React</span>
-          <span class="cert-tag">Flexbox</span>
-        </div>
-        <div class="cert-divider"></div>
-        <div class="cert-footer">
-          <div class="cert-stamp"><div class="cert-stamp-dot"></div><span data-en="Blockchain verified" data-es="Verificado en blockchain">Blockchain verified</span></div>
-          <span class="cert-meta" data-en="17 March 2026" data-es="17 de marzo de 2026">17 March 2026</span>
+    <!-- 01 -->
+    <article class="proj reveal" data-cursor="card"
+      data-img="images/weather.jpg"
+      data-title="Weather Dashboard"
+      data-techs="JavaScript,CSS3,HTML5,OpenWeather API,Canvas API"
+      data-demo="https://weather-app-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev"
+      data-long-es="App de clima en tiempo real construida sobre la API de OpenWeatherMap. Los fondos son escenas cinematográficas animadas dibujadas en canvas que cambian según la condición del clima: lluvia, tormenta eléctrica, nieve, niebla y cielo despejado con variantes de día y noche. El pronóstico horario está interpolado cada 30 minutos para que la curva de temperatura se lea suave en lugar de escalonada, hay soporte en 30 idiomas y todo el layout es responsivo desde móvil hasta desktop."
+      data-long-en="Real-time weather app built on the OpenWeatherMap API. Backgrounds are animated cinematic scenes drawn on canvas that change with the weather condition: rain, thunderstorm, snow, fog and clear sky with day and night variants. The hourly forecast is interpolated every 30 minutes so the temperature curve reads smooth instead of stepped, there's support for 30 languages, and the whole layout is responsive from mobile to desktop.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/weather.jpg" alt="Weather Dashboard" loading="lazy">
+        <div class="proj__veil">
+          <span class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</span>
         </div>
       </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">01</span>
+        <p class="proj__kicker mono">JavaScript · API</p>
+        <h3 class="proj__title">Weather Dashboard</h3>
+        <p class="proj__desc"
+           data-en="Real-time weather app with animated cinematic backgrounds that react to the current condition, 30-minute interpolated hourly forecast and support for 30 languages."
+           data-es="App de clima en tiempo real con fondos cinematográficos animados que reaccionan a la condición actual, pronóstico horario interpolado cada 30 minutos y soporte en 30 idiomas.">
+          App de clima en tiempo real con fondos cinematográficos animados que reaccionan a la condición actual, pronóstico horario interpolado cada 30 minutos y soporte en 30 idiomas.
+        </p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
+          <span class="tag">OpenWeather API</span><span class="tag">Canvas API</span>
+        </div>
+      </div>
+    </article>
 
-      <!-- PDF CARD -->
-      <div class="cert-pdf-card">
-        <div style="font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted2);" data-en="Official Certificate" data-es="Certificado Oficial">Official Certificate</div>
-        <div class="pdf-preview-wrap" style="min-height:220px;padding:0;overflow:hidden;border-radius:14px;">
-          <iframe
-          src="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf#zoom=page-width&toolbar=0&navpanes=0&scrollbar=0"
-          style="width:100%;height:320px;border:none;border-radius:14px;display:block;"
-          title="UTN Frontend Certificate"
-          onload="this.style.opacity=1"
-          onerror="this.style.display='none'"
-          ></iframe>
+    <!-- 02 -->
+    <article class="proj proj--rev reveal" data-cursor="card"
+      data-img="images/task.jpg"
+      data-title="Task Tracker"
+      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
+      data-demo="https://task-tracker-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev"
+      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
+      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/task.jpg" alt="Task Tracker" loading="lazy">
+        <div class="proj__veil">
+          <span class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</span>
         </div>
-        <div class="pdf-id-box">
-          ID: 39d29570-97ab-4f3f-913d-d90180dddd57
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">02</span>
+        <p class="proj__kicker mono">React · LocalStorage</p>
+        <h3 class="proj__title">Task Tracker</h3>
+        <p class="proj__desc"
+           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
+           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
+          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
         </div>
-        <a href="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf" download="Santiago_Hermosilla_UTN_Frontend_Certificate.pdf" class="pdf-dl-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-en="Download PDF" data-es="Descargar PDF">Download PDF</span>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="proj reveal" data-cursor="card"
+      data-img="images/framebox.jpg"
+      data-title="FrameBox"
+      data-techs="React,Express,MongoDB,MySQL,JWT,bcrypt,Nodemailer"
+      data-demo=""
+      data-repo="https://github.com/santiagohdev"
+      data-long-es="Biblioteca personal de películas y Trabajo Integrador Final de la Diplomatura Full Stack de la UTN. Cada usuario arma su propia colección: marca lo que vio y lo que quiere ver, la ordena por estado y género, le pone su puntaje y destaca sus favoritas. Por debajo es una app completa con frontend en React y backend en Express, con CRUD real sobre dos entidades relacionadas y arquitectura en capas (routes → controllers → services → repositories). El registro e inicio de sesión usan hash bcrypt, JWT con expiración y verificación de e-mail vía Nodemailer. Frontend y backend viven en repositorios separados y ambos están desplegados públicamente."
+      data-long-en="A personal movie library and the final project of the UTN Full Stack diploma. Each user builds their own collection: marking what they've watched and what they want to watch, sorting it by status and genre, rating it and flagging favourites. Underneath it's a complete app with a React frontend and an Express backend, with real CRUD over two related entities and a layered architecture (routes → controllers → services → repositories). Sign-up and login use bcrypt hashing, JWT with expiration and e-mail verification via Nodemailer. Frontend and backend live in separate repositories and both are publicly deployed.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/framebox.jpg" alt="FrameBox" loading="lazy">
+        <div class="proj__veil">
+          <span class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">03</span>
+        <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
+        <h3 class="proj__title">FrameBox</h3>
+        <p class="proj__desc"
+           data-en="Personal movie library: track what you've watched and what's next, sort by status and genre, rate and favourite. React + Express, layered architecture, bcrypt + JWT auth and e-mail verification."
+           data-es="Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.">
+          Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+          <span class="tag">MySQL</span><span class="tag">JWT</span><span class="tag">bcrypt</span><span class="tag">Nodemailer</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ EXPERIENCIA ══════════ -->
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">05</span>
+      <h2 class="sec__title" data-en="Experience" data-es="Experiencia">Experiencia</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <a class="proj proj--link reveal" href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="card">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/eugenia.jpg" alt="Eugenia Quevedo — Tienda Oficial" loading="lazy">
+        <div class="proj__veil">
+          <span class="btn btn--solid btn--sm" data-en="Visit site" data-es="Visitar sitio">Visitar sitio</span>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">FREELANCE</span>
+        <p class="proj__kicker mono">Tiendanube · Web Dev</p>
+        <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
+        <p class="proj__desc"
+           data-en="I developed and customized the official online store of singer Eugenia Quevedo on Tiendanube: custom theme development, layout and UX improvements, and ongoing maintenance."
+           data-es="Desarrollé y personalicé la tienda online oficial de la cantante Eugenia Quevedo en Tiendanube: desarrollo de tema a medida, mejoras de layout y UX, y mantenimiento continuo.">
+          Desarrollé y personalicé la tienda online oficial de la cantante Eugenia Quevedo en Tiendanube: desarrollo de tema a medida, mejoras de layout y UX, y mantenimiento continuo.
+        </p>
+        <div class="tags">
+          <span class="tag">Tiendanube</span><span class="tag">HTML/CSS/JS</span><span class="tag">Twig</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section class="sec sec--alt" id="contact">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">06</span>
+      <h2 class="sec__title" data-en="Contact" data-es="Contacto">Contacto</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <div class="contact">
+      <div class="contact__side reveal">
+        <p class="contact__lead"
+           data-en="Got a project, an opening or just want to say hi? Any of these works."
+           data-es="¿Tenés un proyecto, una búsqueda abierta o simplemente querés saludar? Cualquiera de estos sirve.">
+          ¿Tenés un proyecto, una búsqueda abierta o simplemente querés saludar? Cualquiera de estos sirve.
+        </p>
+
+        <a class="ccard" href="mailto:santiagohermosilla76@gmail.com" data-cursor="link">
+          <span class="ccard__ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
+          </span>
+          <span class="ccard__txt">
+            <span class="ccard__label mono">Email</span>
+            <span class="ccard__val">santiagohermosilla76@gmail.com</span>
+          </span>
+          <span class="ccard__arrow">↗</span>
+        </a>
+
+        <a class="ccard" href="https://wa.me/5491121613791" target="_blank" rel="noopener" data-cursor="link">
+          <span class="ccard__ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.8 9.8 0 0 0 4.68 1.2h.01c5.43 0 9.84-4.4 9.84-9.84C21.89 6.4 17.47 2 12.04 2Zm5.76 14.06c-.24.68-1.42 1.3-1.95 1.34-.5.05-1.13.07-1.83-.11a16.6 16.6 0 0 1-1.65-.62c-2.9-1.25-4.8-4.17-4.95-4.37-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.51-.1.2-.15.32-.29.49l-.44.51c-.15.14-.3.3-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.2-.29.39-.24.66-.15.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.12.07.68-.17 1.36Z"/></svg>
+          </span>
+          <span class="ccard__txt">
+            <span class="ccard__label mono">WhatsApp</span>
+            <span class="ccard__val">+54 9 11 2161-3791</span>
+          </span>
+          <span class="ccard__arrow">↗</span>
+        </a>
+
+        <a class="ccard" href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" rel="noopener" data-cursor="link">
+          <span class="ccard__ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4V9Z"/></svg>
+          </span>
+          <span class="ccard__txt">
+            <span class="ccard__label mono">LinkedIn</span>
+            <span class="ccard__val">/santiagohermosilla</span>
+          </span>
+          <span class="ccard__arrow">↗</span>
         </a>
       </div>
-    </div>
 
-    <!-- BACKEND — FULL WIDTH BELOW -->
-    <div class="cert-be-row">
-      <div class="cert-card cert-be">
-        <div class="cert-glow"></div>
-        <div class="cert-ring"><div class="cert-ring-inner">⚙️</div></div>
-        <div class="cert-top-lbl" data-en="In progress · Future goal" data-es="En progreso · Meta futura">In progress · Future goal</div>
-        <div class="cert-name-big" data-en="Backend Developer" data-es="Desarrollador Backend">Backend Developer</div>
-        <p class="cert-body-txt" data-en="Currently expanding into backend development to become a full-stack developer. Learning Node.js, databases, and server-side architecture." data-es="Actualmente expandiendo mis conocimientos en backend para convertirme en full-stack. Aprendiendo Node.js, bases de datos y arquitectura del servidor.">Currently expanding into backend development to become a full-stack developer. Learning Node.js, databases, and server-side architecture.</p>
-        <div class="cert-tags">
-          <span class="cert-tag">Node.js</span><span class="cert-tag">SQL</span>
-          <span class="cert-tag">REST APIs</span><span class="cert-tag">Express</span>
-        </div>
-        <div class="cert-divider"></div>
-        <div class="cert-footer">
-          <div class="cert-stamp"><div class="cert-stamp-dot"></div><span data-en="🚀 On the road to Full-Stack" data-es="🚀 Camino al Full-Stack">🚀 On the road to Full-Stack</span></div>
-        </div>
+      <div class="contact__form reveal">
+        <form id="contactForm" action="https://formspree.io/f/xykayebj" method="POST" novalidate>
+          <div class="field">
+            <label class="mono" for="cf-name" data-en="Name" data-es="Nombre">Nombre</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name"
+                   data-ph-en="Your name" data-ph-es="Tu nombre" placeholder="Tu nombre" data-cursor="link">
+          </div>
+          <div class="field">
+            <label class="mono" for="cf-mail">Email</label>
+            <input id="cf-mail" name="email" type="email" required autocomplete="email"
+                   data-ph-en="you@email.com" data-ph-es="vos@email.com" placeholder="vos@email.com" data-cursor="link">
+          </div>
+          <div class="field">
+            <label class="mono" for="cf-msg" data-en="Message" data-es="Mensaje">Mensaje</label>
+            <textarea id="cf-msg" name="message" rows="6" required
+                      data-ph-en="Tell me what you have in mind…" data-ph-es="Contame qué tenés en mente…" placeholder="Contame qué tenés en mente…" data-cursor="link"></textarea>
+          </div>
+          <button type="submit" class="btn btn--solid btn--full" id="submitBtn" data-cursor="link">
+            <span data-en="Send message" data-es="Enviar mensaje">Enviar mensaje</span>
+          </button>
+          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
       </div>
-      <div></div><!-- spacer -->
-    </div>
-
-  </div>
-</section>
-
-<div class="gdiv"></div>
-
-<!-- PROJECTS -->
-<section class="panel" id="projects">
-  <div class="panel-inner">
-    <div class="eyebrow" data-en="Selected work" data-es="Trabajos seleccionados">Selected work</div>
-    <h2 class="sec-title" data-en="Things I've <em>built.</em>" data-es="Cosas que <em>construí.</em>">Things I've <em>built.</em></h2>
-    <div class="projects-list">
-
-      <div class="proj-card" data-project="0">
-        <div class="proj-preview">
-          <img src="./images/weather.png" alt="Weather App" onerror="this.parentElement.innerHTML='<div class=\'proj-preview-overlay\' style=\'opacity:1\'></div><div style=\'font-family:Playfair Display,serif;font-size:72px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(168,85,247,.18);user-select:none\'>WA</div>'">
-          <div class="proj-preview-overlay">
-            <div class="proj-overlay-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span data-en="View project" data-es="Ver proyecto">View project</span>
-            </div>
-          </div>
-        </div>
-        <div class="proj-info">
-          <div class="proj-num" data-en="Project 01" data-es="Proyecto 01">Project 01</div>
-          <span class="proj-tag">JavaScript · API</span>
-          <div class="proj-name" data-en="Weather Dashboard" data-es="Panel del Tiempo">Weather Dashboard</div>
-          <p class="proj-desc" data-en="Real-time weather app using OpenWeatherMap API. Features animated weather scenes, 30-minute interpolated forecasts, multi-language support, and cinematic background animations per weather condition." data-es="App de clima en tiempo real usando la API de OpenWeatherMap. Incluye escenas animadas de clima, pronóstico interpolado cada 30 minutos, soporte multilenguaje y animaciones cinematográficas de fondo.">Real-time weather app using OpenWeatherMap API. Features animated weather scenes, 30-minute interpolated forecasts, multi-language support, and cinematic background animations per weather condition.</p>
-          <div class="proj-techs">
-            <span class="proj-tech">JavaScript</span><span class="proj-tech">CSS3</span>
-            <span class="proj-tech">HTML5</span><span class="proj-tech">OpenWeather API</span><span class="proj-tech">Canvas</span>
-          </div>
-          <span class="proj-arrow" data-en="View project →" data-es="Ver proyecto →">View project →</span>
-        </div>
-      </div>
-
-      <div class="proj-card" style="direction:rtl" data-project="1">
-        <div class="proj-preview" style="direction:ltr">
-          <img src="./images/task.png" alt="Task Tracker" onerror="this.parentElement.innerHTML='<div style=\'font-family:Playfair Display,serif;font-size:72px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(168,85,247,.18);user-select:none\'>TT</div>'">
-          <div class="proj-preview-overlay">
-            <div class="proj-overlay-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              <span data-en="View project" data-es="Ver proyecto">View project</span>
-            </div>
-          </div>
-        </div>
-        <div class="proj-info" style="direction:ltr">
-          <div class="proj-num" data-en="Project 02" data-es="Proyecto 02">Project 02</div>
-          <span class="proj-tag">React · LocalStorage</span>
-          <div class="proj-name" data-en="Task Tracker" data-es="Gestor de Tareas">Task Tracker</div>
-          <p class="proj-desc" data-en="Full-featured task management app built with React. Includes drag-and-drop reordering, priority levels, inline editing, filter tabs, progress tracking, light/dark mode, and full localStorage persistence." data-es="App de gestión de tareas completa en React. Incluye reordenamiento drag & drop, niveles de prioridad, edición en línea, filtros, barra de progreso, modo claro/oscuro y persistencia con localStorage.">Full-featured task management app built with React. Includes drag-and-drop reordering, priority levels, inline editing, filter tabs, progress tracking, light/dark mode, and full localStorage persistence.</p>
-          <div class="proj-techs">
-            <span class="proj-tech">React</span><span class="proj-tech">CSS3</span>
-            <span class="proj-tech">LocalStorage</span><span class="proj-tech">Drag & Drop API</span>
-          </div>
-          <span class="proj-arrow" data-en="View project →" data-es="Ver proyecto →">View project →</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<div class="gdiv"></div>
+</main>
 
-<!-- CONTACT -->
-<section class="panel" id="contact">
-  <div class="panel-inner">
-    <div class="eyebrow" data-en="Get in touch" data-es="Contacto">Get in touch</div>
-    <h2 class="sec-title" data-en="Let's build <em>together.</em>" data-es="Construyamos <em>juntos.</em>">Let's build <em>together.</em></h2>
-    <div class="contact-layout">
-      <div>
-        <div class="contact-links">
-          <a href="mailto:santiagohermosilla76@gmail.com" class="c-link">
-            <div class="c-icon">✉️</div>
-            <div class="c-body"><span class="c-lbl">Email</span><span class="c-val">santiagohermosilla76@gmail.com</span></div>
-          </a>
-          <a href="tel:+5491121613791" class="c-link">
-            <div class="c-icon">📱</div>
-            <div class="c-body"><span class="c-lbl" data-en="Phone / WhatsApp" data-es="Teléfono / WhatsApp">Phone / WhatsApp</span><span class="c-val">+54 9 11 2161-3791</span></div>
-          </a>
-          <a href="https://github.com/santiagohdev" target="_blank" class="c-link">
-            <div class="c-icon">🐙</div>
-            <div class="c-body"><span class="c-lbl">GitHub</span><span class="c-val">github.com/santiagohdev</span></div>
-          </a>
-          <a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" class="c-link">
-            <div class="c-icon">💼</div>
-            <div class="c-body"><span class="c-lbl">LinkedIn</span><span class="c-val">linkedin.com/in/santiagohermosilla</span></div>
-          </a>
-        </div>
-      </div>
-        <form class="contact-form-wrap"
-      action="https://formspree.io/f/xykayebj"
-      method="POST">
-
-  <div class="form-title">
-    Got an idea in <em>mind?</em>
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="foot">
+  <div class="wrap foot__wrap">
+    <span class="mono">© 2026 Santiago Hermosilla</span>
+    <span class="mono foot__right" data-en="Built from scratch in Buenos Aires." data-es="Hecho desde cero en Buenos Aires.">Hecho desde cero en Buenos Aires.</span>
   </div>
-
-  <p class="form-sub">
-    Drop me a message and I'll get back to you as soon as possible.
-  </p>
-
-  <div class="form-grid">
-
-    <div class="form-field">
-      <label class="f-label">Your name</label>
-      <input
-        class="f-input"
-        type="text"
-        name="name"
-        placeholder="Santiago"
-        required>
-    </div>
-
-    <div class="form-field">
-      <label class="f-label">Email</label>
-      <input
-        class="f-input"
-        type="email"
-        name="email"
-        placeholder="hello@example.com"
-        required>
-    </div>
-
-    <div class="form-field full">
-      <label class="f-label">Subject</label>
-      <input
-        class="f-input"
-        type="text"
-        name="subject"
-        placeholder="What's this about?">
-    </div>
-
-    <div class="form-field full">
-      <label class="f-label">Message</label>
-      <textarea
-        class="f-textarea"
-        name="message"
-        placeholder="Tell me about your project or idea..."
-        required></textarea>
-    </div>
-
-  </div>
-
-  <button class="form-submit" type="submit">
-    Send message →
-  </button>
-
-</form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span class="f-copy" data-en="© 2026 Santiago Hermosilla" data-es="© 2026 Santiago Hermosilla">© 2026 Santiago Hermosilla</span>
-  <span class="f-right" data-en="Made with obsession ✦" data-es="Hecho con obsesión ✦">Made with obsession ✦</span>
 </footer>
 
+<!-- ══════════ MODAL ══════════ -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel" role="document">
+    <button class="modal__x" id="modalClose" data-cursor="link" aria-label="Cerrar">✕</button>
+    <div class="modal__media" id="modalMedia"></div>
+    <div class="modal__body">
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <p class="modal__desc" id="modalDesc"></p>
+      <div class="tags" id="modalTags"></div>
+      <div class="modal__cta" id="modalCta"></div>
+    </div>
+  </div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>

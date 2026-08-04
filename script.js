@@ -1,271 +1,408 @@
-/* ── PROJECT DATA ── */
-const PROJECTS = [
-  {
-    tag: 'JavaScript · API',
-    title: { en: 'Weather Dashboard', es: 'Panel del Tiempo' },
-    desc: { en: 'Real-time weather application connected to OpenWeatherMap API. Features cinematic animated backgrounds that change per weather condition (rain, storm, snow, fog, clear day/night), 30-minute interpolated hourly forecasts, multi-language support in 30 languages, animated weather scenes drawn on canvas, and full responsive design.', es: 'Aplicación de clima en tiempo real conectada a la API de OpenWeatherMap. Incluye fondos cinematográficos animados que cambian según la condición climática, pronóstico horario interpolado cada 30 minutos, soporte multilenguaje en 30 idiomas, escenas animadas dibujadas en canvas y diseño completamente responsivo.' },
-    techs: ['JavaScript', 'CSS3', 'HTML5', 'OpenWeather API', 'Canvas API'],
-    img: './images/weather.png',
-    live: 'https://weather-app-santiago.vercel.app/',
-    code: 'https://github.com/santiagohdev',
-  },
-  {
-    tag: 'React · LocalStorage',
-    title: { en: 'Task Tracker', es: 'Gestor de Tareas' },
-    desc: { en: 'Full-featured task management app built with React. Implements complete CRUD operations, drag-and-drop reordering using the HTML Drag & Drop API, task priority system (high/medium/low), inline editing with keyboard shortcuts, filter tabs (All/Active/Done), progress bar, light and dark mode toggle, and full localStorage persistence so tasks survive page reloads.', es: 'App de gestión de tareas completa en React. Implementa CRUD completo, reordenamiento drag & drop con la HTML Drag & Drop API, sistema de prioridades, edición inline con atajos de teclado, filtros, barra de progreso, modo claro/oscuro y persistencia total con localStorage.' },
-    techs: ['React', 'CSS3', 'LocalStorage', 'Drag & Drop API'],
-    img: './images/task.png',
-    live: 'https://task-tracker-santiago.vercel.app/',
-    code: 'https://github.com/santiagohdev',
-  }
+/* ══════════════════════════════════════════════════════════════
+   SANTIAGO HERMOSILLA — PORTFOLIO
+   Vanilla JS. Sin dependencias, sin build.
+   ══════════════════════════════════════════════════════════════ */
+(() => {
+'use strict';
+
+const $  = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ─────────────────────────────────────────────
+   DATA
+   ───────────────────────────────────────────── */
+const SKILLS = [
+  { name:'HTML5',      pct:96, icon:'devicon-html5-plain colored',      lvl:'expert' },
+  { name:'CSS3',       pct:93, icon:'devicon-css3-plain colored',       lvl:'expert' },
+  { name:'React',      pct:92, icon:'devicon-react-original colored',   lvl:'adv'    },
+  { name:'JavaScript', pct:90, icon:'devicon-javascript-plain colored', lvl:'adv'    },
+  { name:'TypeScript', pct:85, icon:'devicon-typescript-plain colored', lvl:'adv'    },
+  { name:'Node.js',    pct:82, icon:'devicon-nodejs-plain colored',     lvl:'solid'  },
+  { name:'Express',    pct:80, icon:'devicon-express-original',         lvl:'solid'  },
+  { name:'MongoDB',    pct:78, icon:'devicon-mongodb-plain colored',    lvl:'solid'  },
+  { name:'MySQL',      pct:78, icon:'devicon-mysql-original colored',   lvl:'solid'  },
+  { name:'Git',        pct:76, icon:'devicon-git-plain colored',        lvl:'solid'  },
 ];
 
-/* ── CURSOR ── */
-const cur = document.getElementById('cur');
-document.addEventListener('mousemove', e => { cur.style.left=e.clientX+'px'; cur.style.top=e.clientY+'px'; });
-document.querySelectorAll('a,button,.proj-card,.tech-card,.cert-card,.c-link,.social-pill,.proj-overlay-btn,.cert-pdf-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cur.classList.add('big'));
-  el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+const LEVELS = {
+  expert: { es:'Experto',  en:'Expert'   },
+  adv:    { es:'Avanzado', en:'Advanced' },
+  solid:  { es:'Sólido',   en:'Solid'    },
+};
+
+const ROLES = {
+  es:['Desarrollador Full Stack.','Entusiasta de React.','Constructor de UI.','Dev de JavaScript.'],
+  en:['Full Stack Developer.','React Enthusiast.','UI Builder.','JavaScript Dev.'],
+};
+
+const UI = {
+  sending: { es:'Enviando…',                                    en:'Sending…' },
+  ok:      { es:'✓ ¡Mensaje enviado! Te respondo a la brevedad.', en:'✓ Message sent! I\'ll get back to you shortly.' },
+  err:     { es:'✕ Algo falló. Escribime directo por mail.',      en:'✕ Something went wrong. Email me directly.' },
+  invalid: { es:'✕ Completá todos los campos con datos válidos.', en:'✕ Please fill every field with valid data.' },
+  demo:    { es:'Ver demo',  en:'Live demo'   },
+  repo:    { es:'Ver código', en:'View code'  },
+};
+
+let lang = localStorage.getItem('sh-lang') || 'es';
+
+/* ─────────────────────────────────────────────
+   IDIOMA
+   ───────────────────────────────────────────── */
+function applyLang(next){
+  lang = next;
+  localStorage.setItem('sh-lang', lang);
+  document.documentElement.lang = lang;
+
+  $$('[data-es][data-en]').forEach(el => {
+    const val = el.dataset[lang];
+    if (val !== undefined) el.textContent = val;
+  });
+
+  $$('[data-ph-es][data-ph-en]').forEach(el => {
+    el.placeholder = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
+  });
+
+  const toggle = $('#langToggle');
+  toggle.classList.toggle('en', lang === 'en');
+  $$('[data-lang-opt]', toggle).forEach(o => o.classList.toggle('on', o.dataset.langOpt === lang));
+
+  $$('.sk__level').forEach(el => { el.textContent = LEVELS[el.dataset.lvl][lang]; });
+
+  restartTypewriter();
+  if ($('#modal').classList.contains('open')) renderModal(activeCard);
+}
+
+$('#langToggle').addEventListener('click', () => applyLang(lang === 'es' ? 'en' : 'es'));
+
+/* ─────────────────────────────────────────────
+   TEMA
+   ───────────────────────────────────────────── */
+const savedTheme = localStorage.getItem('sh-theme')
+  || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+document.documentElement.dataset.theme = savedTheme;
+
+$('#themeToggle').addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('sh-theme', next);
 });
 
-/* ── INTRO ── */
-function buildWord(word,container,delay){
-  [...word].forEach((ch,i)=>{
-    const s=document.createElement('span');s.className='iletter';s.textContent=ch;
-    container.appendChild(s);setTimeout(()=>s.classList.add('in'),delay+i*58);
+/* ─────────────────────────────────────────────
+   LOADER + WIPE
+   ───────────────────────────────────────────── */
+function buildLoader(){
+  const host = $('#loaderName');
+  const frag = document.createDocumentFragment();
+  let i = 0;
+
+  // Una palabra = un bloque indivisible. El wrap ocurre entre palabras,
+  // nunca entre letras.
+  'Santiago Hermosilla'.split(' ').forEach(word => {
+    const w = document.createElement('span');
+    w.className = 'loader__word';
+    [...word].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = ch;
+      s.style.animationDelay = `${0.18 + i++ * 0.035}s`;
+      w.appendChild(s);
+    });
+    frag.appendChild(w);
   });
+
+  host.appendChild(frag);
 }
-buildWord('Santiago',document.getElementById('il1'),220);
-buildWord('Hermosilla',document.getElementById('il2'),530);
-setTimeout(()=>document.getElementById('isub').classList.add('in'),1000);
-setTimeout(()=>{
-  document.getElementById('iwipe').classList.add('go');
-  setTimeout(()=>{
-    document.getElementById('intro').style.display='none';
-    document.getElementById('main').classList.add('show');
-    startTypewriter();
-  },900);
-},2050);
 
-/* ── TYPEWRITER ── */
-const rolesEN=['Frontend Developer.','React Enthusiast.','UI Builder.','JavaScript Dev.'];
-const rolesES=['Desarrollador Frontend.','Entusiasta de React.','Constructor de UI.','Dev de JavaScript.'];
-let lang='en',ri=0,ci=0,del=false,ttimer;
-const typeEl=document.getElementById('typeEl');
-function getRoles(){return lang==='en'?rolesEN:rolesES;}
-function type(){
-  const r=getRoles(),cur2=r[ri%r.length];
-  if(!del){typeEl.textContent=cur2.slice(0,++ci);if(ci===cur2.length){del=true;ttimer=setTimeout(type,1900);return;}ttimer=setTimeout(type,68);}
-  else{typeEl.textContent=cur2.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%r.length;ttimer=setTimeout(type,360);return;}ttimer=setTimeout(type,36);}
-}
-function startTypewriter(){ttimer=setTimeout(type,400);}
+function runLoader(){
+  const loader = $('#loader'), bar = $('#loaderBar'), pct = $('#loaderPct'), wipe = $('#wipe');
+  document.body.classList.add('locked');
 
-/* ── LANGUAGE ── */
-function setLang(l){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
-  document.documentElement.lang=l;
-  document.querySelectorAll('[data-en]').forEach(el=>{const v=el.dataset[l];if(v!==undefined)el.innerHTML=v;});
-  clearTimeout(ttimer);ci=0;del=false;ri=0;typeEl.textContent='';ttimer=setTimeout(type,300);
-}
-document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
-
-/* ── NAV SCROLL ── */
-const navEl=document.getElementById('nav');
-window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>60));
-
-/* ── SCROLL REVEAL ── */
-const panels=document.querySelectorAll('.panel-inner');
-const panelObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.remove('hidden');e.target.classList.add('visible');}
-    else{const rect=e.target.getBoundingClientRect();if(rect.top<0){e.target.classList.remove('visible');e.target.classList.add('hidden');}else{e.target.classList.remove('visible','hidden');}}
-  });
-},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
-panels.forEach(p=>panelObs.observe(p));
-
-/* ── TECH BARS ── */
-const techObs=new IntersectionObserver(entries=>{
-  if(entries[0].isIntersecting){
-    document.querySelectorAll('.tech-card').forEach((c,i)=>setTimeout(()=>c.classList.add('bar-go'),i*100));
-    techObs.disconnect();
+  if (REDUCED){
+    loader.remove(); document.body.classList.remove('locked'); boot();
+    return;
   }
-},{threshold:0.15});
-const tg=document.getElementById('techGrid');
-if(tg)techObs.observe(tg);
 
-/* ── PROJECT MODAL ── */
-const overlay=document.getElementById('modalOverlay');
-const modalContent=document.getElementById('modalContent');
-const modalClose=document.getElementById('modalClose');
+  buildLoader();
 
-function openModal(idx){
-  const p=PROJECTS[idx];
-  const l=lang;
-  modalContent.innerHTML=`
-    ${p.img
-      ? `<img class="modal-img" src="${p.img}" alt="${p.title[l]}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-      : ''
+  let n = 0;
+  const tick = setInterval(() => {
+    n = Math.min(100, n + Math.random() * 9 + 4);
+    bar.style.width = n + '%';
+    pct.textContent = String(Math.floor(n)).padStart(2, '0');
+
+    if (n >= 100){
+      clearInterval(tick);
+
+      setTimeout(() => {
+        wipe.classList.add('sweep');                 // 780ms de barrido continuo
+
+        // A los 380ms el naranja tapa la pantalla entera: ese es el punto ciego
+        // donde se cambia el loader por el sitio, sin fade ni parpadeo.
+        setTimeout(() => {
+          loader.remove();
+          document.body.classList.remove('locked');
+          boot();
+        }, 380);
+
+        setTimeout(() => wipe.remove(), 820);
+      }, 140);
     }
-    <div class="modal-img-placeholder" style="${p.img?'display:none':''}">
-      <span style="font-family:'Playfair Display',serif;font-size:80px;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(168,85,247,.2)">${p.title.en.split(' ').map(w=>w[0]).join('')}</span>
-    </div>
-    <div class="modal-body">
-      <span class="modal-tag">${p.tag}</span>
-      <div class="modal-title">${p.title[l]}</div>
-      <p class="modal-desc">${p.desc[l]}</p>
-      <div class="modal-techs">${p.techs.map(t=>`<span class="modal-tech">${t}</span>`).join('')}</div>
-      <div class="modal-actions">
-        <a href="${p.live}" class="modal-btn-primary" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ${l==='es'?'Ver en vivo':'Live demo'}
-        </a>
-        <a href="${p.code}" class="modal-btn-ghost" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          ${l==='es'?'Ver código':'View code'}
-        </a>
+  }, 115);
+}
+
+/* ─────────────────────────────────────────────
+   TYPEWRITER
+   ───────────────────────────────────────────── */
+let twTimer = null;
+function restartTypewriter(){
+  clearTimeout(twTimer);
+  const out = $('#typewriter');
+  if (!out) return;
+
+  const list = ROLES[lang];
+  let i = 0, c = 0, deleting = false;
+  const myLang = lang;
+
+  (function loop(){
+    if (myLang !== lang) return;                     // el idioma cambió: cortá esta instancia
+    const word = list[i];
+    c += deleting ? -1 : 1;
+    out.textContent = word.slice(0, c);
+
+    let wait = deleting ? 42 : 72;
+    if (!deleting && c === word.length){ deleting = true; wait = 1700; }
+    else if (deleting && c === 0){ deleting = false; i = (i + 1) % list.length; wait = 320; }
+
+    twTimer = setTimeout(loop, wait);
+  })();
+}
+
+/* ─────────────────────────────────────────────
+   STACK
+   ───────────────────────────────────────────── */
+function buildStack(){
+  const grid = $('#stackGrid');
+  grid.innerHTML = SKILLS.map((s, i) => `
+    <article class="sk reveal" data-cursor="card" style="transition-delay:${i * 45}ms">
+      <div class="sk__top">
+        <span class="sk__logo"><i class="${s.icon}"></i></span>
+        <span>
+          <span class="sk__name">${s.name}</span><br>
+          <span class="sk__level" data-lvl="${s.lvl}">${LEVELS[s.lvl][lang]}</span>
+        </span>
+        <span class="sk__pct">${s.pct}%</span>
       </div>
-    </div>`;
-  overlay.classList.add('open');
-  document.body.style.overflow='hidden';
+      <div class="sk__track"><div class="sk__bar" data-pct="${s.pct}"></div></div>
+    </article>
+  `).join('');
+}
+
+/* ─────────────────────────────────────────────
+   REVEAL + BARRAS
+   ───────────────────────────────────────────── */
+function observeAll(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('vis');
+
+      const bar = $('.sk__bar', e.target);
+      if (bar) setTimeout(() => { bar.style.width = bar.dataset.pct + '%'; }, 180);
+
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  $$('.reveal').forEach(el => io.observe(el));
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+   ───────────────────────────────────────────── */
+function initNav(){
+  const nav = $('#nav'), links = $('#navLinks'), burger = $('#burger');
+
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.classList.toggle('on', open);
+    document.body.classList.toggle('locked', open);
+  });
+
+  links.addEventListener('click', (e) => {
+    if (e.target.tagName !== 'A') return;
+    links.classList.remove('open');
+    burger.classList.remove('on');
+    document.body.classList.remove('locked');
+  });
+
+  // link activo según sección visible
+  const sections = $$('main section[id]');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      $$('.nav__links a').forEach(a =>
+        a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+}
+
+/* ─────────────────────────────────────────────
+   CURSOR
+   ───────────────────────────────────────────── */
+function initCursor(){
+  if (matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+  const dot = $('#cursorDot'), ring = $('#cursorRing');
+  let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+
+  addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    document.body.classList.add('cursor-on');
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+
+    const hit = e.target.closest('[data-cursor]');
+    const kind = hit ? hit.dataset.cursor : '';
+    document.body.classList.toggle('cur-link',   kind === 'link');
+    document.body.classList.toggle('cur-card',   kind === 'card');
+    document.body.classList.toggle('cur-hidden', kind === 'hidden');
+  }, { passive:true });
+
+  addEventListener('mouseleave', () => document.body.classList.remove('cursor-on'));
+
+  (function follow(){
+    rx += (mx - rx) * 0.16;
+    ry += (my - ry) * 0.16;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(follow);
+  })();
+}
+
+/* ─────────────────────────────────────────────
+   MODAL DE PROYECTOS
+   ───────────────────────────────────────────── */
+let activeCard = null;
+const modal = $('#modal');
+
+function renderModal(card){
+  if (!card) return;
+  const d = card.dataset;
+
+  $('#modalMedia').innerHTML = d.img
+    ? `<img src="${d.img}" alt="${d.title}">`
+    : `<div class="poster"><span class="poster__num">${d.poster || ''}</span>
+         <span class="poster__label mono">${d.techs.split(',').slice(0,3).join(' · ')}</span></div>`;
+
+  $('#modalTitle').textContent = d.title;
+  $('#modalDesc').textContent  = lang === 'es' ? d.longEs : d.longEn;
+  $('#modalTags').innerHTML    = d.techs.split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('');
+
+  const cta = [];
+  if (d.demo) cta.push(`<a class="btn btn--solid" href="${d.demo}" target="_blank" rel="noopener" data-cursor="link">${UI.demo[lang]}</a>`);
+  if (d.repo) cta.push(`<a class="btn btn--ghost" href="${d.repo}" target="_blank" rel="noopener" data-cursor="link">${UI.repo[lang]}</a>`);
+  $('#modalCta').innerHTML = cta.join('');
+}
+
+function openModal(card){
+  activeCard = card;
+  renderModal(card);
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('locked');
+  $('#modalClose').focus();
 }
 
 function closeModal(){
-  overlay.classList.remove('open');
-  document.body.style.overflow='';
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('locked');
+  if (activeCard) activeCard.focus?.();
+  activeCard = null;
 }
 
-document.querySelectorAll('.proj-card').forEach((card,idx)=>{
-  card.addEventListener('click',()=>openModal(idx));
-});
-modalClose.addEventListener('click',closeModal);
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-/* ── PDF FALLBACK ── */
-const pdfFallback=document.getElementById('pdfFallback');
-if(pdfFallback)pdfFallback.style.display='flex';
-
-/* ── THEME TOGGLE ── */
-const themeBtn   = document.getElementById('themeToggle');
-const themeIcon  = document.getElementById('themeIcon');
-
-const MOON = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
-const SUN  = `<circle cx="12" cy="12" r="5"/>
-  <line x1="12" y1="1" x2="12" y2="3"/>
-  <line x1="12" y1="21" x2="12" y2="23"/>
-  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-  <line x1="1" y1="12" x2="3" y2="12"/>
-  <line x1="21" y1="12" x2="23" y2="12"/>
-  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-
-function applyTheme(isLight) {
-  document.body.classList.toggle('light', isLight);
-  themeIcon.innerHTML = isLight ? MOON : SUN;
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
-}
-
-// Load saved preference — default is dark
-const savedTheme = localStorage.getItem('theme');
-applyTheme(savedTheme === 'light');
-
-themeBtn.addEventListener('click', () => {
-  applyTheme(!document.body.classList.contains('light'));
-});
-
-/* ── SMOOTH ANCHORS ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
-  });
-});
-
-
-/* ── SISTEMA DE PARTICULAS INTERACTIVAS (CANVAS) ── */
-const canvas = document.getElementById('bgCanvas');
-if (canvas) {
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let count = 120; // <--- AJUSTA ACÁ LA CANTIDAD DE PARTÍCULAS
-  
-  // Objeto para registrar la posición del mouse
-  const mouse = { x: null, y: null, targetX: 0, targetY: 0 };
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  // Escuchar el movimiento del mouse
-  document.addEventListener('mousemove', (e) => {
-    // Normalizamos las coordenadas respecto al centro de la pantalla
-    mouse.targetX = (e.clientX - window.innerWidth / 2) * 0.05;
-    mouse.targetY = (e.clientY - window.innerHeight / 2) * 0.05;
-  });
-
-  // Estructura de cada partícula
-  class Particle {
-    constructor() {
-      this.reset();
-      this.y = Math.random() * canvas.height; // Distribución inicial vertical
-    }
-
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = -10;
-      this.size = Math.random() * 2 + 0.5; // Tamaños variados (0.5px a 2.5px)
-      this.speedY = Math.random() * 0.5 + 0.3; // Velocidad de caída base
-      this.speedX = (Math.random() * 0.2 - 0.1); // Leve deriva lateral base
-    }
-
-    update() {
-      // Suavizado del movimiento del mouse (Efecto Parallax inercial)
-      mouse.x += (mouse.targetX - mouse.x) * 0.08;
-      mouse.y += (mouse.targetY - mouse.y) * 0.08;
-
-      // Caída natural + la influencia del movimiento del mouse
-      this.y += this.speedY + (mouse.y * 0.1);
-      this.x += this.speedX + (mouse.x * 0.1);
-
-      // Si se salen de la pantalla, vuelven a aparecer arriba
-      if (this.y > canvas.height + 10 || this.x < -10 || this.x > canvas.width + 10) {
-        this.reset();
-      }
-    }
-
-    draw() {
-      // Detectamos dinámicamente si el body tiene la clase 'light'
-      const isLight = document.body.classList.contains('light');
-      
-      // Color: Púrpura intenso para modo claro, lavanda brillante para modo oscuro
-      ctx.fillStyle = isLight ? 'rgba(109, 40, 217, 0.45)' : 'rgba(192, 132, 252, 0.5)';
-      
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  // Inicializar array de partículas
-  for (let i = 0; i < count; i++) {
-    particles.push(new Particle());
-  }
-
-  // Bucle de animación principal
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(p => {
-      p.update();
-      p.draw();
+function initModal(){
+  $$('#projects .proj').forEach(card => {
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(card); }
     });
-    
-    requestAnimationFrame(animate);
-  }
-  animate();
+  });
+
+  $('#modalClose').addEventListener('click', closeModal);
+  $('.modal__backdrop').addEventListener('click', closeModal);
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
 }
+
+/* ─────────────────────────────────────────────
+   FORMULARIO (Formspree)
+   ───────────────────────────────────────────── */
+function initForm(){
+  const form = $('#contactForm'), note = $('#formNote'), btn = $('#submitBtn');
+  const label = $('span', btn);
+  const original = { es:'Enviar mensaje', en:'Send message' };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    note.className = 'form__note';
+
+    if (!form.checkValidity()){
+      note.textContent = UI.invalid[lang];
+      note.classList.add('err');
+      form.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    label.textContent = UI.sending[lang];
+    note.textContent = '';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!res.ok) throw new Error('formspree');
+
+      form.reset();
+      note.textContent = UI.ok[lang];
+      note.classList.add('ok');
+    } catch {
+      note.textContent = UI.err[lang];
+      note.classList.add('err');
+    } finally {
+      btn.disabled = false;
+      label.textContent = original[lang];
+      label.dataset.es = original.es;
+      label.dataset.en = original.en;
+    }
+  });
+}
+
+/* ─────────────────────────────────────────────
+   BOOT
+   ───────────────────────────────────────────── */
+function boot(){
+  buildStack();
+  applyLang(lang);
+  observeAll();
+  initNav();
+  initCursor();
+  initModal();
+  initForm();
+}
+
+runLoader();
+
+})();
