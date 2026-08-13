@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Santiago Hermosilla — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:  #FF4D17;
+    --fg:      #14140F;
+    --fg-mid:  #55513F;
+    --fg-dim:  #837D68;
+    --line:    #D8D2C2;
+    --bg:      #FFFFFF;
+    --f-display:'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+    --f-body:   'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --f-mono:   'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  @page{ size:A4; margin:0; }
+
+  html,body{ background:var(--bg); }
+  body{
+    font-family:var(--f-body);
+    color:var(--fg);
+    font-size:9.1pt;
+    line-height:1.36;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm;
+    min-height:297mm;
+    padding:11mm 13mm 9mm;
+    margin:0 auto;
+    background:var(--bg);
+  }
+
+  /* ---------------------------------------------------------------- header */
+  .head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14mm;
+    padding-bottom:3mm;
+    border-bottom:2px solid var(--fg);
+  }
+  .name{
+    font-family:var(--f-display);
+    font-weight:800;
+    font-size:26.5pt;
+    line-height:1;
+    white-space:nowrap;
+    letter-spacing:-.022em;
+  }
+  .role{
+    font-family:var(--f-mono);
+    font-weight:500;
+    font-size:8.2pt;
+    letter-spacing:.19em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-top:2.6mm;
+  }
+  .contact{
+    text-align:right;
+    font-size:8.5pt;
+    line-height:1.62;
+    color:var(--fg-mid);
+    padding-top:1.5mm;
+    white-space:nowrap;
+  }
+  .contact strong{ color:var(--fg); font-weight:600; }
+  .contact a{ color:var(--fg-mid); text-decoration:none; }
+
+  /* --------------------------------------------------------------- section */
+  .sec{ margin-top:4.1mm; }
+  .sec__label{
+    display:flex;
+    align-items:center;
+    gap:3mm;
+    font-family:var(--f-mono);
+    font-weight:500;
+    font-size:7.4pt;
+    letter-spacing:.26em;
+    color:var(--accent);
+    text-transform:uppercase;
+    margin-bottom:2.6mm;
+  }
+  .sec__label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ------------------------------------------------------------------ rows */
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:6mm;
+  }
+  .row__title{ font-size:10.2pt; font-weight:600; letter-spacing:-.01em; }
+  .row__title .hl{ color:var(--accent); }
+  .row__meta{
+    font-family:var(--f-mono);
+    font-size:7.4pt;
+    letter-spacing:.12em;
+    color:var(--fg-dim);
+    white-space:nowrap;
+    text-transform:uppercase;
+  }
+  .row__sub{
+    font-size:8.6pt;
+    color:var(--fg-mid);
+    margin-top:.6mm;
+  }
+
+  ul{ list-style:none; margin-top:1.5mm; }
+  li{
+    position:relative;
+    padding-left:4.2mm;
+    margin-bottom:.6mm;
+    color:var(--fg-mid);
+  }
+  li::before{
+    content:"–";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  /* -------------------------------------------------------------- projects */
+  .proj{ margin-bottom:2.4mm; }
+  .proj:last-child{ margin-bottom:0; }
+  .proj__head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:5mm;
+  }
+  .proj__left{ display:flex; align-items:baseline; gap:2.4mm; flex-wrap:wrap; }
+  .proj__num{
+    font-family:var(--f-mono);
+    font-weight:700;
+    font-size:8.4pt;
+    color:var(--accent);
+  }
+  .proj__name{ font-size:10.2pt; font-weight:600; letter-spacing:-.01em; }
+  .proj__stack{
+    font-family:var(--f-mono);
+    font-size:7.3pt;
+    color:var(--fg-dim);
+    letter-spacing:.02em;
+  }
+  .proj__url{
+    font-family:var(--f-mono);
+    font-size:7.3pt;
+    color:var(--fg-dim);
+    white-space:nowrap;
+  }
+  .proj__desc{ color:var(--fg-mid); margin-top:.7mm; }
+
+  /* ----------------------------------------------------------------- stack */
+  .stack{ display:grid; grid-template-columns:24mm 1fr; row-gap:1.6mm; column-gap:3mm; align-items:center; }
+  .stack__label{
+    font-family:var(--f-mono);
+    font-size:7.2pt;
+    letter-spacing:.16em;
+    color:var(--fg-dim);
+    text-transform:uppercase;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:1.6mm; }
+  .chip{
+    font-family:var(--f-mono);
+    font-size:7.4pt;
+    padding:.85mm 2.1mm;
+    border:1px solid var(--line);
+    border-radius:2px;
+    color:var(--fg-mid);
+    white-space:nowrap;
+  }
+  .chip--on{
+    border-color:var(--accent);
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  /* ------------------------------------------------------------ education */
+  .edu{ margin-bottom:2mm; }
+  .edu:last-child{ margin-bottom:0; }
+  .edu__desc{ color:var(--fg-mid); margin-top:.5mm; }
+
+  /* ------------------------------------------------------------ additional */
+  .extra{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:10mm;
+    row-gap:1.1mm;
+  }
+  .extra div{ color:var(--fg-mid); }
+  .extra b{ color:var(--fg); font-weight:600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="head">
+    <div>
+      <h1 class="name">Santiago Hermosilla</h1>
+      <div class="role">Full Stack Developer</div>
+    </div>
+    <div class="contact">
+      Buenos Aires, Argentina · <strong>+54 9 11 2161-3791</strong><br>
+      <a href="mailto:santiagohermosilla76@gmail.com">santiagohermosilla76@gmail.com</a><br>
+      github.com/santiagohdev · linkedin.com/in/santiagohermosilla
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="sec__label">Profile</div>
+    <p>
+      Full Stack Developer trained at UTN, where I completed the Full Stack Web Development
+      Diploma in 2026. I work with React and TypeScript on the client side, and Node.js,
+      Express, MongoDB and MySQL on the server side. I have already delivered freelance work
+      for a real client in production and built complete applications end to end, with
+      authentication, layered architecture and public deployment. I care about clean,
+      maintainable code and interfaces that feel intuitive without needing an explanation.
+    </p>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">Experience</div>
+    <div class="row">
+      <div class="row__title"><span class="hl">Freelance</span> Web Developer</div>
+      <div class="row__meta">2026 – Present</div>
+    </div>
+    <div class="row__sub">Eugenia Quevedo — Official Store · eugeniaquevedo.com</div>
+    <ul>
+      <li>Development and customization of the singer's official online store on Tiendanube, with a custom theme built in Twig, HTML, CSS and JavaScript.</li>
+      <li>Layout and user experience improvements on a live store with real traffic and active sales campaigns.</li>
+      <li>Ongoing maintenance and iterative improvements coordinated directly with the client.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">Projects</div>
+
+    <div class="proj">
+      <div class="proj__head">
+        <div class="proj__left">
+          <span class="proj__num">01</span>
+          <span class="proj__name">FrameBox</span>
+          <span class="proj__stack">React · Express · MongoDB · MySQL · JWT</span>
+        </div>
+        <div class="proj__url">Final Capstone Project — UTN</div>
+      </div>
+      <p class="proj__desc">
+        Personal film library: each user builds a collection, sorts it by status and genre, rates
+        titles and marks favourites. React frontend and Express backend with layered architecture
+        (routes → controllers → services → repositories), CRUD over related entities, bcrypt
+        hashing, JWT with expiration and email verification through Nodemailer. Frontend and
+        backend deployed separately.
+      </p>
+    </div>
+
+    <div class="proj">
+      <div class="proj__head">
+        <div class="proj__left">
+          <span class="proj__num">02</span>
+          <span class="proj__name">Weather Dashboard</span>
+          <span class="proj__stack">JavaScript · Canvas API · OpenWeather</span>
+        </div>
+        <div class="proj__url">weather-app-santiago.vercel.app</div>
+      </div>
+      <p class="proj__desc">
+        Real-time weather app with animated cinematic scenes drawn on canvas that change with the
+        weather condition, an hourly forecast interpolated every 30 minutes and support for 30
+        languages.
+      </p>
+    </div>
+
+    <div class="proj">
+      <div class="proj__head">
+        <div class="proj__left">
+          <span class="proj__num">03</span>
+          <span class="proj__name">Task Tracker</span>
+          <span class="proj__stack">React · Drag &amp; Drop API · LocalStorage</span>
+        </div>
+        <div class="proj__url">task-tracker-santiago.vercel.app</div>
+      </div>
+      <p class="proj__desc">
+        Task manager with full CRUD, native drag &amp; drop reordering, priorities, inline editing
+        with keyboard shortcuts, filters, a progress bar and complete persistence in localStorage.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">Tech Stack</div>
+    <div class="stack">
+      <div class="stack__label">Frontend</div>
+      <div class="chips">
+        <span class="chip chip--on">HTML5</span>
+        <span class="chip chip--on">CSS3</span>
+        <span class="chip chip--on">React</span>
+        <span class="chip chip--on">JavaScript ES6+</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Flexbox / Grid</span>
+        <span class="chip">Responsive</span>
+      </div>
+
+      <div class="stack__label">Backend</div>
+      <div class="chips">
+        <span class="chip">Node.js</span>
+        <span class="chip">Express</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">JWT</span>
+        <span class="chip">bcrypt</span>
+        <span class="chip">Nodemailer</span>
+      </div>
+
+      <div class="stack__label">Data</div>
+      <div class="chips">
+        <span class="chip">MongoDB</span>
+        <span class="chip">Mongoose</span>
+        <span class="chip">MySQL</span>
+      </div>
+
+      <div class="stack__label">Tools</div>
+      <div class="chips">
+        <span class="chip">Git</span>
+        <span class="chip">GitHub</span>
+        <span class="chip">VS Code</span>
+        <span class="chip">Vercel</span>
+        <span class="chip">Render</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Tiendanube</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">Education</div>
+
+    <div class="edu">
+      <div class="row">
+        <div class="row__title">Full Stack Web Development Diploma</div>
+        <div class="row__meta">Jul 2026</div>
+      </div>
+      <div class="row__sub">Universidad Tecnológica Nacional — FRBA · 186 h · Online</div>
+      <p class="edu__desc">
+        JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB and Mongoose,
+        JWT authentication, AWS and deployment on Render, Vercel and Heroku.
+      </p>
+    </div>
+
+    <div class="edu">
+      <div class="row">
+        <div class="row__title">Introductory Web Programming Course — Front End Developer</div>
+        <div class="row__meta">Mar 2026</div>
+      </div>
+      <div class="row__sub">Universidad Tecnológica Nacional — FRBA · 93 h · Grade: Excellent</div>
+      <p class="edu__desc">
+        Semantic HTML5 and accessibility, advanced CSS3 with Flexbox, Grid and animations,
+        JavaScript ES6+ with DOM, fetch and promises, and React with components, hooks and
+        state management.
+      </p>
+    </div>
+
+    <div class="edu">
+      <div class="row">
+        <div class="row__title">High School Diploma — Natural Sciences</div>
+        <div class="row__meta">2018 – 2023</div>
+      </div>
+      <div class="row__sub">E.E.S. N.º 2 «Gral. Juan Lavalle» · Buenos Aires</div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">Additional</div>
+    <div class="extra">
+      <div><b>Languages:</b> Spanish (native) · English</div>
+      <div><b>Availability:</b> immediate — remote or hybrid</div>
+      <div><b>Date of birth:</b> March 8, 2006</div>
+      <div><b>Interests:</b> web development, UX/UI, open source</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

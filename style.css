@@ -944,3 +944,53 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 }
 
 :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+/* ---------------------------------------------- descarga de CV en 2 idiomas */
+.cvdl{ position:relative; }
+.cvdl > summary{
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+}
+.cvdl > summary::-webkit-details-marker{ display:none; }
+.cvdl__caret{
+  width:13px; height:13px;
+  transition:transform .28s var(--ease);
+}
+.cvdl[open] .cvdl__caret{ transform:rotate(180deg); }
+
+.cvdl__menu{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  z-index:40;
+  min-width:100%;
+  display:flex;
+  flex-direction:column;
+  background:var(--surface);
+  border:var(--bw) solid var(--line);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  animation:cvdlIn .26s var(--ease) both;
+}
+@keyframes cvdlIn{
+  from{ opacity:0; transform:translateY(-6px); }
+  to  { opacity:1; transform:none; }
+}
+.cvdl__menu a{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--f-mono);
+  font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+  padding:12px 18px;
+  color:var(--fg-mid);
+  white-space:nowrap;
+  transition:background .22s, color .22s;
+}
+.cvdl__menu a + a{ border-top:var(--bw) solid var(--line-soft); }
+.cvdl__menu a:hover{ background:var(--surface-2); color:var(--accent); }
+.cvdl__code{
+  font-weight:700;
+  color:var(--accent);
+  min-width:2ch;
+}

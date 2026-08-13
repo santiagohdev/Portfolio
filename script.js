@@ -407,3 +407,14 @@ function boot(){
 runLoader();
 
 })();
+
+/* Cierra el desplegable de descarga de CV al clickear afuera o con Escape. */
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.cvdl[open]').forEach((d) => {
+    if (!d.contains(e.target)) d.removeAttribute('open');
+  });
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.cvdl[open]').forEach((d) => d.removeAttribute('open'));
+});
