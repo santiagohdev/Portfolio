@@ -314,3 +314,164 @@
     document.addEventListener('DOMContentLoaded', iniciar);
   else iniciar();
 })();
+
+/* ══════════════════════════ CAOS TOTAL ═════════════════════════════════════
+   Un botón fijo que hace temblar la página y suelta todo lo que hay en
+   pantalla: se apila abajo y se puede agarrar y tirar.
+
+   Trabaja con CLONES, no con los elementos originales. Si sacáramos los
+   originales del flujo, la página se reacomodaría entera detrás y volver
+   atrás sería un lío. Así el original solo se esconde en su lugar y
+   restaurar es borrar los clones.                                           */
+(() => {
+  const SELECTOR = [
+    '.sk', '.proj', '.cert', '.qi', '.tl__item', '.saved-item',
+    '.btn', '.tag', '.pill', '.toggle', '.caos-btn',
+    '.sec__title', '.sec__num', '.nav__logo', '.hero__line',
+    '.status', '.chip'
+  ].join(',');
+
+  const TOPE = 60;              // más cuerpos que esto y el arrastre se siente pesado
+  const MIN = 18;               // basura visual por debajo de este tamaño
+  let activo = false, mundo = null, clones = [], ocultos = [];
+
+  const cargar = () => window.Matter
+    ? Promise.resolve()
+    : new Promise((ok, mal) => {
+        const s = document.createElement('script');
+        s.src = 'vendor/matter.min.js'; s.async = true;
+        s.onload = ok; s.onerror = mal;
+        document.head.appendChild(s);
+      });
+
+  function candidatos() {
+    const vw = innerWidth, vh = innerHeight;
+    return [...document.querySelectorAll(SELECTOR)]
+      .map(el => ({ el, r: el.getBoundingClientRect() }))
+      .filter(({ el, r }) =>
+        r.width >= MIN && r.height >= MIN &&
+        r.width <= vw * .72 && r.height <= vh * .6 &&
+        r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw &&
+        !el.closest('.caos-capa'))
+      // Primero lo chico: hace una pila más divertida que cuatro bloques enormes.
+      .sort((a, b) => (a.r.width * a.r.height) - (b.r.width * b.r.height))
+      .slice(0, TOPE);
+  }
+
+  function soltar() {
+    const { Engine, Bodies, Composite, Mouse, MouseConstraint } = window.Matter;
+    const vw = innerWidth, vh = innerHeight;
+
+    const capa = document.createElement('div');
+    capa.className = 'caos-capa';
+    document.body.appendChild(capa);
+
+    const engine = Engine.create();
+    engine.gravity.y = 1.25;
+
+    const cuerpos = candidatos().map(({ el, r }) => {
+      const c = el.cloneNode(true);
+      c.classList.add('caos-pieza');
+      c.style.width = r.width + 'px';
+      c.style.height = r.height + 'px';
+      capa.appendChild(c);
+      clones.push(c);
+      el.style.visibility = 'hidden';
+      ocultos.push(el);
+
+      const body = Bodies.rectangle(
+        r.left + r.width / 2, r.top + r.height / 2, r.width, r.height,
+        { restitution: .38, friction: .4, frictionAir: .015, chamfer: { radius: 3 } }
+      );
+      body.__el = c;
+      body.__w2 = r.width / 2;
+      body.__h2 = r.height / 2;
+      // Un empujón inicial al azar: si caen rectas parece un bug, no un efecto.
+      window.Matter.Body.setVelocity(body, { x: (Math.random() - .5) * 9, y: -Math.random() * 5 });
+      window.Matter.Body.setAngularVelocity(body, (Math.random() - .5) * .22);
+      return body;
+    });
+
+    const g = 220;
+    const muros = [
+      Bodies.rectangle(vw / 2, vh + g / 2, vw * 3, g, { isStatic: true }),
+      Bodies.rectangle(-g / 2, vh / 2, g, vh * 4, { isStatic: true }),
+      Bodies.rectangle(vw + g / 2, vh / 2, g, vh * 4, { isStatic: true }),
+      Bodies.rectangle(vw / 2, -g / 2 - 700, vw * 3, g, { isStatic: true })
+    ];
+
+    const raton = Mouse.create(capa);
+    const arrastre = MouseConstraint.create(engine, {
+      mouse: raton, constraint: { stiffness: .16, render: { visible: false } }
+    });
+    raton.element.removeEventListener('wheel', raton.mousewheel);
+
+    Composite.add(engine.world, [...cuerpos, ...muros, arrastre]);
+
+    let raf, previo = performance.now();
+    (function pintar(ahora = performance.now()) {
+      const dt = Math.min(ahora - previo, 34);
+      previo = ahora;
+      Engine.update(engine, dt || 16.666);
+      for (const b of cuerpos) {
+        b.__el.style.transform =
+          `translate(${b.position.x - b.__w2}px, ${b.position.y - b.__h2}px) rotate(${b.angle}rad)`;
+      }
+      raf = requestAnimationFrame(pintar);
+    })();
+
+    return {
+      parar() {
+        cancelAnimationFrame(raf);
+        Composite.clear(engine.world, false);
+        Engine.clear(engine);
+        capa.remove();
+      }
+    };
+  }
+
+  function apagar(btn) {
+    mundo?.parar(); mundo = null;
+    clones = [];
+    ocultos.forEach(el => { el.style.visibility = ''; });
+    ocultos = [];
+    document.body.classList.remove('caos-total');
+    btn.classList.remove('on');
+    activo = false;
+  }
+
+  function armar() {
+    const btn = document.createElement('button');
+    btn.className = 'caos-total-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Modo caos total');
+    btn.innerHTML = `<span class="ctb-ico" aria-hidden="true"></span>
+      <span class="ctb-txt" data-en="Chaos" data-es="Caos">Caos</span>`;
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', async () => {
+      if (activo) return apagar(btn);
+
+      btn.disabled = true;
+      try { await cargar(); } finally { btn.disabled = false; }
+      if (!window.Matter) return;
+
+      // Primero el temblor, después se suelta todo: el sacudón anuncia el golpe.
+      document.body.classList.add('caos-temblor');
+      setTimeout(() => document.body.classList.remove('caos-temblor'), 620);
+
+      setTimeout(() => {
+        document.body.classList.add('caos-total');
+        mundo = soltar();
+        activo = true;
+        btn.classList.add('on');
+      }, 260);
+    });
+
+    addEventListener('keydown', e => { if (e.key === 'Escape' && activo) apagar(btn); });
+  }
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', armar);
+  else armar();
+})();
