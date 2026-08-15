@@ -994,3 +994,82 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   color:var(--accent);
   min-width:2ch;
 }
+
+/* ══════════════════ EXPERIENCIA — línea de tiempo ══════════════════════════
+   A propósito NO usa tarjetas: la sección de proyectos ya está llena de
+   ellas y repetir el recurso aplana la página. Acá manda el texto, sobre un
+   riel vertical. */
+
+.exp__lead{
+  font-family:var(--f-display);
+  font-size:clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight:400; line-height:1.22; letter-spacing:-.02em;
+  color:var(--fg); max-width:20ch;
+  margin-bottom:clamp(48px, 7vw, 78px);
+  text-wrap:balance;
+}
+
+.tl{ list-style:none; margin:0; padding:0; position:relative; }
+/* El riel arranca y termina en el primer y último punto, no en el borde. */
+.tl::before{
+  content:""; position:absolute; left:7px; top:10px; bottom:10px;
+  width:var(--bw); background:var(--line);
+}
+
+.tl__item{
+  position:relative;
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:0 clamp(24px, 4vw, 56px);
+  padding:0 0 clamp(38px, 5vw, 58px) 42px;
+}
+.tl__item:last-child{ padding-bottom:0; }
+
+.tl__dot{
+  position:absolute; left:0; top:6px;
+  width:15px; height:15px; border-radius:50%;
+  background:var(--bg); border:var(--bw) solid var(--line);
+  transition:border-color var(--t), background var(--t), box-shadow var(--t);
+}
+/* El punto lleno marca el hito que importa: el primer cliente. */
+.tl__dot--hl{
+  background:var(--accent); border-color:var(--accent);
+  box-shadow:0 0 0 5px var(--accent-wash);
+}
+.tl__item:hover .tl__dot{ border-color:var(--accent); }
+
+.tl__when{
+  font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--fg-dim); padding-top:8px; white-space:nowrap;
+}
+
+.tl__role{
+  font-family:var(--f-display);
+  font-size:clamp(1.12rem, 1.9vw, 1.42rem);
+  font-weight:600; letter-spacing:-.015em; color:var(--fg);
+  margin:0 0 12px;
+}
+.tl__role a{
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:var(--bw) solid transparent;
+  transition:border-color var(--t);
+}
+.tl__role a:hover{ border-bottom-color:var(--accent); }
+.tl__sep{ color:var(--fg-dim); margin:0 6px; font-weight:400; }
+
+.tl__txt{
+  font-size:1rem; line-height:1.72; color:var(--fg-mid);
+  max-width:62ch; margin:0;
+}
+
+@media (max-width:780px){
+  .exp__lead{ max-width:none; }
+  .tl__item{
+    grid-template-columns:1fr;
+    gap:8px; padding-left:34px;
+  }
+  .tl::before{ left:6px; }
+  .tl__dot{ width:13px; height:13px; top:4px; }
+  .tl__when{ padding-top:0; }
+}
