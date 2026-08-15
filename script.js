@@ -430,6 +430,9 @@ document.addEventListener('keydown', (e) => {
     card.querySelectorAll('.proj__frame,.proj__close,.proj__loading').forEach(n => n.remove());
   }
 
+  // En FASE DE CAPTURA a propósito: el listener que abre el modal está sobre
+  // la propia tarjeta (openModal, más arriba), así que si escuchamos en
+  // burbujeo el modal ya se abrió y frenarlo llega tarde.
   document.addEventListener('click', e => {
     const cerrarBtn = e.target.closest('.proj__close');
     if (cerrarBtn) {
@@ -474,7 +477,7 @@ document.addEventListener('keydown', (e) => {
 
     media.append(frame, cargando, cerrarEl);
     card.classList.add('proj--live');
-  });
+  }, true);
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.querySelectorAll('.proj--live').forEach(cerrar);
