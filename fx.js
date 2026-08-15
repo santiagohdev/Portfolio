@@ -331,6 +331,26 @@
     '.status', '.chip'
   ].join(',');
 
+  /* Un clon sacado de su padre pierde todo lo que heredaba. El caso claro son
+     los renglones del nombre en el hero: son <span> dentro del <h1>, así que
+     fuera de él se quedan sin tamaño de fuente y encogen a 16px. Y el segundo
+     renglón es texto contorneado (fill transparente), que sin el contorno
+     queda invisible pero igual ocupa lugar y se puede agarrar. Copiar el
+     estilo ya calculado resuelve las dos cosas de una. */
+  const HEREDADAS = [
+    'font', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'lineHeight',
+    'letterSpacing', 'wordSpacing', 'color', 'textTransform', 'textAlign',
+    'whiteSpace', 'textShadow', 'backgroundImage', 'backgroundClip',
+    'webkitTextStroke', 'webkitTextFillColor', 'webkitBackgroundClip'
+  ];
+  function copiarEstilo(origen, destino) {
+    const cs = getComputedStyle(origen);
+    for (const prop of HEREDADAS) {
+      const v = cs[prop];
+      if (v) destino.style[prop] = v;
+    }
+  }
+
   const TOPE = 60;              // más cuerpos que esto y el arrastre se siente pesado
   const MIN = 18;               // basura visual por debajo de este tamaño
   let activo = false, mundo = null, clones = [], ocultos = [];
@@ -372,6 +392,7 @@
     const cuerpos = candidatos().map(({ el, r }) => {
       const c = el.cloneNode(true);
       c.classList.add('caos-pieza');
+      copiarEstilo(el, c);
       c.style.width = r.width + 'px';
       c.style.height = r.height + 'px';
       capa.appendChild(c);
