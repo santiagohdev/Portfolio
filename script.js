@@ -418,3 +418,85 @@ document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
   document.querySelectorAll('.cvdl[open]').forEach((d) => d.removeAttribute('open'));
 });
+
+/* ══════════════════ DEMO EN VIVO DENTRO DE LA TARJETA ═════════════════════
+   El iframe se crea recién al hacer clic: cargar tres apps de entrada haría
+   pesar la home por algo que quizás nadie abre. */
+(() => {
+  const ICONO_CERRAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+
+  function cerrar(card) {
+    card.classList.remove('proj--live');
+    card.querySelectorAll('.proj__frame,.proj__close,.proj__loading').forEach(n => n.remove());
+  }
+
+  document.addEventListener('click', e => {
+    const cerrarBtn = e.target.closest('.proj__close');
+    if (cerrarBtn) {
+      e.preventDefault(); e.stopPropagation();
+      cerrar(cerrarBtn.closest('.proj'));
+      return;
+    }
+
+    const btn = e.target.closest('.proj__live');
+    if (!btn) return;
+    // Sin esto, el clic sigue subiendo y abre el modal del proyecto.
+    e.preventDefault(); e.stopPropagation();
+
+    const card = btn.closest('.proj');
+    const url = card?.dataset.demo;
+    if (!card || !url || card.classList.contains('proj--live')) return;
+
+    const media = card.querySelector('.proj__media');
+
+    const cargando = document.createElement('div');
+    cargando.className = 'proj__loading';
+    cargando.textContent = document.documentElement.lang === 'en' ? 'Loading demo…' : 'Cargando demo…';
+
+    const frame = document.createElement('iframe');
+    frame.className = 'proj__frame';
+    frame.src = url;
+    frame.loading = 'lazy';
+    frame.title = card.dataset.title || 'Demo';
+    frame.setAttribute('allow', 'geolocation');
+    frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    frame.addEventListener('load', () => {
+      frame.classList.add('on');
+      cargando.classList.add('off');
+      setTimeout(() => cargando.remove(), 400);
+    });
+
+    const cerrarEl = document.createElement('button');
+    cerrarEl.className = 'proj__close';
+    cerrarEl.type = 'button';
+    cerrarEl.setAttribute('aria-label', 'Cerrar demo');
+    cerrarEl.innerHTML = ICONO_CERRAR;
+
+    media.append(frame, cargando, cerrarEl);
+    card.classList.add('proj--live');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.proj--live').forEach(cerrar);
+  });
+})();
+
+/* ══════════════════ PARA EL QUE ABRE LA CONSOLA ═══════════════════════════
+   Casi siempre es otro dev evaluando el sitio. Bien vale saludarlo. */
+(() => {
+  const verde = 'color:#2ED88E;font-weight:700';
+  const tenue = 'color:#8B8B80';
+  console.log(
+`%c
+   ██╗  ██╗
+   ██║  ██║   Santiago Hermosilla
+   ███████║   Full Stack Developer
+   ██╔══██║   Buenos Aires, AR
+   ██║  ██║
+   ╚═╝  ╚═╝
+`, verde);
+  console.log('%cAsí que abriste la consola. 👀', 'color:#F2EFE6;font-size:13px');
+  console.log('%cEste sitio es HTML, CSS y JavaScript a mano. Sin framework, sin build.', tenue);
+  console.log('%cSi estás buscando a alguien: %csantiagohermosilla76@gmail.com', tenue, verde);
+  console.log('%chttps://santiagohermosilla.com', tenue);
+})();

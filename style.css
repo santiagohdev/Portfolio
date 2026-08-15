@@ -1073,3 +1073,98 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   .tl__dot{ width:13px; height:13px; top:4px; }
   .tl__when{ padding-top:0; }
 }
+
+/* ══════════════════ DEMO EN VIVO DENTRO DE LA TARJETA ═════════════════════
+   La captura es una foto; esto deja probar la app sin salir del portfolio.
+   Solo en los proyectos que permiten ser embebidos: la tienda de Eugenia
+   manda frame-ancestors y no se puede. */
+
+.proj__media{ position:relative; }
+
+.proj__live{
+  position:absolute; z-index:3; left:14px; bottom:14px;
+  display:inline-flex; align-items:center; gap:9px;
+  padding:9px 15px;
+  font-family:var(--f-mono); font-size:.68rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--fg);
+  background:rgba(13,13,11,.72);
+  border:var(--bw) solid var(--line);
+  border-radius:var(--r);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+          backdrop-filter:saturate(150%) blur(14px);
+  cursor:pointer;
+  opacity:0; transform:translateY(6px);
+  transition:opacity var(--t), transform var(--t), border-color var(--t), color var(--t);
+}
+.proj:hover .proj__live,
+.proj__live:focus-visible{ opacity:1; transform:none; }
+.proj__live:hover{ border-color:var(--accent); color:var(--accent); }
+.proj__live-dot{
+  width:7px; height:7px; border-radius:50%; background:var(--accent); flex:none;
+  animation:livePulse 2s var(--ease) infinite;
+}
+@keyframes livePulse{
+  0%,100%{ box-shadow:0 0 0 0 var(--accent-wash) }
+  55%{ box-shadow:0 0 0 6px transparent }
+}
+
+/* mientras corre la demo */
+.proj--live .proj__media img,
+.proj--live .proj__veil{ opacity:0; pointer-events:none; }
+.proj__frame{
+  position:absolute; inset:0; z-index:2;
+  width:100%; height:100%;
+  border:0; background:var(--bg);
+  opacity:0; transition:opacity .45s var(--ease);
+}
+.proj__frame.on{ opacity:1; }
+.proj__close{
+  position:absolute; z-index:4; right:12px; top:12px;
+  width:34px; height:34px; display:grid; place-items:center;
+  border-radius:50%; cursor:pointer;
+  color:var(--fg);
+  background:rgba(13,13,11,.78);
+  border:var(--bw) solid var(--line);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  transition:border-color var(--t), color var(--t), transform var(--t);
+}
+.proj__close:hover{ border-color:var(--accent); color:var(--accent); transform:rotate(90deg); }
+.proj__close svg{ width:15px; height:15px; }
+.proj__loading{
+  position:absolute; inset:0; z-index:3; display:grid; place-items:center;
+  font-family:var(--f-mono); font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--fg-dim);
+  background:var(--bg);
+  transition:opacity .4s var(--ease);
+}
+.proj__loading.off{ opacity:0; pointer-events:none; }
+
+@media (max-width:760px){
+  /* En touch no hay hover: el botón queda siempre visible. */
+  .proj__live{ opacity:1; transform:none; left:10px; bottom:10px; padding:8px 12px; }
+}
+
+/* ══════════════════ SCROLL NATIVO ═════════════════════════════════════════
+   Donde el navegador lo soporta, la aparición la maneja el compositor con
+   animation-timeline en vez de un IntersectionObserver en JS. El .vis que
+   sigue agregando el script queda inofensivo: la animación gana. */
+@supports (animation-timeline: view()){
+  .reveal{
+    opacity:1; transform:none;
+    animation:revealScroll linear both;
+    animation-timeline:view();
+    animation-range:entry 4% cover 26%;
+  }
+  @keyframes revealScroll{
+    from{ opacity:0; transform:translateY(26px); }
+    to{ opacity:1; transform:none; }
+  }
+  /* El hero ya entra visible: animarlo con scroll lo haría parpadear. */
+  .hero .reveal{ animation:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  @supports (animation-timeline: view()){
+    .reveal{ animation:none; opacity:1; transform:none; }
+  }
+}

@@ -384,7 +384,7 @@
     </article>
 
     <!-- 02 -->
-    <article class="proj reveal" data-cursor="card"
+    <article class="proj reveal" data-cursor="card" data-embed="1"
       data-img="images/weather.jpg"
       data-title="Weather Dashboard"
       data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
@@ -393,6 +393,13 @@
       data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 30 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
       data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 30 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
       <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
         <img src="images/weather.jpg" alt="Weather Dashboard" loading="lazy">
         <div class="proj__veil">
           <span class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</span>
@@ -415,7 +422,7 @@
     </article>
 
     <!-- 03 -->
-    <article class="proj proj--rev reveal" data-cursor="card"
+    <article class="proj proj--rev reveal" data-cursor="card" data-embed="1"
       data-img="images/task.jpg"
       data-title="Task Tracker"
       data-techs="React,CSS3,LocalStorage,Drag & Drop API"
@@ -424,6 +431,13 @@
       data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
       data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
       <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
         <img src="images/task.jpg" alt="Task Tracker" loading="lazy">
         <div class="proj__veil">
           <span class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</span>
