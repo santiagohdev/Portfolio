@@ -387,11 +387,11 @@
     <article class="proj reveal" data-cursor="card"
       data-img="images/weather.jpg"
       data-title="Weather Dashboard"
-      data-techs="JavaScript,CSS3,HTML5,OpenWeather API,Canvas API"
+      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
       data-demo="https://weather-app-santiago.vercel.app/"
       data-repo="https://github.com/santiagohdev"
-      data-long-es="App de clima en tiempo real construida sobre la API de OpenWeatherMap. Los fondos son escenas cinematográficas animadas dibujadas en canvas que cambian según la condición del clima: lluvia, tormenta eléctrica, nieve, niebla y cielo despejado con variantes de día y noche. El pronóstico horario está interpolado cada 30 minutos para que la curva de temperatura se lea suave en lugar de escalonada, hay soporte en 30 idiomas y todo el layout es responsivo desde móvil hasta desktop."
-      data-long-en="Real-time weather app built on the OpenWeatherMap API. Backgrounds are animated cinematic scenes drawn on canvas that change with the weather condition: rain, thunderstorm, snow, fog and clear sky with day and night variants. The hourly forecast is interpolated every 30 minutes so the temperature curve reads smooth instead of stepped, there's support for 30 languages, and the whole layout is responsive from mobile to desktop.">
+      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 30 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
+      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 30 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
       <div class="proj__media" data-cursor="hidden">
         <img src="images/weather.jpg" alt="Weather Dashboard" loading="lazy">
         <div class="proj__veil">
@@ -403,13 +403,13 @@
         <p class="proj__kicker mono">JavaScript · API</p>
         <h3 class="proj__title">Weather Dashboard</h3>
         <p class="proj__desc"
-           data-en="Real-time weather app with animated cinematic backgrounds that react to the current condition, 30-minute interpolated hourly forecast and support for 30 languages."
-           data-es="App de clima en tiempo real con fondos cinematográficos animados que reaccionan a la condición actual, pronóstico horario interpolado cada 30 minutos y soporte en 30 idiomas.">
-          App de clima en tiempo real con fondos cinematográficos animados que reaccionan a la condición actual, pronóstico horario interpolado cada 30 minutos y soporte en 30 idiomas.
+           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 30 languages."
+           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.">
+          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.
         </p>
         <div class="tags">
           <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
-          <span class="tag">OpenWeather API</span><span class="tag">Canvas API</span>
+          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
         </div>
       </div>
     </article>
