@@ -17,10 +17,10 @@
   --fg-mid:    #A8A395;
   --fg-dim:    #6E6A5E;
 
-  --accent:    #FF4D17;
-  --accent-2:  #FF7A47;
+  --accent:    #2ED88E;
+  --accent-2:  #6FE8B4;
   --accent-fg: #0D0D0B;
-  --accent-wash:rgba(255,77,23,.10);
+  --accent-wash:rgba(46,216,142,.10);
 
   --pending:   #E8C547;         /* cert sin verificar */
   --pending-wash: rgba(232,197,71,.10);
@@ -59,10 +59,10 @@
   --fg-mid:    #55513F;
   --fg-dim:    #837D68;
 
-  --accent:    #D93A00;
-  --accent-2:  #B32F00;
-  --accent-fg: #FFF6EA;
-  --accent-wash:rgba(217,58,0,.09);
+  --accent:    #0D8A5B;
+  --accent-2:  #096B46;
+  --accent-fg: #F2FBF6;
+  --accent-wash:rgba(13,138,91,.09);
 
   --pending:   #9A7B00;
   --pending-wash: rgba(154,123,0,.10);
