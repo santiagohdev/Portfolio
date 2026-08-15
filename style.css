@@ -1214,6 +1214,10 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   margin:0;
   will-change:transform;
   transition:none;
+  /* Las tarjetas llevan .reveal, que bajo animation-timeline anima transform.
+     Una animación CSS le gana al estilo inline, así que sin esto pisaría la
+     posición que escribe el motor físico y quedarían todas en la esquina. */
+  animation:none !important;
   opacity:1 !important;
   transform-origin:center center;
   user-select:none;
