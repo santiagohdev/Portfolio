@@ -492,7 +492,19 @@
     addEventListener('keydown', e => { if (e.key === 'Escape' && activo) apagar(btn); });
   }
 
+  /* El botón es fijo y flotante: si se crea en DOMContentLoaded queda pegado
+     encima de la pantalla de carga. runLoader() saca el #loader recién cuando
+     termina el barrido, así que se espera a que se vaya. */
+  function cuandoNoHayaLoader(fn) {
+    if (!document.getElementById('loader')) return fn();
+    const obs = new MutationObserver(() => {
+      if (!document.getElementById('loader')) { obs.disconnect(); fn(); }
+    });
+    obs.observe(document.body, { childList: true });
+  }
+
+  const arrancar = () => cuandoNoHayaLoader(armar);
   if (document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', armar);
-  else armar();
+    document.addEventListener('DOMContentLoaded', arrancar);
+  else arrancar();
 })();
