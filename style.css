@@ -1237,19 +1237,6 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   .caos-btn{ display:none; }
 }
 
-/* ── distorsión líquida sobre las capturas de proyecto ──────────────────── */
-.fx-liquid{
-  position:absolute; inset:0; z-index:1;
-  width:100%; height:100%; display:block;
-  opacity:0; transition:opacity .3s var(--ease);
-  pointer-events:none;
-}
-.proj__media.fx-on .fx-liquid{ opacity:1; }
-/* La imagen sigue ahí debajo: si WebGL falla, no se nota nada. */
-.proj__media.fx-on img{ opacity:0; transition:opacity .3s var(--ease); }
-/* Mientras corre la demo embebida el efecto no debe taparla. */
-.proj--live .fx-liquid{ display:none; }
-
 /* ══════════════════════════ CAOS TOTAL ═════════════════════════════════════ */
 
 .caos-total-btn{
