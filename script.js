@@ -5,6 +5,10 @@
 (() => {
 'use strict';
 
+// Habilita el ocultamiento del .reveal en CSS. Va primero: si algo de abajo
+// falla, el contenido ya quedo visible en vez de desaparecer.
+document.documentElement.classList.add('js');
+
 const $  = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
