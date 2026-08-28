@@ -93,9 +93,9 @@
   <nav class="nav__links" id="navLinks">
     <a href="#about"      data-en="About"      data-es="Sobre mí"    data-cursor="link">Sobre mí</a>
     <a href="#stack"      data-en="Skills"     data-es="Stack"       data-cursor="link">Stack</a>
-    <a href="#certs"      data-en="Certs"      data-es="Certificados" data-cursor="link">Certificados</a>
     <a href="#projects"   data-en="Projects"   data-es="Proyectos"   data-cursor="link">Proyectos</a>
     <a href="#experience" data-en="Experience" data-es="Experiencia" data-cursor="link">Experiencia</a>
+    <a href="#certs"      data-en="Certs"      data-es="Certificados" data-cursor="link">Certificados</a>
     <a href="#contact"    data-en="Contact"    data-es="Contacto"    data-cursor="link">Contacto</a>
   </nav>
 
@@ -250,11 +250,299 @@
   </div>
 </section>
 
+<!-- ══════════ PROYECTOS ══════════ -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">03</span>
+      <h2 class="sec__title" data-en="Projects" data-es="Proyectos">Proyectos</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <!-- Las seis en una sola grilla de dos columnas. La sección se sale
+         del ancho de lectura del resto del sitio para aprovechar los costados. -->
+    <div class="proj-grid">
+      <article class="proj reveal" data-cursor="card"
+          data-img="images/slate.webp"
+          data-title="Slate — Edición colaborativa en tiempo real"
+          data-techs="TypeScript,React,Node.js,WebSocket,PostgreSQL,CRDT"
+          data-demo="https://coedit-a0jk.onrender.com"
+          data-repo="https://github.com/santiagohdev/coedit"
+          data-long-es="Pizarra y editor de texto donde varias personas trabajan sobre el mismo documento a la vez. El problema difícil no es dibujar: es que dos personas editen el mismo punto al mismo tiempo, con internet intermitente, y que todos terminen viendo exactamente lo mismo sin que haya un servidor que decida quién gana. Lo resolví escribiendo tres CRDTs a mano, sin librerías de sincronización: un RGA para el texto, un conjunto con tombstones para los trazos del lienzo y un mapa last-write-wins por campo para las notas, todos con orden total y desempate por sitio. Las operaciones que llegan antes que su ancla se encolan y se drenan cuando aparece, y al reconectar se hace merge en vez de reemplazo, así una edición hecha sin internet no se pierde. La convergencia está verificada con tests de propiedades: mil escenarios aleatorios que barajan el orden de entrega y duplican mensajes, comprobando que todas las réplicas terminan idénticas. Son 1.824 tests en total. Por debajo va Express con WebSocket sobre la misma sesión, contraseñas con scrypt y un adaptador de base que habla SQLite en desarrollo y PostgreSQL en producción."
+          data-long-en="A whiteboard and text editor where several people work on the same document at once. The hard part isn&#39;t the drawing: it&#39;s two people editing the same spot at the same time, over flaky internet, and everyone ending up seeing exactly the same thing without a server deciding who wins. I solved it by writing three CRDTs by hand, with no sync libraries: an RGA for text, a tombstone set for canvas strokes and a per-field last-write-wins map for notes, all with total ordering and a site-based tiebreak. Operations that arrive before their anchor are buffered and drained once it shows up, and reconnecting merges rather than replaces, so an edit made offline is never lost. Convergence is verified with property-based tests: a thousand randomised scenarios that shuffle delivery order and duplicate messages, checking every replica ends up identical. 1,824 tests in total. Underneath it&#39;s Express with WebSocket over the same session, scrypt-hashed passwords and a database adapter that speaks SQLite in development and PostgreSQL in production."
+          data-note-es="La demo está en un plan gratuito que duerme la app: el primer acceso puede tardar unos 20 segundos en levantar."
+          data-note-en="The demo runs on a free tier that puts the app to sleep: the first visit can take around 20 seconds to wake up.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/slate.webp" alt="Slate — pizarra colaborativa en tiempo real" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <span class="proj__idx mono">01</span>
+      <p class="proj__kicker mono" data-en="Own project · Distributed systems" data-es="Proyecto propio · Sistemas distribuidos">Proyecto propio · Sistemas distribuidos</p>
+      <h3 class="proj__title">Slate — <span data-en="Real-time collaboration" data-es="Colaboración en tiempo real">Colaboración en tiempo real</span></h3>
+      <p class="proj__desc"
+         data-en="Whiteboard and text editor for several people at once. Three CRDTs written from scratch — no sync libraries — so edits never conflict, survive going offline and converge to the same state. Convergence proven by 1,824 tests."
+         data-es="Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado. Convergencia demostrada con 1.824 tests.">
+        Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado. Convergencia demostrada con 1.824 tests.
+      </p>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+        <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">CRDT</span>
+      </div>
+          </div>
+        </article>
+
+      <article class="proj reveal" data-cursor="card"
+          data-img="images/eugenia.webp"
+          data-title="Eugenia Quevedo — Tienda Oficial"
+          data-techs="Tiendanube,Twig,HTML,CSS,JavaScript"
+          data-demo="https://www.eugeniaquevedo.com"
+          data-repo=""
+          data-long-es="Tienda online oficial de la cantante Eugenia Quevedo, desarrollada sobre Tiendanube con un tema a medida en Twig, HTML, CSS y JavaScript. No es una plantilla adaptada: el diseño se construyó desde cero para la identidad de la artista. Es una tienda en producción, con tráfico real y campañas de venta activas, así que cada cambio se hace sobre algo que está vendiendo. Además del desarrollo inicial, hago mejoras de layout y experiencia de usuario y mantenimiento continuo, coordinando directamente con la clienta."
+          data-long-en="Official online store for singer Eugenia Quevedo, built on Tiendanube with a custom theme in Twig, HTML, CSS and JavaScript. Not an adapted template: the design was built from scratch for the artist&#39;s identity. It is a live store with real traffic and active sales campaigns, so every change ships onto something that is actively selling. Beyond the initial build I handle layout and UX improvements and ongoing maintenance, coordinating directly with the client.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/eugenia.webp" alt="Eugenia Quevedo — Tienda Oficial" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details" data-es="Ver detalles">Ver detalles</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <span class="proj__idx mono">02</span>
+      <p class="proj__kicker mono" data-en="Client work · Tiendanube" data-es="Trabajo para cliente · Tiendanube">Trabajo para cliente · Tiendanube</p>
+      <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
+      <p class="proj__desc"
+         data-en="The singer&#39;s official store, with a custom Tiendanube theme built from scratch. A live store with real traffic and active sales campaigns, with ongoing maintenance."
+         data-es="La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.">
+        La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.
+      </p>
+      <div class="tags">
+        <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">HTML</span>
+        <span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+          </div>
+        </article>
+
+      <article class="proj reveal" data-cursor="card"
+      data-img="images/framebox.webp"
+      data-title="FrameBox"
+      data-techs="React,Express,MongoDB,MySQL,JWT,bcrypt,Nodemailer"
+      data-demo="https://framebox-frontend.vercel.app"
+      data-repo="https://github.com/santiagohdev/Framebox-Frontend"
+      data-repo2="https://github.com/santiagohdev/Framebox-Backend"
+      data-repo-label="Frontend" data-repo2-label="Backend"
+      data-long-es="Biblioteca personal de películas y Trabajo Integrador Final de la Diplomatura Full Stack de la UTN. Cada usuario arma su propia colección: marca lo que vio y lo que quiere ver, la ordena por estado y género, le pone su puntaje y destaca sus favoritas. Por debajo es una app completa con frontend en React y backend en Express, con CRUD real sobre dos entidades relacionadas y arquitectura en capas (routes → controllers → services → repositories). El registro e inicio de sesión usan hash bcrypt, JWT con expiración y verificación de e-mail vía Nodemailer. Frontend y backend viven en repositorios separados y ambos están desplegados públicamente."
+      data-long-en="A personal movie library and the final project of the UTN Full Stack diploma. Each user builds their own collection: marking what they've watched and what they want to watch, sorting it by status and genre, rating it and flagging favourites. Underneath it's a complete app with a React frontend and an Express backend, with real CRUD over two related entities and a layered architecture (routes → controllers → services → repositories). Sign-up and login use bcrypt hashing, JWT with expiration and e-mail verification via Nodemailer. Frontend and backend live in separate repositories and both are publicly deployed.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/framebox.webp" alt="FrameBox" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">03</span>
+        <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
+        <h3 class="proj__title">FrameBox</h3>
+        <p class="proj__desc"
+           data-en="Personal movie library: track what you've watched and what's next, sort by status and genre, rate and favourite. React + Express, layered architecture, bcrypt + JWT auth and e-mail verification."
+           data-es="Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.">
+          Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+          <span class="tag">MySQL</span><span class="tag">JWT</span><span class="tag">bcrypt</span><span class="tag">Nodemailer</span>
+        </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+      data-img="images/weather.webp"
+      data-title="Weather Dashboard"
+      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
+      data-demo="https://weather-app-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev/Weather-App"
+      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 30 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
+      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 30 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
+      <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
+        <img src="images/weather.webp" alt="Weather Dashboard" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">04</span>
+        <p class="proj__kicker mono">JavaScript · API</p>
+        <h3 class="proj__title">Weather Dashboard</h3>
+        <p class="proj__desc"
+           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 30 languages."
+           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.">
+          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.
+        </p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
+          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
+        </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+      data-img="images/task.webp"
+      data-title="Task Tracker"
+      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
+      data-demo="https://task-tracker-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev/Task-Tracker"
+      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
+      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
+      <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
+        <img src="images/task.webp" alt="Task Tracker" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">05</span>
+        <p class="proj__kicker mono">React · LocalStorage</p>
+        <h3 class="proj__title">Task Tracker</h3>
+        <p class="proj__desc"
+           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
+           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
+          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
+        </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card"
+      data-img="images/bruma.webp"
+      data-title="Bruma — Café de especialidad"
+      data-techs="HTML,CSS,JavaScript,Diseño UI"
+      data-demo="https://cafe-theta-one.vercel.app"
+      data-repo="https://github.com/santiagohdev/cafe"
+      data-long-es="Bruma no existe: es una cafetería inventada que usé como pretexto para construir un sitio institucional completo desde cero, sin frameworks ni plantillas. No hubo cliente ni encargo — el objetivo era ejercitar un proyecto entero de punta a punta y tener algo con lo que practicar diseño y estructura. Incluye menú de cinco categorías con etiquetas de dieta, ficha de siete orígenes de café con notas de cata, galería con lightbox navegable por teclado, mapa embebido y formulario de reserva con validación propia. Dos detalles que lo separan de una maqueta: el estado de apertura del local se calcula contra la hora real del visitante, y todo el contenido —precios, platos, horarios— vive en un único archivo de datos, para que el dueño pueda actualizar la carta sin tocar una línea de código. Responsive, accesible y sin dependencias: pesa 64 KB."
+      data-long-en="Bruma doesn&#39;t exist: it&#39;s an invented coffee shop I used as a pretext to build a complete business site from scratch, with no frameworks or templates. There was no client and no brief — the point was to exercise a whole project end to end and have something to practise design and structure on. It includes a five-category menu with dietary tags, seven coffee origins with tasting notes, a keyboard-navigable lightbox gallery, an embedded map and a booking form with custom validation. Two details set it apart from a mockup: the open/closed status is computed against the visitor&#39;s real clock, and all content — prices, dishes, opening hours — lives in a single data file so the owner can update the menu without touching code. Responsive, accessible and dependency-free: 64 KB total.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/bruma.webp" alt="Bruma — Café de especialidad" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <span class="proj__idx mono">06</span>
+        <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
+        <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
+        <p class="proj__desc"
+           data-en="A fictional coffee shop I invented as an excuse to build a complete site from scratch, with no framework. Not a real client: a practice piece to exercise the whole thing end to end — menu, gallery with lightbox, map and booking form."
+           data-es="Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.">
+          Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.
+        </p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          <span class="tag">Diseño UI</span><span class="tag">Responsive</span>
+        </div>
+      </div>
+          </article>
+    </div>
+  </div>
+</section>
+<!-- ══════════ EXPERIENCIA ══════════ -->
+<section class="sec sec--alt" id="experience">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <span class="sec__num mono">04</span>
+      <h2 class="sec__title" data-en="Experience" data-es="Experiencia">Experiencia</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <p class="exp__lead reveal"
+       data-en="I work independently, building websites and online stores for real clients."
+       data-es="Trabajo de forma independiente, construyendo sitios y tiendas online para clientes reales.">
+      Trabajo de forma independiente, construyendo sitios y tiendas online para clientes reales.
+    </p>
+
+    <ol class="tl">
+
+      <li class="tl__item reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <span class="tl__when mono">2026 — <span data-en="Present" data-es="Presente">Presente</span></span>
+        <div class="tl__body">
+          <h3 class="tl__role" data-en="Independent Web Developer" data-es="Desarrollador Web Independiente">Desarrollador Web Independiente</h3>
+          <p class="tl__txt"
+             data-en="I take on projects end to end: I talk to the client, build the site and keep it running afterwards. Landing pages, online stores and custom systems, mostly with React, Node and Tiendanube."
+             data-es="Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sitio y después lo mantengo andando. Landings, tiendas online y sistemas a medida, sobre todo con React, Node y Tiendanube.">
+            Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sitio y después lo mantengo andando. Landings, tiendas online y sistemas a medida, sobre todo con React, Node y Tiendanube.
+          </p>
+        </div>
+      </li>
+
+      <li class="tl__item reveal">
+        <span class="tl__dot tl__dot--hl" aria-hidden="true"></span>
+        <span class="tl__when mono">2026</span>
+        <div class="tl__body tl__body--cliente">
+          <!-- La cifra va de fondo, tenue: da la escala de un vistazo sin
+               convertir el bloque en un cartel de números. -->
+          <span class="tl__escala" aria-hidden="true">2,6 M</span>
+
+          <h3 class="tl__role">
+            <span data-en="First client" data-es="Primer cliente">Primer cliente</span>
+            <span class="tl__sep" aria-hidden="true">·</span>
+            <a href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link">Eugenia Quevedo</a>
+          </h3>
+
+          <a class="tl__ig" href="https://instagram.com/soyeugequevedook" target="_blank" rel="noopener" data-cursor="link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="mono">@soyeugequevedook</span>
+            <span class="tl__ig-num mono" data-en="2.6M followers" data-es="2,6 M seguidores">2,6 M seguidores</span>
+          </a>
+          <p class="tl__txt"
+             data-en="One of my first jobs was the official store of singer Eugenia Quevedo. I built a custom Tiendanube theme from scratch and I still maintain it: a live store, with real traffic and active sales campaigns behind it."
+             data-es="Uno de mis primeros trabajos fue la tienda oficial de la cantante Eugenia Quevedo. Le hice un tema propio sobre Tiendanube desde cero y todavía lo mantengo: una tienda en producción, con tráfico real y campañas de venta detrás.">
+            Uno de mis primeros trabajos fue la tienda oficial de la cantante Eugenia Quevedo. Le hice un tema propio sobre Tiendanube desde cero y todavía lo mantengo: una tienda en producción, con tráfico real y campañas de venta detrás.
+          </p>
+        </div>
+      </li>
+
+      <li class="tl__item reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <span class="tl__when mono">2025 — 2026</span>
+        <div class="tl__body">
+          <h3 class="tl__role" data-en="Training at UTN" data-es="Formación en la UTN">Formación en la UTN</h3>
+          <p class="tl__txt"
+             data-en="Full Stack Web Development diploma at Universidad Tecnológica Nacional — two levelled courses, Front End and Back End — while I started taking on my first paid work."
+             data-es="Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.">
+            Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.
+          </p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
 <!-- ══════════ CERTIFICADOS ══════════ -->
 <section class="sec" id="certs">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">03</span>
+      <span class="sec__num mono">05</span>
       <h2 class="sec__title" data-en="Certificates" data-es="Certificados">Certificados</h2>
       <span class="sec__rule"></span>
     </div>
@@ -443,295 +731,7 @@
   </div>
 </section>
 
-<!-- ══════════ PROYECTOS ══════════ -->
-<section class="sec sec--alt" id="projects">
-  <div class="wrap">
-    <div class="sec__head reveal">
-      <span class="sec__num mono">04</span>
-      <h2 class="sec__title" data-en="Projects" data-es="Proyectos">Proyectos</h2>
-      <span class="sec__rule"></span>
-    </div>
 
-    <!-- Las seis en una sola grilla de dos columnas. La sección se sale
-         del ancho de lectura del resto del sitio para aprovechar los costados. -->
-    <div class="proj-grid">
-      <article class="proj reveal" data-cursor="card"
-          data-img="images/slate.webp"
-          data-title="Slate — Edición colaborativa en tiempo real"
-          data-techs="TypeScript,React,Node.js,WebSocket,PostgreSQL,CRDT"
-          data-demo="https://coedit-a0jk.onrender.com"
-          data-repo="https://github.com/santiagohdev/coedit"
-          data-long-es="Pizarra y editor de texto donde varias personas trabajan sobre el mismo documento a la vez. El problema difícil no es dibujar: es que dos personas editen el mismo punto al mismo tiempo, con internet intermitente, y que todos terminen viendo exactamente lo mismo sin que haya un servidor que decida quién gana. Lo resolví escribiendo tres CRDTs a mano, sin librerías de sincronización: un RGA para el texto, un conjunto con tombstones para los trazos del lienzo y un mapa last-write-wins por campo para las notas, todos con orden total y desempate por sitio. Las operaciones que llegan antes que su ancla se encolan y se drenan cuando aparece, y al reconectar se hace merge en vez de reemplazo, así una edición hecha sin internet no se pierde. La convergencia está verificada con tests de propiedades: mil escenarios aleatorios que barajan el orden de entrega y duplican mensajes, comprobando que todas las réplicas terminan idénticas. Son 1.824 tests en total. Por debajo va Express con WebSocket sobre la misma sesión, contraseñas con scrypt y un adaptador de base que habla SQLite en desarrollo y PostgreSQL en producción."
-          data-long-en="A whiteboard and text editor where several people work on the same document at once. The hard part isn&#39;t the drawing: it&#39;s two people editing the same spot at the same time, over flaky internet, and everyone ending up seeing exactly the same thing without a server deciding who wins. I solved it by writing three CRDTs by hand, with no sync libraries: an RGA for text, a tombstone set for canvas strokes and a per-field last-write-wins map for notes, all with total ordering and a site-based tiebreak. Operations that arrive before their anchor are buffered and drained once it shows up, and reconnecting merges rather than replaces, so an edit made offline is never lost. Convergence is verified with property-based tests: a thousand randomised scenarios that shuffle delivery order and duplicate messages, checking every replica ends up identical. 1,824 tests in total. Underneath it&#39;s Express with WebSocket over the same session, scrypt-hashed passwords and a database adapter that speaks SQLite in development and PostgreSQL in production."
-          data-note-es="La demo está en un plan gratuito que duerme la app: el primer acceso puede tardar unos 20 segundos en levantar."
-          data-note-en="The demo runs on a free tier that puts the app to sleep: the first visit can take around 20 seconds to wake up.">
-          <div class="proj__media" data-cursor="hidden">
-      <img src="images/slate.webp" alt="Slate — pizarra colaborativa en tiempo real" loading="lazy">
-      <div class="proj__veil">
-        <button type="button" class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</button>
-      </div>
-          </div>
-          <div class="proj__body">
-      <span class="proj__idx mono">01</span>
-      <p class="proj__kicker mono" data-en="Own project · Distributed systems" data-es="Proyecto propio · Sistemas distribuidos">Proyecto propio · Sistemas distribuidos</p>
-      <h3 class="proj__title">Slate — <span data-en="Real-time collaboration" data-es="Colaboración en tiempo real">Colaboración en tiempo real</span></h3>
-      <p class="proj__desc"
-         data-en="Whiteboard and text editor for several people at once. Three CRDTs written from scratch — no sync libraries — so edits never conflict, survive going offline and converge to the same state. Convergence proven by 1,824 tests."
-         data-es="Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado. Convergencia demostrada con 1.824 tests.">
-        Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado. Convergencia demostrada con 1.824 tests.
-      </p>
-      <div class="tags">
-        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
-        <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">CRDT</span>
-      </div>
-          </div>
-        </article>
-
-      <article class="proj reveal" data-cursor="card"
-          data-img="images/eugenia.webp"
-          data-title="Eugenia Quevedo — Tienda Oficial"
-          data-techs="Tiendanube,Twig,HTML,CSS,JavaScript"
-          data-demo="https://www.eugeniaquevedo.com"
-          data-repo=""
-          data-long-es="Tienda online oficial de la cantante Eugenia Quevedo, desarrollada sobre Tiendanube con un tema a medida en Twig, HTML, CSS y JavaScript. No es una plantilla adaptada: el diseño se construyó desde cero para la identidad de la artista. Es una tienda en producción, con tráfico real y campañas de venta activas, así que cada cambio se hace sobre algo que está vendiendo. Además del desarrollo inicial, hago mejoras de layout y experiencia de usuario y mantenimiento continuo, coordinando directamente con la clienta."
-          data-long-en="Official online store for singer Eugenia Quevedo, built on Tiendanube with a custom theme in Twig, HTML, CSS and JavaScript. Not an adapted template: the design was built from scratch for the artist&#39;s identity. It is a live store with real traffic and active sales campaigns, so every change ships onto something that is actively selling. Beyond the initial build I handle layout and UX improvements and ongoing maintenance, coordinating directly with the client.">
-          <div class="proj__media" data-cursor="hidden">
-      <img src="images/eugenia.webp" alt="Eugenia Quevedo — Tienda Oficial" loading="lazy">
-      <div class="proj__veil">
-        <button type="button" class="btn btn--solid btn--sm" data-en="Visit site" data-es="Visitar sitio">Visitar sitio</button>
-      </div>
-          </div>
-          <div class="proj__body">
-      <span class="proj__idx mono">02</span>
-      <p class="proj__kicker mono" data-en="Client work · Tiendanube" data-es="Trabajo para cliente · Tiendanube">Trabajo para cliente · Tiendanube</p>
-      <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
-      <p class="proj__desc"
-         data-en="The singer&#39;s official store, with a custom Tiendanube theme built from scratch. A live store with real traffic and active sales campaigns, with ongoing maintenance."
-         data-es="La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.">
-        La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.
-      </p>
-      <div class="tags">
-        <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">HTML</span>
-        <span class="tag">CSS</span><span class="tag">JavaScript</span>
-      </div>
-          </div>
-        </article>
-
-      <article class="proj reveal" data-cursor="card"
-      data-img="images/framebox.webp"
-      data-title="FrameBox"
-      data-techs="React,Express,MongoDB,MySQL,JWT,bcrypt,Nodemailer"
-      data-demo="https://framebox-frontend.vercel.app"
-      data-repo="https://github.com/santiagohdev/Framebox-Frontend"
-      data-repo2="https://github.com/santiagohdev/Framebox-Backend"
-      data-repo-label="Frontend" data-repo2-label="Backend"
-      data-long-es="Biblioteca personal de películas y Trabajo Integrador Final de la Diplomatura Full Stack de la UTN. Cada usuario arma su propia colección: marca lo que vio y lo que quiere ver, la ordena por estado y género, le pone su puntaje y destaca sus favoritas. Por debajo es una app completa con frontend en React y backend en Express, con CRUD real sobre dos entidades relacionadas y arquitectura en capas (routes → controllers → services → repositories). El registro e inicio de sesión usan hash bcrypt, JWT con expiración y verificación de e-mail vía Nodemailer. Frontend y backend viven en repositorios separados y ambos están desplegados públicamente."
-      data-long-en="A personal movie library and the final project of the UTN Full Stack diploma. Each user builds their own collection: marking what they've watched and what they want to watch, sorting it by status and genre, rating it and flagging favourites. Underneath it's a complete app with a React frontend and an Express backend, with real CRUD over two related entities and a layered architecture (routes → controllers → services → repositories). Sign-up and login use bcrypt hashing, JWT with expiration and e-mail verification via Nodemailer. Frontend and backend live in separate repositories and both are publicly deployed.">
-      <div class="proj__media" data-cursor="hidden">
-        <img src="images/framebox.webp" alt="FrameBox" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">03</span>
-        <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
-        <h3 class="proj__title">FrameBox</h3>
-        <p class="proj__desc"
-           data-en="Personal movie library: track what you've watched and what's next, sort by status and genre, rate and favourite. React + Express, layered architecture, bcrypt + JWT auth and e-mail verification."
-           data-es="Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.">
-          Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span>
-          <span class="tag">MySQL</span><span class="tag">JWT</span><span class="tag">bcrypt</span><span class="tag">Nodemailer</span>
-        </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/weather.webp"
-      data-title="Weather Dashboard"
-      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
-      data-demo="https://weather-app-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Weather-App"
-      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 30 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
-      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 30 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
-
-        <img src="images/weather.webp" alt="Weather Dashboard" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">04</span>
-        <p class="proj__kicker mono">JavaScript · API</p>
-        <h3 class="proj__title">Weather Dashboard</h3>
-        <p class="proj__desc"
-           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 30 languages."
-           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.">
-          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 30 idiomas.
-        </p>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
-          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
-        </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/task.webp"
-      data-title="Task Tracker"
-      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
-      data-demo="https://task-tracker-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Task-Tracker"
-      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
-      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
-
-        <img src="images/task.webp" alt="Task Tracker" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="View project" data-es="Ver proyecto">Ver proyecto</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">05</span>
-        <p class="proj__kicker mono">React · LocalStorage</p>
-        <h3 class="proj__title">Task Tracker</h3>
-        <p class="proj__desc"
-           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
-           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
-          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
-        </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card"
-      data-img="images/bruma.webp"
-      data-title="Bruma — Café de especialidad"
-      data-techs="HTML,CSS,JavaScript,Diseño UI"
-      data-demo="https://cafe-theta-one.vercel.app"
-      data-repo="https://github.com/santiagohdev/cafe"
-      data-long-es="Bruma no existe: es una cafetería inventada que usé como pretexto para construir un sitio institucional completo desde cero, sin frameworks ni plantillas. No hubo cliente ni encargo — el objetivo era ejercitar un proyecto entero de punta a punta y tener algo con lo que practicar diseño y estructura. Incluye menú de cinco categorías con etiquetas de dieta, ficha de siete orígenes de café con notas de cata, galería con lightbox navegable por teclado, mapa embebido y formulario de reserva con validación propia. Dos detalles que lo separan de una maqueta: el estado de apertura del local se calcula contra la hora real del visitante, y todo el contenido —precios, platos, horarios— vive en un único archivo de datos, para que el dueño pueda actualizar la carta sin tocar una línea de código. Responsive, accesible y sin dependencias: pesa 64 KB."
-      data-long-en="Bruma doesn&#39;t exist: it&#39;s an invented coffee shop I used as a pretext to build a complete business site from scratch, with no frameworks or templates. There was no client and no brief — the point was to exercise a whole project end to end and have something to practise design and structure on. It includes a five-category menu with dietary tags, seven coffee origins with tasting notes, a keyboard-navigable lightbox gallery, an embedded map and a booking form with custom validation. Two details set it apart from a mockup: the open/closed status is computed against the visitor&#39;s real clock, and all content — prices, dishes, opening hours — lives in a single data file so the owner can update the menu without touching code. Responsive, accessible and dependency-free: 64 KB total.">
-      <div class="proj__media" data-cursor="hidden">
-        <img src="images/bruma.webp" alt="Bruma — Café de especialidad" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="Visit site" data-es="Visitar sitio">Visitar sitio</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">06</span>
-        <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
-        <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
-        <p class="proj__desc"
-           data-en="A fictional coffee shop I invented as an excuse to build a complete site from scratch, with no framework. Not a real client: a practice piece to exercise the whole thing end to end — menu, gallery with lightbox, map and booking form."
-           data-es="Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.">
-          Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.
-        </p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-          <span class="tag">Diseño UI</span><span class="tag">Responsive</span>
-        </div>
-      </div>
-          </article>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ EXPERIENCIA ══════════ -->
-<section class="sec" id="experience">
-  <div class="wrap">
-    <div class="sec__head reveal">
-      <span class="sec__num mono">05</span>
-      <h2 class="sec__title" data-en="Experience" data-es="Experiencia">Experiencia</h2>
-      <span class="sec__rule"></span>
-    </div>
-
-    <p class="exp__lead reveal"
-       data-en="I work independently, building websites and online stores for real clients."
-       data-es="Trabajo de forma independiente, construyendo sitios y tiendas online para clientes reales.">
-      Trabajo de forma independiente, construyendo sitios y tiendas online para clientes reales.
-    </p>
-
-    <ol class="tl">
-
-      <li class="tl__item reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
-        <span class="tl__when mono">2026 — <span data-en="Present" data-es="Presente">Presente</span></span>
-        <div class="tl__body">
-          <h3 class="tl__role" data-en="Independent Web Developer" data-es="Desarrollador Web Independiente">Desarrollador Web Independiente</h3>
-          <p class="tl__txt"
-             data-en="I take on projects end to end: I talk to the client, build the site and keep it running afterwards. Landing pages, online stores and custom systems, mostly with React, Node and Tiendanube."
-             data-es="Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sitio y después lo mantengo andando. Landings, tiendas online y sistemas a medida, sobre todo con React, Node y Tiendanube.">
-            Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sitio y después lo mantengo andando. Landings, tiendas online y sistemas a medida, sobre todo con React, Node y Tiendanube.
-          </p>
-        </div>
-      </li>
-
-      <li class="tl__item reveal">
-        <span class="tl__dot tl__dot--hl" aria-hidden="true"></span>
-        <span class="tl__when mono">2026</span>
-        <div class="tl__body tl__body--cliente">
-          <!-- La cifra va de fondo, tenue: da la escala de un vistazo sin
-               convertir el bloque en un cartel de números. -->
-          <span class="tl__escala" aria-hidden="true">2,6 M</span>
-
-          <h3 class="tl__role">
-            <span data-en="First client" data-es="Primer cliente">Primer cliente</span>
-            <span class="tl__sep" aria-hidden="true">·</span>
-            <a href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link">Eugenia Quevedo</a>
-          </h3>
-
-          <a class="tl__ig" href="https://instagram.com/soyeugequevedook" target="_blank" rel="noopener" data-cursor="link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-              <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5"/>
-              <circle cx="12" cy="12" r="4.2"/>
-              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="mono">@soyeugequevedook</span>
-            <span class="tl__ig-num mono" data-en="2.6M followers" data-es="2,6 M seguidores">2,6 M seguidores</span>
-          </a>
-          <p class="tl__txt"
-             data-en="One of my first jobs was the official store of singer Eugenia Quevedo. I built a custom Tiendanube theme from scratch and I still maintain it: a live store, with real traffic and active sales campaigns behind it."
-             data-es="Uno de mis primeros trabajos fue la tienda oficial de la cantante Eugenia Quevedo. Le hice un tema propio sobre Tiendanube desde cero y todavía lo mantengo: una tienda en producción, con tráfico real y campañas de venta detrás.">
-            Uno de mis primeros trabajos fue la tienda oficial de la cantante Eugenia Quevedo. Le hice un tema propio sobre Tiendanube desde cero y todavía lo mantengo: una tienda en producción, con tráfico real y campañas de venta detrás.
-          </p>
-        </div>
-      </li>
-
-      <li class="tl__item reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
-        <span class="tl__when mono">2025 — 2026</span>
-        <div class="tl__body">
-          <h3 class="tl__role" data-en="Training at UTN" data-es="Formación en la UTN">Formación en la UTN</h3>
-          <p class="tl__txt"
-             data-en="Full Stack Web Development diploma at Universidad Tecnológica Nacional — two levelled courses, Front End and Back End — while I started taking on my first paid work."
-             data-es="Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.">
-            Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.
-          </p>
-        </div>
-      </li>
-
-    </ol>
-  </div>
-</section>
 
 <!-- ══════════ CONTACTO ══════════ -->
 <section class="sec sec--alt" id="contact">
