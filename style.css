@@ -723,29 +723,43 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 
 .cert__top{ position:relative; z-index:2; display:flex; align-items:center; gap:11px; margin-bottom:16px; flex-wrap:wrap; }
 /* ─────────── SELLO DE LA UTN ───────────
-   Es el logotipo real, extraído del propio certificado que está embebido
-   acá al lado, no una reproducción dibujada a mano. Va sobre un chip claro
-   fijo: la marca es negra sobre blanco y sobre el fondo oscuro del sitio
-   desaparecería; invertirla la deformaría. El chip funciona igual en los
-   dos temas y de paso se lee como un sello pegado sobre la ficha. */
+   Es el logotipo real, sacado del propio certificado que está embebido acá
+   al lado: el PDF trae el diseño como imagen, así que se rasterizó a 3200px
+   y se recortó el bloque UTN.BA. No es una reproducción dibujada a mano.
+
+   El PNG es una silueta con transparencia y el color lo pone el CSS por
+   máscara. Así el mismo archivo sirve en los dos temas sin recuadro blanco
+   de por medio. Va en crema y no en el rojo institucional porque ese rojo
+   da 3,38:1 contra el fondo oscuro y la letra chica del logo —"universidad
+   tecnológica nacional / facultad regional buenos aires"— quedaría
+   ilegible. El rojo entra como luz, que se ve y no estorba. */
 .cert__sello-utn{
   position:relative; z-index:2;
-  display:inline-flex; align-items:center;
-  padding:7px 11px;
-  background:#FFFFFF;
-  border:var(--bw) solid var(--line);
-  border-radius:var(--r);
-  box-shadow:var(--shadow-tight);
-}
-.cert__sello-utn img{
   display:block;
-  width:118px; height:auto;
+  width:132px; height:37px;
+  background-color:var(--fg);
+  -webkit-mask:url(images/utn-ba.png) left center/contain no-repeat;
+          mask:url(images/utn-ba.png) left center/contain no-repeat;
+  filter:drop-shadow(0 0 5px rgba(191,47,39,.65))
+         drop-shadow(0 0 13px rgba(191,47,39,.35));
 }
+
+/* En la ficha destacada, un poco más grande y con la luz más encendida. */
 .cert--destacada .cert__sello-utn{
-  border-color:var(--accent);
-  box-shadow:3px 3px 0 var(--accent-wash);
+  width:152px; height:43px;
+  filter:drop-shadow(0 0 6px rgba(191,47,39,.8))
+         drop-shadow(0 0 16px rgba(191,47,39,.45));
 }
-.cert--destacada .cert__sello-utn img{ width:132px; }
+
+/* En papel el resplandor rojo se ensucia sobre el fondo claro: se apaga y
+   queda la marca en tinta. */
+[data-theme="light"] .cert__sello-utn{
+  filter:drop-shadow(0 1px 0 rgba(191,47,39,.35));
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cert__sello-utn{ filter:none; }
+}
 
 .cert__badge{
   background:var(--accent); color:var(--accent-fg);
