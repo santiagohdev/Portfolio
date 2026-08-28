@@ -120,6 +120,10 @@ function buildLoader(){
   host.appendChild(frag);
 }
 
+/* Duración de la intro, en milisegundos. Es lo único que hay que tocar
+   para que dure más o menos. */
+const LOADER_MS = 1600;
+
 function runLoader(){
   const loader = $('#loader'), bar = $('#loaderBar'), pct = $('#loaderPct'), wipe = $('#wipe');
   document.body.classList.add('locked');
@@ -131,31 +135,70 @@ function runLoader(){
 
   buildLoader();
 
-  let n = 0;
-  const tick = setInterval(() => {
-    n = Math.min(100, n + Math.random() * 9 + 4);
+  /* El progreso sale del RELOJ, no de contar ticks.
+   *
+   * Antes se sumaba un poco en cada tick de setInterval. El problema es que
+   * el navegador frena esos ticks a uno por segundo cuando la pestaña no
+   * está a la vista, para ahorrar batería: la intro pasaba de 2 segundos a
+   * casi 30. Y eso es justo lo que pasa cuando alguien abre varios enlaces
+   * de golpe y los mira después.
+   *
+   * Midiendo el tiempo transcurrido, la intro dura LOADER_MS siempre. Si la
+   * pestaña estuvo oculta más que eso, al volver ya terminó. */
+  const inicio = performance.now();
+  let cerrado = false;
+
+  const pintar = () => {
+    const n = Math.min(100, ((performance.now() - inicio) / LOADER_MS) * 100);
     bar.style.width = n + '%';
     pct.textContent = String(Math.floor(n)).padStart(2, '0');
+    if (n >= 100) cerrar();
+  };
 
-    if (n >= 100){
-      clearInterval(tick);
+  const cerrar = () => {
+    if (cerrado) return;
+    cerrado = true;
+    clearInterval(tick);
+    clearTimeout(corte);
+    document.removeEventListener('visibilitychange', alVolver);
 
-      setTimeout(() => {
-        wipe.classList.add('sweep');                 // 780ms de barrido continuo
-
-        // A los 380ms el naranja tapa la pantalla entera: ese es el punto ciego
-        // donde se cambia el loader por el sitio, sin fade ni parpadeo.
-        setTimeout(() => {
-          loader.remove();
-          document.body.classList.remove('locked');
-          boot();
-        }, 380);
-
-        setTimeout(() => wipe.remove(), 820);
-      }, 140);
+    // Si la pestaña está oculta no tiene sentido animar el barrido: nadie lo
+    // ve y encima las animaciones CSS también se frenan. Se entra directo.
+    if (document.hidden){
+      loader.remove(); wipe?.remove();
+      document.body.classList.remove('locked');
+      boot();
+      return;
     }
-  }, 115);
+
+    setTimeout(() => {
+      wipe.classList.add('sweep');                 // 780ms de barrido continuo
+
+      // A los 380ms el naranja tapa la pantalla entera: ese es el punto ciego
+      // donde se cambia el loader por el sitio, sin fade ni parpadeo.
+      setTimeout(() => {
+        loader.remove();
+        document.body.classList.remove('locked');
+        boot();
+      }, 380);
+
+      setTimeout(() => wipe.remove(), 820);
+    }, 140);
+  };
+
+  // Al volver a la pestaña se recalcula al instante: si ya pasó el tiempo,
+  // el sitio aparece sin un solo fotograma de espera.
+  const alVolver = () => { if (!document.hidden) pintar(); };
+  document.addEventListener('visibilitychange', alVolver);
+
+  const tick = setInterval(pintar, 16);
+  // El intervalo sólo mueve la barra, y de fondo se frena a un tick por
+  // segundo. Este cierre directo es el que garantiza la duración exacta:
+  // un setTimeout largo sí respeta su plazo aunque la pestaña esté oculta.
+  const corte = setTimeout(cerrar, LOADER_MS);
+  pintar();
 }
+
 
 /* ─────────────────────────────────────────────
    TYPEWRITER
