@@ -620,6 +620,36 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 
 .cert--destacada .cert__ring{ border-color:var(--accent); opacity:.55; }
 
+/* ─────────── EL CURSO, COMO MÓDULO DE LA DIPLOMATURA ───────────
+   No son dos títulos sueltos: según la propia UTN la diplomatura se compone
+   de dos cursos nivelados, y este es el primero. Los 93 h de acá están
+   incluidos en los 186 h de arriba, no se suman. Se marca con un riel de
+   acento a la izquierda, que ata visualmente esta ficha con la de arriba
+   sin robarle protagonismo. */
+.cert--modulo{
+  border-left-width:3px;
+  border-left-color:var(--accent);
+}
+.cert--modulo .cert__ring{ border-color:var(--accent); opacity:.3; }
+
+/* Cinta en tono apagado: es un módulo, no el título principal. */
+.cert__cinta--modulo{
+  color:var(--accent);
+  background:var(--accent-wash);
+  border-left:var(--bw) solid var(--accent);
+  border-bottom:var(--bw) solid var(--accent);
+}
+
+/* La frase que explica de qué se compone la diplomatura. */
+.cert__trayecto{
+  position:relative; z-index:2;
+  margin:-6px 0 16px;
+  padding-left:13px;
+  border-left:2px solid var(--accent);
+  font-size:.68rem; line-height:1.6;
+  color:var(--fg-mid);
+}
+
 /* Cinta: dice de qué categoría es el título antes de leer nada más. */
 .cert__cinta{
   position:absolute; z-index:3;
