@@ -218,11 +218,21 @@ body.cur-link .cursor-dot{ width:0; height:0; }
 body.cur-card .cursor-ring{ width:78px; height:78px; border-color:var(--accent); background:var(--accent-wash); }
 body.cur-card .cursor-dot{ width:4px; height:4px; }
 
+/* En pantallas táctiles el cursor de adorno no existe, así que el velo ya
+   se muestra fijo (más abajo). Esto es sólo para mouse. */
+
 body.cur-hidden .cursor-ring{ width:96px; height:96px; border-color:transparent; background:var(--accent); mix-blend-mode:difference; }
 body.cur-hidden .cursor-dot{ width:0; height:0; }
 
 @media (hover:none),(pointer:coarse){
   .cursor-dot,.cursor-ring{ display:none; }
+
+  /* Sin mouse no hay :hover, así que la señal de "esto se toca" tiene que
+     estar siempre a la vista. Abajo de 860px ya pasaba por ancho, pero una
+     tablet de 1024px se quedaba sin hover Y sin señal. */
+  .proj__veil{ opacity:1; }
+  .proj__veil .btn{ transform:none; }
+  .proj__title::after{ opacity:1; transform:none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -676,6 +686,9 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 
 /* ─────────── PROYECTOS / EXPERIENCIA ─────────── */
 .proj{
+  /* Sin esto la tarjeta entera se comporta como un clic pero muestra la
+     flecha normal del sistema: no hay forma de saber que se puede tocar. */
+  cursor:pointer;
   display:grid;
   grid-template-columns:1.05fr 1fr;
   gap:clamp(22px,3.4vw,46px);
@@ -787,6 +800,23 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   margin-bottom:12px;
 }
 .proj__desc{ color:var(--fg-mid); font-size:.97rem; margin-bottom:18px; }
+
+/* Al pasar por encima, el título se tiñe y le aparece una flecha. En las
+   tarjetas chicas el cartel "Ver proyecto" queda sobre la imagen, arriba
+   del todo, así que si estás leyendo el texto no ves ninguna señal. Esta sí
+   aparece justo donde tenés la vista. */
+.proj__title{ transition:color .28s var(--ease); }
+.proj__title::after{
+  content:"↗";
+  display:inline-block;
+  margin-left:.32em;
+  opacity:0; transform:translate(-4px,3px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.proj:hover .proj__title,
+.proj:focus-within .proj__title{ color:var(--accent); }
+.proj:hover .proj__title::after,
+.proj:focus-within .proj__title::after{ opacity:1; transform:translate(0,0); }
 
 .proj--link .proj__title{ display:inline-flex; align-items:baseline; gap:.3em; flex-wrap:wrap; }
 .proj--link:hover .proj__title{ color:var(--accent); }
