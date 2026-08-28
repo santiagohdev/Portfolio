@@ -1290,6 +1290,50 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   color:var(--fg-dim); padding-top:8px; white-space:nowrap;
 }
 
+/* ─────────── LA ESCALA DEL PRIMER CLIENTE ───────────
+   El dato que cambia cómo se lee este trabajo no es el stack: es para
+   cuánta gente está esa tienda. Va de fondo, en grande y tenue, para que
+   se perciba la magnitud sin que el bloque se convierta en un cartel. */
+.tl__body--cliente{ position:relative; }
+
+.tl__escala{
+  position:absolute; z-index:0;
+  right:0; top:-14px;
+  font-family:var(--f-display);
+  font-size:clamp(3.4rem, 7vw, 5.6rem);
+  font-weight:800; letter-spacing:-.04em; line-height:1;
+  color:var(--accent);
+  opacity:.09;
+  pointer-events:none; user-select:none;
+}
+[data-theme="light"] .tl__escala{ opacity:.13; }
+
+.tl__body--cliente > *:not(.tl__escala){ position:relative; z-index:1; }
+
+/* Enlace al perfil: el número acá sí se lee, y es el que da la referencia. */
+.tl__ig{
+  display:inline-flex; align-items:center; gap:9px;
+  margin-top:12px; padding:7px 12px;
+  border:var(--bw) solid var(--line);
+  border-radius:var(--r);
+  background:var(--surface);
+  color:var(--fg-mid);
+  font-size:.72rem;
+  transition:border-color var(--t), color var(--t), transform var(--t);
+}
+.tl__ig:hover{ border-color:var(--accent); color:var(--fg); transform:translate(-2px,-2px); }
+.tl__ig svg{ width:15px; height:15px; flex-shrink:0; }
+.tl__ig-num{
+  padding-left:9px;
+  border-left:var(--bw) solid var(--line);
+  color:var(--accent); font-weight:700;
+}
+
+@media (max-width:560px){
+  .tl__escala{ top:auto; bottom:-6px; opacity:.07; }
+  .tl__ig{ flex-wrap:wrap; }
+}
+
 .tl__role{
   font-family:var(--f-display);
   font-size:clamp(1.12rem, 1.9vw, 1.42rem);
