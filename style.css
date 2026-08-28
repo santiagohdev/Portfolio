@@ -722,6 +722,31 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 
 .cert__top{ position:relative; z-index:2; display:flex; align-items:center; gap:11px; margin-bottom:16px; flex-wrap:wrap; }
+/* ─────────── SELLO DE LA UTN ───────────
+   Es el logotipo real, extraído del propio certificado que está embebido
+   acá al lado, no una reproducción dibujada a mano. Va sobre un chip claro
+   fijo: la marca es negra sobre blanco y sobre el fondo oscuro del sitio
+   desaparecería; invertirla la deformaría. El chip funciona igual en los
+   dos temas y de paso se lee como un sello pegado sobre la ficha. */
+.cert__sello-utn{
+  position:relative; z-index:2;
+  display:inline-flex; align-items:center;
+  padding:7px 11px;
+  background:#FFFFFF;
+  border:var(--bw) solid var(--line);
+  border-radius:var(--r);
+  box-shadow:var(--shadow-tight);
+}
+.cert__sello-utn img{
+  display:block;
+  width:118px; height:auto;
+}
+.cert--destacada .cert__sello-utn{
+  border-color:var(--accent);
+  box-shadow:3px 3px 0 var(--accent-wash);
+}
+.cert--destacada .cert__sello-utn img{ width:132px; }
+
 .cert__badge{
   background:var(--accent); color:var(--accent-fg);
   padding:5px 11px; border-radius:var(--r);
