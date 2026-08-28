@@ -16,17 +16,35 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ─────────────────────────────────────────────
    DATA
    ───────────────────────────────────────────── */
+/* Logos del stack, en SVG inline.
+   Antes esto era una hoja de estilos de 130 KB traida de un CDN de terceros
+   y apuntada a @latest — bloqueaba el render y podia romperse sola si el
+   paquete cambiaba de la noche a la mañana. Estos diez pesan ~4 KB juntos,
+   viajan con el HTML y no dependen de nadie. */
+const ICONOS = {
+  html5:  '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#E44D26" d="M19.4 117.2 8.8 0h110.5l-10.6 117.1-44.8 12.4z"/><path fill="#F16529" d="M64 120V10h45.2l-9 101z"/><path fill="#EBEBEB" d="M64 52.4H45.9l-1.2-14H64V24.7H29.6l.3 3.7 3.4 38.1H64zm0 35.3-.1.1-15.2-4.1-1-10.9H34l1.9 21.4 28 7.8.2-.1z"/><path fill="#fff" d="M63.9 52.4v13.9h16.8l-1.6 17.7-15.2 4.1v14.5l28-7.8.2-2.3 3.2-36 .3-3.7.7-8H63.9zm0-27.7v13.7h33.1l.3-3 .6-3.7.3-3z"/></svg>',
+  css3:   '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#1572B6" d="M18.8 117.1 8.2 0h111.6l-10.6 117.1-45.3 12.6z"/><path fill="#33A9DC" d="M64 119.9V10.2h45.6l-9.1 100.8z"/><path fill="#fff" d="M64 52.2h22.8l1.6-17.6H64V21.3h37.7l-.4 4-3.7 41.2H64z"/><path fill="#EBEBEB" d="M64.1 86.1v14.2l-.1.1-28.1-7.8-1.9-21.5h14.1l1 10.9 14.9 4z"/><path fill="#fff" d="M85.6 57.5 84 74.9l-20 5.4v14.2l28.2-7.6.2-2.3 2.4-27z"/><path fill="#EBEBEB" d="M64 21.3v13.3H27.7l-.3-3.4-.7-5.9-.4-4zm0 30.9v13.3H47.5l-.3-3.4-.7-5.9-.4-4z"/></svg>',
+  react:  '<svg viewBox="0 0 128 128" aria-hidden="true"><circle cx="64" cy="64" r="11.4" fill="#61DAFB"/><g stroke="#61DAFB" stroke-width="5.5" fill="none"><ellipse cx="64" cy="64" rx="52" ry="20"/><ellipse cx="64" cy="64" rx="52" ry="20" transform="rotate(60 64 64)"/><ellipse cx="64" cy="64" rx="52" ry="20" transform="rotate(120 64 64)"/></g></svg>',
+  js:     '<svg viewBox="0 0 128 128" aria-hidden="true"><rect width="128" height="128" fill="#F7DF1E"/><path d="M33.4 106.9 43.2 101c1.9 3.4 3.6 6.2 7.7 6.2 4 0 6.5-1.6 6.5-7.6V58.4h12v41.4c0 12.5-7.3 18.2-18 18.2-9.6 0-15.2-5-18-11m42.4-1.3 9.8-5.7c2.6 4.2 5.9 7.3 11.8 7.3 5 0 8.2-2.5 8.2-5.9 0-4.1-3.3-5.6-8.8-8l-3-1.3c-8.7-3.7-14.5-8.4-14.5-18.2 0-9.1 6.9-16 17.7-16 7.7 0 13.2 2.7 17.2 9.7l-9.4 6c-2.1-3.7-4.3-5.2-7.8-5.2-3.5 0-5.8 2.2-5.8 5.2 0 3.6 2.2 5.1 7.4 7.3l3 1.3c10.2 4.4 16 8.9 16 19 0 10.9-8.6 16.9-20.1 16.9-11.2 0-18.5-5.4-22-12.4"/></svg>',
+  ts:     '<svg viewBox="0 0 128 128" aria-hidden="true"><rect width="128" height="128" rx="6" fill="#3178C6"/><path fill="#fff" d="M74.6 99.4v13.1c2.1 1.1 4.6 1.9 7.5 2.4 2.9.6 5.9.8 9.1.8 3.1 0 6.1-.3 8.9-.9 2.8-.6 5.3-1.6 7.4-3 2.1-1.4 3.8-3.2 5-5.4 1.2-2.2 1.9-5 1.9-8.3 0-2.4-.4-4.5-1.1-6.3-.7-1.8-1.8-3.4-3.1-4.8-1.4-1.4-3-2.7-4.9-3.8-1.9-1.1-4.1-2.2-6.5-3.2-1.8-.7-3.3-1.4-4.7-2.1-1.4-.7-2.6-1.4-3.6-2.1-1-.7-1.7-1.5-2.3-2.3-.5-.8-.8-1.7-.8-2.8 0-.9.2-1.8.7-2.5.5-.8 1.1-1.4 2-2 .9-.6 1.9-1 3.2-1.3 1.3-.3 2.7-.5 4.2-.5 1.1 0 2.3.1 3.6.3 1.3.2 2.5.4 3.8.8 1.3.3 2.5.8 3.7 1.3 1.2.5 2.3 1.1 3.3 1.8V55.3c-2-.8-4.2-1.3-6.5-1.7-2.4-.4-5.1-.6-8.2-.6-3.1 0-6.1.3-8.9 1-2.8.7-5.3 1.7-7.4 3.2-2.1 1.4-3.8 3.3-5 5.5-1.2 2.2-1.9 4.9-1.9 8 0 4 1.1 7.3 3.4 10.1 2.3 2.8 5.7 5.1 10.4 7.1 1.9.8 3.6 1.5 5.2 2.3 1.6.7 3 1.5 4.2 2.3 1.2.8 2.1 1.7 2.8 2.6.7.9 1 2 1 3.2 0 .9-.2 1.7-.6 2.5-.4.8-1.1 1.4-1.9 2-.9.6-1.9 1-3.2 1.3-1.3.3-2.8.5-4.6.5-3 0-5.9-.5-8.8-1.6-2.9-1-5.6-2.6-8.1-4.7M56.2 65.6h16.9V54.4H25.7v11.2h16.8v48.5h13.7z"/></svg>',
+  node:   '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#83CD29" d="M64 128a11 11 0 0 1-5.5-1.5l-17.5-10.4c-2.6-1.5-1.3-2-.5-2.3 3.5-1.2 4.2-1.5 7.9-3.6.4-.2.9-.1 1.3.1l13.4 8c.5.3 1.2.3 1.6 0l52.4-30.3c.5-.3.8-.8.8-1.4V26.1c0-.6-.3-1.1-.8-1.4L64.8 -5.5c-.5-.3-1.1-.3-1.6 0L10.9 24.8c-.5.3-.8.8-.8 1.4v60.5c0 .6.3 1.1.8 1.4l14.3 8.3c7.8 3.9 12.6-.7 12.6-5.3V31.4c0-.8.7-1.5 1.5-1.5h6.6c.8 0 1.5.7 1.5 1.5v59.7c0 10.4-5.7 16.3-15.5 16.3-3 0-5.4 0-12.1-3.3L5.9 96.2A11 11 0 0 1 .4 86.7V26.1c0-3.9 2.1-7.6 5.5-9.5L58.5 -13.7a11.5 11.5 0 0 1 11 0l52.5 30.3c3.4 2 5.5 5.6 5.5 9.5v60.6c0 3.9-2.1 7.5-5.5 9.5l-52.5 30.3A11 11 0 0 1 64 128" transform="translate(0 8) scale(1 .87)"/><path fill="#83CD29" d="M104 76.3c0-11.3-7.6-14.3-23.7-16.4-16.3-2.2-17.9-3.3-17.9-7.1 0-3.2 1.4-7.4 13.4-7.4 10.7 0 14.7 2.3 16.3 9.5.1.7.8 1.2 1.5 1.2h6.8c.4 0 .8-.2 1.1-.5.3-.3.4-.7.4-1.1-1.1-12.5-9.4-18.3-26.1-18.3-14.9 0-23.7 6.3-23.7 16.8 0 11.4 8.8 14.6 23.1 16 17 1.7 18.4 4.2 18.4 7.5 0 5.9-4.7 8.4-15.8 8.4-13.9 0-17-3.5-18-10.4-.1-.7-.7-1.3-1.5-1.3h-6.8c-.8 0-1.5.7-1.5 1.5 0 8.8 4.8 19.4 27.8 19.4 16.5 0 26.2-6.6 26.2-17.8"/></svg>',
+  express:'<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="currentColor" d="M126.7 88.2c-8.9 2.3-14.4-2.1-19.8-9.6l-12.7-17.6-1.8-2.5-14.8 20.1c-5.1 7-10.5 10-19.1 7.7l24.6-33-22.9-29.8c8.4-1.6 14.2-.8 19.4 6.7l14.7 20.2 14.8-20.1c5.1-7 10.6-9.6 18.9-7.5-3.3 4.3-6.4 8.5-9.6 12.7-4.3 5.5-8.4 11.1-12.8 16.5-1.6 1.9-1.4 3.2.1 5.1zM1.3 60.2c.6-3 1-6.1 1.9-9C9.5 28.7 35.3 19.3 53 33.2c10.4 8.2 13 19.7 12.5 32.6H8.4c-.9 22.8 15.6 36.6 36.5 29.6 7.4-2.5 11.7-8.2 13.9-15.4.9-3.4 2.7-4 6.1-3-1.7 8.8-5.6 16.2-13.7 20.8-12.1 6.8-29.4 4.6-38.5-4.8C7.4 87.6 4.7 80.4 3.5 72.5c-.2-1.3-.6-2.6-.9-3.9q-.15-4.2-.3-8.4m7.2 0h50.8c-.3-16.2-10.4-27.7-24.2-27.8-15.2-.2-26 11-26.6 27.8"/></svg>',
+  mongo:  '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#4FAA41" d="M82.6 58.5c-3.6-15.8-11.5-25.9-14.8-30.4-3.4-4.7-6.2-9.2-6.7-10-.5-.8-1.2-2.4-1.5-3.1-.3.6-1 2.3-1.5 3.1-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1l1.4 9.9c.1.6.7 1 1.3 1h.2c.6 0 1.1-.4 1.3-1l1.4-9.9c.1-.4.4-.8.7-1 2.5-1.7 10.1-7.1 15.4-16.3 5.3-9.2 8.3-23.1 4.6-39.2z"/><path fill="#3F9037" d="M60.1 116.4V15.1c-.4.7-.9 1.6-1.2 2.2-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1z"/></svg>',
+  mysql:  '<svg viewBox="0 0 24 24" fill="none" stroke="#00618A" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg>',
+  git:    '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#F34F29" d="M124.7 58.4 69.6 3.3a11.2 11.2 0 0 0-15.9 0L42.3 14.8l14.5 14.5a13.3 13.3 0 0 1 16.9 17l14 14a13.3 13.3 0 1 1-8 7.5L66.6 54.7v34.4a13.3 13.3 0 1 1-11-.4V54a13.3 13.3 0 0 1-7.2-17.5L34.1 22.3 3.3 53.1a11.2 11.2 0 0 0 0 15.9l55.1 55.1a11.2 11.2 0 0 0 15.9 0l50.4-50.4a11.2 11.2 0 0 0 0-15.9"/></svg>',
+};
+
 const SKILLS = [
-  { name:'HTML5',      pct:96, icon:'devicon-html5-plain colored',      lvl:'expert' },
-  { name:'CSS3',       pct:93, icon:'devicon-css3-plain colored',       lvl:'expert' },
-  { name:'React',      pct:92, icon:'devicon-react-original colored',   lvl:'adv'    },
-  { name:'JavaScript', pct:90, icon:'devicon-javascript-plain colored', lvl:'adv'    },
-  { name:'TypeScript', pct:85, icon:'devicon-typescript-plain colored', lvl:'adv'    },
-  { name:'Node.js',    pct:82, icon:'devicon-nodejs-plain colored',     lvl:'solid'  },
-  { name:'Express',    pct:80, icon:'devicon-express-original',         lvl:'solid'  },
-  { name:'MongoDB',    pct:78, icon:'devicon-mongodb-plain colored',    lvl:'solid'  },
-  { name:'MySQL',      pct:78, icon:'devicon-mysql-original colored',   lvl:'solid'  },
-  { name:'Git',        pct:76, icon:'devicon-git-plain colored',        lvl:'solid'  },
+  { name:'HTML5',      pct:96, icon:'html5',   lvl:'expert' },
+  { name:'CSS3',       pct:93, icon:'css3',    lvl:'expert' },
+  { name:'React',      pct:92, icon:'react',   lvl:'adv'    },
+  { name:'JavaScript', pct:90, icon:'js',      lvl:'adv'    },
+  { name:'TypeScript', pct:85, icon:'ts',      lvl:'adv'    },
+  { name:'Node.js',    pct:82, icon:'node',    lvl:'solid'  },
+  { name:'Express',    pct:80, icon:'express', lvl:'solid'  },
+  { name:'MongoDB',    pct:78, icon:'mongo',   lvl:'solid'  },
+  { name:'MySQL',      pct:78, icon:'mysql',   lvl:'solid'  },
+  { name:'Git',        pct:76, icon:'git',     lvl:'solid'  },
 ];
 
 const LEVELS = {
@@ -235,7 +253,7 @@ function buildStack(){
   grid.innerHTML = SKILLS.map((s, i) => `
     <article class="sk reveal" data-cursor="card" style="transition-delay:${i * 45}ms">
       <div class="sk__top">
-        <span class="sk__logo"><i class="${s.icon}"></i></span>
+        <span class="sk__logo">${ICONOS[s.icon]}</span>
         <span>
           <span class="sk__name">${s.name}</span><br>
           <span class="sk__level" data-lvl="${s.lvl}">${LEVELS[s.lvl][lang]}</span>
@@ -338,6 +356,12 @@ function initCursor(){
 let activeCard = null;
 const modal = $('#modal');
 
+// Si el repo trae etiqueta propia ("Frontend" / "Backend"), se muestra al lado.
+function enlaceRepo(url, etiqueta){
+  const txt = etiqueta ? `${UI.repo[lang]} · ${etiqueta}` : UI.repo[lang];
+  return `<a class="btn btn--ghost" href="${url}" target="_blank" rel="noopener" data-cursor="link">${txt}</a>`;
+}
+
 function renderModal(card){
   if (!card) return;
   const d = card.dataset;
@@ -351,39 +375,82 @@ function renderModal(card){
   $('#modalDesc').textContent  = lang === 'es' ? d.longEs : d.longEn;
   $('#modalTags').innerHTML    = d.techs.split(',').map(t => `<span class="tag">${t.trim()}</span>`).join('');
 
+  // Aviso opcional: sirve para las demos alojadas en planes gratuitos, que
+  // duermen y tardan en despertar. Mejor avisarlo que dejar creer que rompio.
+  const nota = lang === 'es' ? d.noteEs : d.noteEn;
+  $('#modalNote').textContent = nota || '';
+  $('#modalNote').hidden = !nota;
+
+  // Un proyecto puede tener el codigo repartido en dos repos (front y back).
   const cta = [];
   if (d.demo) cta.push(`<a class="btn btn--solid" href="${d.demo}" target="_blank" rel="noopener" data-cursor="link">${UI.demo[lang]}</a>`);
-  if (d.repo) cta.push(`<a class="btn btn--ghost" href="${d.repo}" target="_blank" rel="noopener" data-cursor="link">${UI.repo[lang]}</a>`);
+  if (d.repo) cta.push(enlaceRepo(d.repo, d.repoLabel));
+  if (d.repo2) cta.push(enlaceRepo(d.repo2, d.repo2Label));
   $('#modalCta').innerHTML = cta.join('');
 }
 
+// Quien tenia el foco antes de abrir, para devolverselo al cerrar.
+let focoPrevio = null;
+
 function openModal(card){
+  focoPrevio = document.activeElement;
   activeCard = card;
   renderModal(card);
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
+  modal.removeAttribute('inert');
   document.body.classList.add('locked');
+  // El modal esta en visibility:hidden hasta que toma la clase .open, y no
+  // se puede enfocar algo invisible. Leer una medida fuerza al navegador a
+  // recalcular estilos ahora, y recien ahi el foco entra.
+  void modal.offsetHeight;
   $('#modalClose').focus();
 }
 
 function closeModal(){
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+  // inert saca de la navegacion todo lo de adentro. Sin esto el modal queda
+  // cerrado pero su boton de cerrar se sigue pudiendo tabular.
+  modal.setAttribute('inert', '');
   document.body.classList.remove('locked');
-  if (activeCard) activeCard.focus?.();
+  focoPrevio?.focus?.();
+  focoPrevio = null;
   activeCard = null;
 }
 
+/* Mientras el modal esta abierto el Tab no debe escaparse a la pagina de
+   atras: al llegar al ultimo enfocable vuelve al primero, y al reves. */
+function atraparFoco(e){
+  if (e.key !== 'Tab' || !modal.classList.contains('open')) return;
+  const focos = $$('a[href], button:not([disabled])', modal).filter(el => el.offsetParent !== null);
+  if (!focos.length) return;
+  const primero = focos[0], ultimo = focos[focos.length - 1];
+  if (e.shiftKey && document.activeElement === primero){ e.preventDefault(); ultimo.focus(); }
+  else if (!e.shiftKey && document.activeElement === ultimo){ e.preventDefault(); primero.focus(); }
+}
+
 function initModal(){
+  /* La tarjeta NO lleva role="button".
+     Antes si lo llevaba, y adentro vive el boton "Probar aca" — un boton
+     dentro de otro boton, que para un lector de pantalla es ambiguo. Ahora
+     el elemento accesible es el boton del velo ("Ver proyecto"), que ya
+     estaba ahi como texto; el clic en cualquier parte de la tarjeta sigue
+     funcionando para el mouse, como comodidad y no como unica via. */
   $$('#projects .proj').forEach(card => {
-    card.tabIndex = 0;
-    card.setAttribute('role', 'button');
-    card.addEventListener('click', () => openModal(card));
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(card); }
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.proj__live, .proj__close, .proj__frame')) return;
+      openModal(card);
     });
+
+    const abridor = $('.proj__veil .btn', card);
+    if (abridor){
+      abridor.addEventListener('click', (e) => { e.stopPropagation(); openModal(card); });
+    }
   });
 
+  modal.setAttribute('inert', '');
+  addEventListener('keydown', atraparFoco);
   $('#modalClose').addEventListener('click', closeModal);
   $('.modal__backdrop').addEventListener('click', closeModal);
   addEventListener('keydown', (e) => {

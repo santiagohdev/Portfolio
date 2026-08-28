@@ -15,7 +15,7 @@
   --line-soft: #212120;
   --fg:        #F2EFE6;
   --fg-mid:    #A8A395;
-  --fg-dim:    #6E6A5E;
+  --fg-dim:    #828072;        /* 4.89:1 sobre --bg — AA en texto chico */
 
   --accent:    #2ED88E;
   --accent-2:  #6FE8B4;
@@ -57,9 +57,9 @@
   --line-soft: #DCD5C4;
   --fg:        #14140F;
   --fg-mid:    #55513F;
-  --fg-dim:    #837D68;
+  --fg-dim:    #6F6A57;        /* 4.55:1 sobre --bg claro */
 
-  --accent:    #0D8A5B;
+  --accent:    #0A7A50;        /* 4.51:1 como texto, 5.09:1 como fondo de boton */
   --accent-2:  #096B46;
   --accent-fg: #F2FBF6;
   --accent-wash:rgba(13,138,91,.09);
@@ -522,8 +522,11 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 .sk:hover{ transform:translate(-3px,-3px); box-shadow:var(--shadow-hit); border-color:var(--accent); }
 
 .sk__top{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
-.sk__logo{ font-size:1.75rem; line-height:1; flex-shrink:0; }
-.sk__logo i{ display:block; }
+.sk__logo{ line-height:1; flex-shrink:0; }
+/* Los logos son SVG inline con su color de marca propio. Antes venian de
+   devicon por CDN: 130 KB bloqueantes, y apuntados a @latest, o sea que un
+   cambio de ellos podia romper esta seccion sin tocar nada del sitio. */
+.sk__logo svg{ display:block; width:28px; height:28px; }
 .sk__name{ font-family:var(--f-display); font-weight:600; font-size:1.02rem; letter-spacing:-.015em; }
 .sk__level{ font-family:var(--f-mono); font-size:.63rem; letter-spacing:.09em; text-transform:uppercase; color:var(--fg-dim); }
 .sk__pct{ margin-left:auto; font-family:var(--f-mono); font-size:.82rem; font-weight:700; color:var(--accent); }
@@ -703,6 +706,7 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 }
 .proj:hover .proj__media img{ transform:scale(1.045); filter:brightness(.32) saturate(.7); }
 
+.proj__veil button{ font:inherit; cursor:pointer; }
 .proj__veil{
   position:absolute; inset:0;
   display:grid; place-items:center;
@@ -872,6 +876,18 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
   margin-bottom:14px;
 }
 .modal__desc{ color:var(--fg-mid); font-size:1rem; margin-bottom:20px; }
+/* Aviso de la demo (arranque en frio del plan gratuito). Ambar, no rojo:
+   no es un error, es algo que conviene saber antes de hacer clic. */
+.modal__note{
+  display:flex; gap:9px; align-items:flex-start;
+  font-family:var(--f-mono); font-size:.72rem; line-height:1.55;
+  color:var(--pending);
+  background:var(--pending-wash);
+  border-left:2px solid var(--pending);
+  padding:11px 13px; margin-bottom:4px;
+}
+.modal__note[hidden]{ display:none; }
+.modal__note::before{ content:"!"; font-weight:700; flex-shrink:0; }
 .modal__cta{ display:flex; flex-wrap:wrap; gap:11px; margin-top:22px; }
 
 /* ══════════════════════════════════════════════════════════════
