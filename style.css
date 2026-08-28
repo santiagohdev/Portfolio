@@ -584,6 +584,94 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 .cert__corner--br{ bottom:9px; right:9px; border-left:0; border-top:0; }
 .cert:hover .cert__corner{ width:22px; height:22px; }
 
+/* ─────────── LA DIPLOMATURA, DESTACADA ───────────
+   Es el título más pesado que hay acá: 186 horas contra las 93 del curso, y
+   emitido por una universidad nacional. Se distingue por estructura y por
+   datos duros —carga horaria, modalidad, resultado— más que por adornos:
+   lo que convence a quien lee es el número, no el brillo. */
+.cert--destacada{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent-wash), 0 22px 60px -34px var(--accent);
+}
+[data-theme="light"] .cert--destacada{ box-shadow:0 0 0 1px var(--accent-wash), 0 18px 44px -30px var(--accent); }
+
+/* Filo superior encendido. */
+.cert--destacada::after{
+  content:"";
+  position:absolute; inset:0 0 auto 0; height:2px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+  z-index:4;
+}
+
+/* Un reflejo que cruza cada tanto. Lento y espaciado a propósito: si pasa
+   seguido deja de leerse como un detalle y se vuelve ruido. */
+.cert--destacada::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(115deg, transparent 38%, var(--accent-wash) 47%, transparent 58%);
+  transform:translateX(-115%);
+  animation:reflejoDiploma 9s var(--ease) infinite;
+  pointer-events:none; z-index:1;
+}
+@keyframes reflejoDiploma{
+  0%, 78%{ transform:translateX(-115%); }
+  100%   { transform:translateX(115%); }
+}
+
+.cert--destacada .cert__ring{ border-color:var(--accent); opacity:.55; }
+
+/* Cinta: dice de qué categoría es el título antes de leer nada más. */
+.cert__cinta{
+  position:absolute; z-index:3;
+  top:0; right:0;
+  padding:6px 13px 7px;
+  font-size:.6rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent-fg); background:var(--accent);
+  border-bottom-left-radius:var(--r);
+}
+
+/* Medalla. Es un sello académico genérico, no el escudo de la UTN: el
+   nombre de la casa ya está escrito abajo y no hace falta imitar su marca. */
+.cert__medalla{
+  position:relative; z-index:2;
+  display:inline-flex; color:var(--accent);
+}
+.cert__medalla svg{ width:30px; height:30px; }
+
+.cert__facu{
+  display:block;
+  margin-top:3px;
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.02em;
+  color:var(--fg-dim); font-weight:400;
+}
+
+/* Los datos del propio diploma, en fila. */
+.cert__datos{
+  position:relative; z-index:2;
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin:0 0 16px;
+}
+.cert__datos > div{
+  flex:1 1 96px;
+  padding:9px 11px;
+  border:var(--bw) solid var(--line);
+  border-radius:var(--r);
+  background:var(--bg);
+}
+.cert__datos dt{
+  font-size:.56rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--fg-dim); margin-bottom:4px;
+}
+.cert__datos dd{
+  margin:0;
+  font-size:.86rem; font-weight:700; color:var(--accent);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cert--destacada::before{ animation:none; opacity:0; }
+}
+
 .cert__ring{
   position:absolute; right:-70px; top:-70px;
   width:200px; height:200px;

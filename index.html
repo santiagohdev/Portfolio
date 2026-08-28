@@ -259,8 +259,65 @@
       <span class="sec__rule"></span>
     </div>
 
-    <!-- Cert 1 + PDF -->
+    <!-- Cert 1 — la diplomatura, destacada -->
     <div class="cert-pair reveal">
+      <article class="cert cert--destacada" data-cursor="card">
+        <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
+        <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
+        <div class="cert__ring" aria-hidden="true"></div>
+        <span class="cert__cinta mono" data-en="University diploma" data-es="Diplomatura universitaria">Diplomatura universitaria</span>
+
+        <div class="cert__top">
+          <span class="cert__medalla" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 2.5 8 9M21 2.5l3 6.5"/>
+              <circle cx="16" cy="20" r="9.2"/>
+              <circle cx="16" cy="20" r="5.6" stroke-dasharray="2.2 2.4"/>
+              <path d="m13.6 20 1.8 1.8 3.6-3.6"/>
+            </svg>
+          </span>
+          <span class="cert__badge mono">UTN</span>
+          <span class="cert__year mono">2026</span>
+        </div>
+        <h3 class="cert__title">Full Stack Developer</h3>
+        <p class="cert__org">Universidad Tecnológica Nacional
+          <span class="cert__facu" data-en="Buenos Aires Regional Faculty · e-Learning Centre" data-es="Facultad Regional Buenos Aires · Centro de e-Learning">Facultad Regional Buenos Aires · Centro de e-Learning</span>
+        </p>
+        <p class="cert__desc"
+           data-en="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, JWT authentication, AWS and deployment on Render / Vercel / Heroku. Distance learning."
+           data-es="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.">
+          JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.
+        </p>
+        <dl class="cert__datos">
+          <div><dt class="mono" data-en="Course load" data-es="Carga horaria">Carga horaria</dt><dd class="mono">186 h</dd></div>
+          <div><dt class="mono" data-en="Mode" data-es="Modalidad">Modalidad</dt><dd class="mono" data-en="Distance" data-es="A distancia">A distancia</dd></div>
+          <div><dt class="mono" data-en="Result" data-es="Resultado">Resultado</dt><dd class="mono" data-en="Passed" data-es="Aprobado">Aprobado</dd></div>
+        </dl>
+
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
+          <span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">AWS</span>
+        </div>
+        <div class="cert__seal cert__seal--ok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m4 12.5 5 5L20 6.5"/></svg>
+          <span data-en="Verified on blockchain · Jul 31, 2026" data-es="Verificado en blockchain · 31 jul 2026">Verificado en blockchain · 31 jul 2026</span>
+        </div>
+      </article>
+
+      <div class="pdf" data-cursor="card">
+        <div class="pdf__bar">
+          <span class="mono">diplomatura-full-stack-utn.pdf</span>
+          <a class="pdf__dl" href="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf" download data-cursor="link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/></svg>
+            <span data-en="Download" data-es="Descargar">Descargar</span>
+          </a>
+        </div>
+        <iframe class="pdf__frame" src="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf#toolbar=0&navpanes=0&view=FitH" title="Diplomatura Full Stack UTN" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Cert 2 + PDF -->
+    <div class="cert-pair cert-pair--rev reveal">
       <article class="cert" data-cursor="card">
         <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
         <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
@@ -296,46 +353,6 @@
           </a>
         </div>
         <iframe class="pdf__frame" src="Curso_de_Programador_Web_Inicial_-_Front_End_Developer_-_Turno_Noche.pdf#toolbar=0&navpanes=0&view=FitH" title="Certificado UTN Frontend Developer" loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <!-- Cert 2 + PDF -->
-    <div class="cert-pair cert-pair--rev reveal">
-      <article class="cert" data-cursor="card">
-        <span class="cert__corner cert__corner--tl"></span><span class="cert__corner cert__corner--tr"></span>
-        <span class="cert__corner cert__corner--bl"></span><span class="cert__corner cert__corner--br"></span>
-        <div class="cert__ring" aria-hidden="true"></div>
-
-        <div class="cert__top">
-          <span class="cert__badge mono">UTN</span>
-          <span class="cert__year mono" data-en="DIPLOMA 2026" data-es="DIPLOMATURA 2026">DIPLOMATURA 2026</span>
-        </div>
-        <h3 class="cert__title">Full Stack Developer</h3>
-        <p class="cert__org" data-en="Universidad Tecnológica Nacional" data-es="Universidad Tecnológica Nacional">Universidad Tecnológica Nacional</p>
-        <p class="cert__desc"
-           data-en="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, JWT authentication, AWS and deployment on Render / Vercel / Heroku. Distance learning."
-           data-es="JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.">
-          JavaScript, TypeScript, React, Node.js, Express, MySQL, MongoDB/Mongoose, autenticación JWT, AWS y despliegue en Render / Vercel / Heroku. A distancia.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span>
-          <span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">AWS</span>
-        </div>
-        <div class="cert__seal cert__seal--ok">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m4 12.5 5 5L20 6.5"/></svg>
-          <span data-en="Completed · July 2026" data-es="Completado · julio 2026">Completado · julio 2026</span>
-        </div>
-      </article>
-
-      <div class="pdf" data-cursor="card">
-        <div class="pdf__bar">
-          <span class="mono">diplomatura-full-stack-utn.pdf</span>
-          <a class="pdf__dl" href="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf" download data-cursor="link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19.5h16"/></svg>
-            <span data-en="Download" data-es="Descargar">Descargar</span>
-          </a>
-        </div>
-        <iframe class="pdf__frame" src="Diplomatura_en_Programaci_n_Web_Full_Stack_-_Turno_Noche.pdf#toolbar=0&navpanes=0&view=FitH" title="Diplomatura Full Stack UTN" loading="lazy"></iframe>
       </div>
     </div>
 
