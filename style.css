@@ -895,6 +895,25 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 }
 .proj-grid .tag{ font-size:.62rem; }
 
+/* ─────────── ENLACES DIRECTOS DE CADA PROYECTO ───────────
+   Están en el HTML y no sólo en el modal porque los filtros de currículums
+   y los buscadores leen el marcado; el modal lo arma JavaScript y para ellos
+   no existe. De paso el visitante llega al código sin un clic de más. */
+.proj__links{
+  display:flex; flex-wrap:wrap; gap:8px 14px;
+  margin-top:2px;
+}
+.proj__link{
+  font-family:var(--f-mono); font-size:.64rem;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fg-dim); text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color var(--t), border-color var(--t);
+}
+.proj__link::after{ content:" \2197"; }
+.proj__link:hover,
+.proj__link:focus-visible{ color:var(--accent); border-bottom-color:var(--accent); }
+
 @media (max-width:900px){
   #projects .wrap{ max-width:var(--wrap); }
   .proj-grid{ grid-template-columns:1fr; gap:20px; }

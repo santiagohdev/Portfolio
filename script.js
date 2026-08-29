@@ -443,7 +443,8 @@ function initModal(){
      funcionando para el mouse, como comodidad y no como unica via. */
   $$('#projects .proj').forEach(card => {
     card.addEventListener('click', (e) => {
-      if (e.target.closest('.proj__live, .proj__close, .proj__frame')) return;
+      // Los enlaces directos van a su destino; no abren el modal.
+      if (e.target.closest('.proj__live, .proj__close, .proj__frame, .proj__link')) return;
       openModal(card);
     });
 
