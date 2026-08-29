@@ -248,10 +248,14 @@ function restartTypewriter(){
 /* ─────────────────────────────────────────────
    STACK
    ───────────────────────────────────────────── */
+/* El stack vive escrito en el HTML, no se genera acá: los filtros de
+   currículums no ejecutan JavaScript y si no, esa sección les llega vacía.
+   Esto queda de respaldo por si el marcado faltara. */
 function buildStack(){
   const grid = $('#stackGrid');
+  if (!grid || grid.querySelector('.sk')) return;
   grid.innerHTML = SKILLS.map((s, i) => `
-    <article class="sk reveal" data-cursor="card" style="transition-delay:${i * 45}ms">
+    <div class="sk reveal" data-cursor="card" style="transition-delay:${i * 45}ms">
       <div class="sk__top">
         <span class="sk__logo">${ICONOS[s.icon]}</span>
         <span>
@@ -261,7 +265,7 @@ function buildStack(){
         <span class="sk__pct">${s.pct}%</span>
       </div>
       <div class="sk__track"><div class="sk__bar" data-pct="${s.pct}"></div></div>
-    </article>
+    </div>
   `).join('');
 }
 
@@ -568,7 +572,14 @@ document.addEventListener('keydown', (e) => {
 
     const cargando = document.createElement('div');
     cargando.className = 'proj__loading';
-    cargando.textContent = document.documentElement.lang === 'en' ? 'Loading demo…' : 'Cargando demo…';
+    /* Slate corre en un plan gratuito que duerme la aplicación: el primer
+       acceso tarda cerca de medio minuto. Sin avisar, el visitante ve un
+       recuadro vacío y asume que está roto. */
+    const enIngles = document.documentElement.lang === 'en';
+    cargando.textContent = card.dataset.embedEspera === '1'
+      ? (enIngles ? 'Waking the server… the first load takes ~30s'
+                  : 'Despertando el servidor… la primera carga tarda ~30s')
+      : (enIngles ? 'Loading demo…' : 'Cargando demo…');
 
     const frame = document.createElement('iframe');
     frame.className = 'proj__frame';
