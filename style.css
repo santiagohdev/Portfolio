@@ -1330,6 +1330,11 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 .tl__body--cliente > *:not(.tl__escala){ position:relative; z-index:1; }
 
 /* Enlace al perfil: el número acá sí se lee, y es el que da la referencia. */
+/* Las tecnologías del trabajo para cliente, con el mismo aire que las de
+   los proyectos pero un poco más contenidas. */
+.tl__tags{ margin-top:12px; }
+.tl__tags .tag{ font-size:.6rem; }
+
 .tl__ig{
   display:inline-flex; align-items:center; gap:9px;
   margin-top:12px; padding:7px 12px;
