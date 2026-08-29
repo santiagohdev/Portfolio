@@ -1,26 +1,26 @@
 /* ══════════════════════════════════════════════════════════════
    SANTIAGO HERMOSILLA — PORTFOLIO
-   Dirección: brutalismo editorial. Tinta cálida + un acento.
+   Dirección: brutalismo editorial. Grises azulados + un acento rosa.
    Bordes de 1px, sombras duras con offset. Cero blur decorativo.
    ══════════════════════════════════════════════════════════════ */
 
 /* ─────────── TOKENS ─────────── */
 :root{
   /* paleta — TEMA OSCURO (default) */
-  --bg:        #0D0D0B;
-  --bg-alt:    #121210;
-  --surface:   #161614;
-  --surface-2: #1D1D1A;
-  --line:      #2C2C27;
-  --line-soft: #212120;
-  --fg:        #F2EFE6;
-  --fg-mid:    #A8A395;
-  --fg-dim:    #828072;        /* 4.89:1 sobre --bg — AA en texto chico */
+  --bg:        #0C0F16;
+  --bg-alt:    #10141D;
+  --surface:   #141924;
+  --surface-2: #1A2030;
+  --line:      #262E40;
+  --line-soft: #1C2231;
+  --fg:        #E8EBF2;
+  --fg-mid:    #9BA3B8;
+  --fg-dim:    #858DA3;        /* 5,78:1 sobre --bg — AA en texto chico */
 
-  --accent:    #2ED88E;
-  --accent-2:  #6FE8B4;
-  --accent-fg: #0D0D0B;
-  --accent-wash:rgba(46,216,142,.10);
+  --accent:    #F7A8C4;
+  --accent-2:  #FFC2D4;
+  --accent-fg: #0C0F16;
+  --accent-wash:rgba(247,168,196,.11);
 
   --pending:   #E8C547;         /* cert sin verificar */
   --pending-wash: rgba(232,197,71,.10);
@@ -49,20 +49,20 @@
 
 /* ─────────── TEMA CLARO: papel, no blanco plano ─────────── */
 [data-theme="light"]{
-  --bg:        #EFEBE0;
-  --bg-alt:    #E7E2D5;
-  --surface:   #F6F3EA;
-  --surface-2: #EAE5D8;
-  --line:      #CBC3AF;
-  --line-soft: #DCD5C4;
-  --fg:        #14140F;
-  --fg-mid:    #55513F;
-  --fg-dim:    #6F6A57;        /* 4.55:1 sobre --bg claro */
+  --bg:        #F4F6F9;
+  --bg-alt:    #EBF0F5;
+  --surface:   #FFFFFF;
+  --surface-2: #E9EEF4;
+  --line:      #D3DAE4;
+  --line-soft: #E2E8F0;
+  --fg:        #0C0F16;
+  --fg-mid:    #565E6E;
+  --fg-dim:    #666E7E;        /* 4,73:1 sobre --bg claro */
 
-  --accent:    #0A7A50;        /* 4.51:1 como texto, 5.09:1 como fondo de boton */
-  --accent-2:  #096B46;
-  --accent-fg: #F2FBF6;
-  --accent-wash:rgba(13,138,91,.09);
+  --accent:    #C33A69;        /* rosa viejo: 4,70:1 como texto, 5,09:1 como fondo de boton */
+  --accent-2:  #A82C57;
+  --accent-fg: #FFFFFF;
+  --accent-wash:rgba(195,58,105,.09);
 
   --pending:   #9A7B00;
   --pending-wash: rgba(154,123,0,.10);

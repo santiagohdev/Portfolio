@@ -613,8 +613,8 @@ document.addEventListener('keydown', (e) => {
 /* ══════════════════ PARA EL QUE ABRE LA CONSOLA ═══════════════════════════
    Casi siempre es otro dev evaluando el sitio. Bien vale saludarlo. */
 (() => {
-  const verde = 'color:#2ED88E;font-weight:700';
-  const tenue = 'color:#8B8B80';
+  const rosa  = 'color:#F7A8C4;font-weight:700';
+  const tenue = 'color:#9BA3B8';
   console.log(
 `%c
    ██╗  ██╗
@@ -623,9 +623,9 @@ document.addEventListener('keydown', (e) => {
    ██╔══██║   Buenos Aires, AR
    ██║  ██║
    ╚═╝  ╚═╝
-`, verde);
-  console.log('%cAsí que abriste la consola. 👀', 'color:#F2EFE6;font-size:13px');
+`, rosa);
+  console.log('%cAsí que abriste la consola. 👀', 'color:#E8EBF2;font-size:13px');
   console.log('%cEste sitio es HTML, CSS y JavaScript a mano. Sin framework, sin build.', tenue);
-  console.log('%cSi estás buscando a alguien: %csantiagohermosilla76@gmail.com', tenue, verde);
+  console.log('%cSi estás buscando a alguien: %csantiagohermosilla76@gmail.com', tenue, rosa);
   console.log('%chttps://santiagohermosilla.com', tenue);
 })();
