@@ -376,9 +376,46 @@
       <span class="sec__rule"></span>
     </div>
 
-    <!-- Las seis en una sola grilla de dos columnas. La sección se sale
+    <!-- Las siete en una sola grilla de dos columnas. La sección se sale
          del ancho de lectura del resto del sitio para aprovechar los costados. -->
     <div class="proj-grid">
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+          data-embed-espera="1"
+          data-img="images/workflow.webp"
+          data-title="Workflow — SaaS multiempresa de gestión de tareas"
+          data-techs="TypeScript,React,Node.js,Express,PostgreSQL,Stripe"
+          data-demo="https://workflow-saas-8006.onrender.com"
+          data-repo="https://github.com/santiagohdev/workflow-saas"
+          data-long-es="Gestor de tareas vendido como servicio a empresas. El tablero es la parte visible; lo que sostiene el producto son las tres capas de abajo. La primera es el aislamiento: varias empresas conviven en la misma base y ninguna ve nada de otra. Cada tabla de contenido lleva su organización y toda consulta filtra por ella, porque un join de más es barato y una fuga entre clientes no. Pedir datos de una organización ajena responde 404 y no 403: un 403 confirmaría que existe, y eso ya es información que no le corresponde a quien no es miembro. La segunda son los roles. Una misma persona puede pertenecer a varias empresas con un rol distinto en cada una, así que el rol vive en la membresía y no en el usuario. Nadie puede otorgar un rol por encima del propio ni quitar al único dueño, porque un admin que pueda nombrar owners se convierte en owner cuando quiera. La tercera son los límites del plan, verificados en el servidor antes de crear, nunca escondiendo el botón. El cobro se integra con Stripe siguiendo la regla que evita el fraude más común: el plan lo cambia el webhook con su firma HMAC-SHA256 verificada sobre el cuerpo crudo, jamás la respuesta que ve el navegador. Por debajo, Express con TypeScript ejecutado sin compilar, PostgreSQL en Supabase y contraseñas con scrypt."
+          data-long-en="A task manager sold as a service to companies. The board is the visible part; what holds the product up are the three layers underneath. The first is isolation: several companies live in the same database and none of them sees anything belonging to another. Every content table carries its organization and every query filters by it, because an extra join is cheap and a leak between clients is not. Asking for another organization&#39;s data returns 404 rather than 403: a 403 would confirm it exists, and that is already information a non-member should not have. The second is roles. One person can belong to several companies with a different role in each, so the role lives on the membership rather than on the user. Nobody can grant a role above their own or remove the last owner, because an admin who can appoint owners becomes an owner whenever they like. The third is plan limits, enforced on the server before creating anything, never by hiding a button. Billing integrates with Stripe following the rule that prevents the most common fraud: the plan is changed by the webhook, with its HMAC-SHA256 signature verified over the raw body, never by the response the browser sees. Underneath it is Express with TypeScript run without a build step, PostgreSQL on Supabase and scrypt-hashed passwords."
+          data-note-es="Entrá con las cuentas de prueba que ofrece la pantalla de inicio: Ana es dueña con plan gratuito, Cami solo lee y Dani está en otra empresa. Cambiar entre Ana y Dani muestra el aislamiento. El cobro está simulado y la demo corre en un plan gratuito que duerme la app: el primer acceso puede tardar unos 50 segundos."
+          data-note-en="Sign in with the demo accounts offered on the login screen: Ana is an owner on the free plan, Cami is read-only and Dani belongs to a different company. Switching between Ana and Dani shows the isolation. Billing is simulated and the demo runs on a free tier that puts the app to sleep: the first visit can take around 50 seconds.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/workflow.webp" alt="Workflow — tablero de tareas de un SaaS multiempresa" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <span class="proj__idx mono">01</span>
+      <p class="proj__kicker mono" data-en="Own project · SaaS architecture" data-es="Proyecto propio · Arquitectura SaaS">Proyecto propio · Arquitectura SaaS</p>
+      <h3 class="proj__title">Workflow — <span data-en="Multi-tenant SaaS" data-es="SaaS multiempresa">SaaS multiempresa</span></h3>
+      <p class="proj__desc"
+         data-en="Task manager sold to companies: several of them share one database without ever seeing each other, four roles decide what each person can do, and the free plan&#39;s limits are enforced on the server. The plan only changes when a Stripe webhook signature verifies — never because the browser said so."
+         data-es="Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.">
+        Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.
+      </p>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+        <span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Stripe</span>
+      </div>
+          <div class="proj__links">
+            <a class="proj__link" href="https://workflow-saas-8006.onrender.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/workflow-saas" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+          </div>
+        </article>
+
       <article class="proj reveal" data-cursor="card" data-embed="1"
           data-embed-espera="1"
           data-img="images/slate.webp"
@@ -397,7 +434,7 @@
       </div>
           </div>
           <div class="proj__body">
-      <span class="proj__idx mono">01</span>
+      <span class="proj__idx mono">02</span>
       <p class="proj__kicker mono" data-en="Own project · Distributed systems" data-es="Proyecto propio · Sistemas distribuidos">Proyecto propio · Sistemas distribuidos</p>
       <h3 class="proj__title">Slate — <span data-en="Real-time collaboration" data-es="Colaboración en tiempo real">Colaboración en tiempo real</span></h3>
       <p class="proj__desc"
@@ -433,7 +470,7 @@
       </div>
           </div>
           <div class="proj__body">
-      <span class="proj__idx mono">02</span>
+      <span class="proj__idx mono">03</span>
       <p class="proj__kicker mono" data-en="Client work · Tiendanube" data-es="Trabajo para cliente · Tiendanube">Trabajo para cliente · Tiendanube</p>
       <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
       <p class="proj__desc"
@@ -470,7 +507,7 @@
         </div>
       </div>
       <div class="proj__body">
-        <span class="proj__idx mono">03</span>
+        <span class="proj__idx mono">04</span>
         <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
         <h3 class="proj__title">FrameBox</h3>
         <p class="proj__desc"
@@ -514,7 +551,7 @@
         </div>
       </div>
       <div class="proj__body">
-        <span class="proj__idx mono">04</span>
+        <span class="proj__idx mono">05</span>
         <p class="proj__kicker mono">JavaScript · API</p>
         <h3 class="proj__title">Weather Dashboard</h3>
         <p class="proj__desc"
@@ -557,7 +594,7 @@
         </div>
       </div>
       <div class="proj__body">
-        <span class="proj__idx mono">05</span>
+        <span class="proj__idx mono">06</span>
         <p class="proj__kicker mono">React · LocalStorage</p>
         <h3 class="proj__title">Task Tracker</h3>
         <p class="proj__desc"
@@ -592,7 +629,7 @@
         </div>
       </div>
       <div class="proj__body">
-        <span class="proj__idx mono">06</span>
+        <span class="proj__idx mono">07</span>
         <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
         <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
         <p class="proj__desc"
