@@ -31,20 +31,25 @@ const ICONOS = {
   express:'<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="currentColor" d="M126.7 88.2c-8.9 2.3-14.4-2.1-19.8-9.6l-12.7-17.6-1.8-2.5-14.8 20.1c-5.1 7-10.5 10-19.1 7.7l24.6-33-22.9-29.8c8.4-1.6 14.2-.8 19.4 6.7l14.7 20.2 14.8-20.1c5.1-7 10.6-9.6 18.9-7.5-3.3 4.3-6.4 8.5-9.6 12.7-4.3 5.5-8.4 11.1-12.8 16.5-1.6 1.9-1.4 3.2.1 5.1zM1.3 60.2c.6-3 1-6.1 1.9-9C9.5 28.7 35.3 19.3 53 33.2c10.4 8.2 13 19.7 12.5 32.6H8.4c-.9 22.8 15.6 36.6 36.5 29.6 7.4-2.5 11.7-8.2 13.9-15.4.9-3.4 2.7-4 6.1-3-1.7 8.8-5.6 16.2-13.7 20.8-12.1 6.8-29.4 4.6-38.5-4.8C7.4 87.6 4.7 80.4 3.5 72.5c-.2-1.3-.6-2.6-.9-3.9q-.15-4.2-.3-8.4m7.2 0h50.8c-.3-16.2-10.4-27.7-24.2-27.8-15.2-.2-26 11-26.6 27.8"/></svg>',
   mongo:  '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#4FAA41" d="M82.6 58.5c-3.6-15.8-11.5-25.9-14.8-30.4-3.4-4.7-6.2-9.2-6.7-10-.5-.8-1.2-2.4-1.5-3.1-.3.6-1 2.3-1.5 3.1-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1l1.4 9.9c.1.6.7 1 1.3 1h.2c.6 0 1.1-.4 1.3-1l1.4-9.9c.1-.4.4-.8.7-1 2.5-1.7 10.1-7.1 15.4-16.3 5.3-9.2 8.3-23.1 4.6-39.2z"/><path fill="#3F9037" d="M60.1 116.4V15.1c-.4.7-.9 1.6-1.2 2.2-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1z"/></svg>',
   mysql:  '<svg viewBox="0 0 24 24" fill="none" stroke="#00618A" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg>',
+  postgres: '<svg viewBox="0 0 24 24" fill="none" stroke="#336791" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg>',
   git:    '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#F34F29" d="M124.7 58.4 69.6 3.3a11.2 11.2 0 0 0-15.9 0L42.3 14.8l14.5 14.5a13.3 13.3 0 0 1 16.9 17l14 14a13.3 13.3 0 1 1-8 7.5L66.6 54.7v34.4a13.3 13.3 0 1 1-11-.4V54a13.3 13.3 0 0 1-7.2-17.5L34.1 22.3 3.3 53.1a11.2 11.2 0 0 0 0 15.9l55.1 55.1a11.2 11.2 0 0 0 15.9 0l50.4-50.4a11.2 11.2 0 0 0 0-15.9"/></svg>',
 };
 
+/* Sin porcentajes a propósito: un número autoasignado sin escala no dice
+   nada y la precisión de dos dígitos promete una medición que no existe. El
+   nivel se sostiene con los proyectos, que sí se pueden abrir. */
 const SKILLS = [
-  { name:'HTML5',      pct:96, icon:'html5',   lvl:'expert' },
-  { name:'CSS3',       pct:93, icon:'css3',    lvl:'expert' },
-  { name:'React',      pct:92, icon:'react',   lvl:'adv'    },
-  { name:'JavaScript', pct:90, icon:'js',      lvl:'adv'    },
-  { name:'TypeScript', pct:85, icon:'ts',      lvl:'adv'    },
-  { name:'Node.js',    pct:82, icon:'node',    lvl:'solid'  },
-  { name:'Express',    pct:80, icon:'express', lvl:'solid'  },
-  { name:'MongoDB',    pct:78, icon:'mongo',   lvl:'solid'  },
-  { name:'MySQL',      pct:78, icon:'mysql',   lvl:'solid'  },
-  { name:'Git',        pct:76, icon:'git',     lvl:'solid'  },
+  { name:'HTML5',      icon:'html5',    lvl:'expert' },
+  { name:'CSS3',       icon:'css3',     lvl:'expert' },
+  { name:'React',      icon:'react',    lvl:'adv'    },
+  { name:'JavaScript', icon:'js',       lvl:'adv'    },
+  { name:'TypeScript', icon:'ts',       lvl:'adv'    },
+  { name:'Node.js',    icon:'node',     lvl:'solid'  },
+  { name:'Express',    icon:'express',  lvl:'solid'  },
+  { name:'PostgreSQL', icon:'postgres', lvl:'solid'  },
+  { name:'MongoDB',    icon:'mongo',    lvl:'solid'  },
+  { name:'MySQL',      icon:'mysql',    lvl:'solid'  },
+  { name:'Git',        icon:'git',      lvl:'solid'  },
 ];
 
 const LEVELS = {
@@ -262,25 +267,19 @@ function buildStack(){
           <span class="sk__name">${s.name}</span><br>
           <span class="sk__level" data-lvl="${s.lvl}">${LEVELS[s.lvl][lang]}</span>
         </span>
-        <span class="sk__pct">${s.pct}%</span>
       </div>
-      <div class="sk__track"><div class="sk__bar" data-pct="${s.pct}"></div></div>
     </div>
   `).join('');
 }
 
 /* ─────────────────────────────────────────────
-   REVEAL + BARRAS
+   REVEAL
    ───────────────────────────────────────────── */
 function observeAll(){
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       e.target.classList.add('vis');
-
-      const bar = $('.sk__bar', e.target);
-      if (bar) setTimeout(() => { bar.style.width = bar.dataset.pct + '%'; }, 180);
-
       io.unobserve(e.target);
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
@@ -608,6 +607,57 @@ document.addEventListener('keydown', (e) => {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.querySelectorAll('.proj--live').forEach(cerrar);
   });
+})();
+
+/* ══════════════════ WORKANA Y CAMBRIDGE: ANIMACIÓN DE ENTRADA ══════════════
+   Cada bloque [data-anim] recibe .go la primera vez que entra en pantalla;
+   el CSS hace el resto. Acá solo van los contadores y las partículas del
+   sello, que no se pueden hacer con CSS solo. */
+(() => {
+  const bloques = document.querySelectorAll('[data-anim]');
+  if (!bloques.length) return;
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Partículas del sello C1: ángulo y distancia al azar, una sola vez.
+  document.querySelectorAll('.cam__burst').forEach(b => {
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('i');
+      p.style.setProperty('--a', (i * 20 + Math.random() * 14) + 'deg');
+      p.style.setProperty('--d', (90 + Math.random() * 90) + 'px');
+      b.appendChild(p);
+    }
+  });
+
+  const contar = (el, retraso) => {
+    const fin = parseFloat(el.dataset.count);
+    const dec = parseInt(el.dataset.dec || '0', 10);
+    if (reducido) { el.textContent = fin.toFixed(dec); return; }
+    // Los puntajes arrancan desde la base de la escala, no desde cero.
+    const desde = fin > 100 ? 150 : 0;
+    const dur = 1500;
+    setTimeout(() => {
+      const t0 = performance.now();
+      const paso = (t) => {
+        const k = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 4);
+        el.textContent = (desde + (fin - desde) * e).toFixed(dec);
+        if (k < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    }, retraso);
+  };
+
+  const io = new IntersectionObserver((entradas) => {
+    entradas.forEach(e => {
+      if (!e.isIntersecting) return;
+      const b = e.target;
+      b.classList.add('go');
+      b.querySelectorAll('[data-count]').forEach((el, i) => contar(el, 300 + i * 200));
+      io.unobserve(b);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+
+  bloques.forEach(b => io.observe(b));
 })();
 
 /* ══════════════════ PARA EL QUE ABRE LA CONSOLA ═══════════════════════════

@@ -531,7 +531,8 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 }
 .sk:hover{ transform:translate(-3px,-3px); box-shadow:var(--shadow-hit); border-color:var(--accent); }
 
-.sk__top{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+/* Sin margen inferior: separaba de la barra de porcentaje, que ya no está. */
+.sk__top{ display:flex; align-items:center; gap:12px; }
 .sk__logo{ line-height:1; flex-shrink:0; }
 /* Los logos son SVG inline con su color de marca propio. Antes venian de
    devicon por CDN: 130 KB bloqueantes, y apuntados a @latest, o sea que un
@@ -539,15 +540,6 @@ body.cur-hidden .cursor-dot{ width:0; height:0; }
 .sk__logo svg{ display:block; width:28px; height:28px; }
 .sk__name{ font-family:var(--f-display); font-weight:600; font-size:1.02rem; letter-spacing:-.015em; }
 .sk__level{ font-family:var(--f-mono); font-size:.63rem; letter-spacing:.09em; text-transform:uppercase; color:var(--fg-dim); }
-.sk__pct{ margin-left:auto; font-family:var(--f-mono); font-size:.82rem; font-weight:700; color:var(--accent); }
-
-.sk__track{ height:3px; background:var(--surface-2); border-radius:0; overflow:hidden; }
-[data-theme="light"] .sk__track{ background:var(--line-soft); }
-.sk__bar{
-  height:100%; width:0;
-  background:var(--accent);
-  transition:width 1.15s var(--ease);
-}
 
 /* ─────────── CERTIFICADOS ─────────── */
 .cert-pair{
@@ -1628,4 +1620,436 @@ body.caos-total{ overflow:hidden; }
 }
 @media (max-width:760px){
   .caos-total-btn{ right:12px; bottom:12px; padding:7px 11px; font-size:.54rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FREELANCE EN WORKANA
+   Exagerado a propósito: el 5.0 gigante es lo que tiene que quedar
+   en la retina. Las animaciones arrancan cuando script.js le pone
+   .go al bloque [data-anim]; sin JS todo queda en su estado final.
+   ══════════════════════════════════════════════════════════════ */
+:root{
+  --star:#F5C24C;
+  --cam:#F0464C;               /* rojo Cambridge, levantado para fondo oscuro */
+  --cam-deep:#B3141B;
+  --cam-wash:rgba(240,70,76,.10);
+}
+[data-theme="light"]{
+  --star:#D99A00;
+  --cam:#C8102E;
+  --cam-deep:#A00D24;
+  --cam-wash:rgba(200,16,46,.08);
+}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+.wk{
+  position:relative;
+  margin:0 0 clamp(60px,8vw,110px);
+  border:var(--bw) solid var(--accent);
+  border-radius:var(--r);
+  background:var(--surface);
+  box-shadow:10px 10px 0 var(--accent);
+  overflow:hidden;
+}
+
+.wk__hero{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(24px,5vw,72px);
+  align-items:center;
+  padding:clamp(28px,5vw,64px);
+  position:relative;
+}
+/* Rejilla de fondo, igual que la del hero del sitio. */
+.wk__hero::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0/44px 44px,
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0/44px 44px;
+  mask-image:radial-gradient(ellipse at 20% 50%, #000 0%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at 20% 50%, #000 0%, transparent 70%);
+}
+.wk__hero > *{ position:relative; z-index:1; }
+
+.wk__score{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+.wk__num{
+  font-family:var(--f-display);
+  font-size:clamp(6.5rem,17vw,13.5rem);
+  font-weight:800; letter-spacing:-.06em; line-height:.82;
+  font-variant-numeric:tabular-nums;
+  color:var(--fg);
+  background:linear-gradient(100deg, var(--fg) 0 40%, var(--star) 50%, var(--fg) 60% 100%) 0 0/250% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-position:100% 0;
+}
+.wk.go .wk__num{ animation:wkShine 2.6s var(--ease) 1.4s both; }
+@keyframes wkShine{ from{ background-position:100% 0; } to{ background-position:-50% 0; } }
+
+.wk__stars{ display:flex; gap:clamp(4px,.8vw,10px); }
+.wk__stars svg{
+  width:clamp(30px,4.4vw,52px); height:auto;
+  fill:var(--star);
+  filter:drop-shadow(3px 3px 0 var(--accent-wash));
+}
+.js .wk:not(.go) .wk__stars svg{ transform:scale(0) rotate(-90deg); opacity:0; }
+.wk.go .wk__stars svg{ animation:wkStar .7s cubic-bezier(.34,1.8,.5,1) both; }
+.wk.go .wk__stars svg:nth-child(1){ animation-delay:.35s; }
+.wk.go .wk__stars svg:nth-child(2){ animation-delay:.5s; }
+.wk.go .wk__stars svg:nth-child(3){ animation-delay:.65s; }
+.wk.go .wk__stars svg:nth-child(4){ animation-delay:.8s; }
+.wk.go .wk__stars svg:nth-child(5){ animation-delay:.95s; }
+@keyframes wkStar{
+  0%  { transform:scale(0) rotate(-90deg); opacity:0; }
+  60% { transform:scale(1.45) rotate(12deg); opacity:1; }
+  100%{ transform:scale(1) rotate(0); opacity:1; }
+}
+
+.wk__eyebrow{
+  display:inline-block;
+  font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent-fg); background:var(--accent);
+  padding:5px 10px; border-radius:var(--r);
+}
+.wk__title{
+  font-family:var(--f-display);
+  font-size:clamp(2.2rem,5.6vw,4.4rem);
+  font-weight:800; letter-spacing:-.045em; line-height:.95;
+  margin:16px 0 18px;
+}
+.wk__title span, .wk__title em{ display:block; }
+.wk__title em{ font-style:normal; color:var(--accent); }
+.wk__txt{ color:var(--fg-mid); max-width:56ch; font-size:1.02rem; }
+
+.wk__flags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+.wk__flag{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--f-mono); font-size:.74rem; letter-spacing:.06em;
+  padding:6px 11px;
+  border:var(--bw) solid var(--line); border-radius:var(--r);
+  background:var(--bg);
+}
+.wk__flag b{ font-size:1rem; font-weight:400; }
+
+/* Cinta que corre: mismo contenido duplicado para que el loop no salte. */
+.wk__ticker{
+  border-block:var(--bw) solid var(--accent);
+  background:var(--accent); color:var(--accent-fg);
+  overflow:hidden; white-space:nowrap;
+}
+.wk__track{
+  display:inline-flex;
+  animation:wkTicker 26s linear infinite;
+}
+.wk__track span{
+  font-family:var(--f-mono); font-weight:700;
+  font-size:.82rem; letter-spacing:.14em;
+  padding:11px 22px;
+}
+.wk__track span::after{ content:"✦"; margin-left:44px; opacity:.55; }
+@keyframes wkTicker{ to{ transform:translateX(-50%); } }
+
+.wk__cases{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.wkc{
+  position:relative; overflow:hidden;
+  padding:clamp(22px,2.6vw,32px);
+  border-right:var(--bw) solid var(--line);
+  display:flex; flex-direction:column; gap:12px;
+  transition:background var(--t);
+}
+.wkc:last-child{ border-right:0; }
+.wkc:hover{ background:var(--accent-wash); }
+.wkc > *:not(.wkc__big){ position:relative; z-index:1; }
+
+/* La cifra gigante de fondo, como la escala del primer cliente. */
+.wkc__big{
+  position:absolute; right:-6px; bottom:-18px; z-index:0;
+  font-family:var(--f-display); font-weight:800;
+  font-size:clamp(4.6rem,8vw,7.4rem); letter-spacing:-.06em; line-height:1;
+  color:var(--accent); opacity:.08;
+  pointer-events:none; user-select:none;
+  transition:opacity var(--t), transform var(--t);
+}
+.wkc:hover .wkc__big{ opacity:.16; transform:translate(-6px,-6px); }
+
+.wkc__top{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.wkc__where{ font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--fg-dim); }
+.wkc__stars{ color:var(--star); letter-spacing:2px; font-size:.95rem; }
+.wkc__title{
+  font-family:var(--f-display);
+  font-size:clamp(1.2rem,1.8vw,1.45rem);
+  font-weight:700; letter-spacing:-.02em; line-height:1.15;
+}
+.wkc__txt{ color:var(--fg-mid); font-size:.92rem; line-height:1.65; }
+.wkc__facts{
+  list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:8px;
+  margin-top:auto;
+}
+.wkc__facts li{
+  border:var(--bw) solid var(--line); border-radius:var(--r);
+  background:var(--bg);
+  padding:10px 12px;
+  font-size:.64rem; letter-spacing:.06em; text-transform:uppercase; color:var(--fg-dim);
+  line-height:1.4;
+}
+.wkc__facts b{
+  display:block;
+  font-family:var(--f-display); font-size:1.7rem; letter-spacing:-.03em;
+  color:var(--accent); line-height:1.05; text-transform:none;
+}
+.wkc .tags .tag{ font-size:.6rem; }
+
+.js .wk:not(.go) .wkc{ opacity:0; transform:translateY(40px); }
+.wk.go .wkc{ animation:wkUp .8s var(--ease) both; }
+.wk.go .wkc:nth-child(1){ animation-delay:.9s; }
+.wk.go .wkc:nth-child(2){ animation-delay:1.05s; }
+.wk.go .wkc:nth-child(3){ animation-delay:1.2s; }
+@keyframes wkUp{ from{ opacity:0; transform:translateY(40px); } to{ opacity:1; transform:none; } }
+
+@media (max-width:1000px){
+  .wk__cases{ grid-template-columns:1fr; }
+  .wkc{ border-right:0; border-bottom:var(--bw) solid var(--line); }
+  .wkc:last-child{ border-bottom:0; }
+}
+@media (max-width:700px){
+  .wk{ box-shadow:6px 6px 0 var(--accent); }
+  .wk__hero{ grid-template-columns:1fr; text-align:left; }
+  .wk__score{ align-items:flex-start; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INGLÉS — CAMBRIDGE C1 ADVANCED
+   Banda roja con la tipografía con serifa de la marca, el sello C1
+   que cae de golpe y las barras subiendo por la escala real.
+   --H es el alto de la escala; todas las posiciones salen de ahí.
+   ══════════════════════════════════════════════════════════════ */
+.cam{
+  --H: clamp(240px, 32vw, 330px);
+  position:relative;
+  border:var(--bw) solid var(--cam);
+  border-radius:var(--r);
+  background:var(--surface);
+  box-shadow:10px 10px 0 var(--cam);
+  overflow:hidden;
+}
+.cam.go{ animation:camShake .5s .95s both; }
+@keyframes camShake{
+  0%,100%{ transform:none; }
+  20%{ transform:translate(-4px,3px); }
+  40%{ transform:translate(4px,-3px); }
+  60%{ transform:translate(-2px,2px); }
+  80%{ transform:translate(2px,-1px); }
+}
+
+.cam__band{
+  display:flex; align-items:center; gap:16px;
+  padding:18px clamp(20px,4vw,40px);
+  background:var(--cam-deep); color:#fff;
+  position:relative; overflow:hidden;
+}
+/* Barrido de luz sobre la banda al entrar. */
+.cam__band::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+  transform:translateX(-100%);
+}
+.cam.go .cam__band::after{ animation:camSweep 1.4s var(--ease) .2s both; }
+@keyframes camSweep{ to{ transform:translateX(100%); } }
+
+.cam__shield svg{ width:36px; height:42px; display:block; }
+.cam__shield path{ fill:none; stroke:#fff; stroke-width:2.4; stroke-linejoin:round; }
+.cam__shield .cam__shield-cross{ stroke-width:1.6; opacity:.75; }
+.cam__word{ display:flex; flex-direction:column; line-height:1; }
+.cam__word-1{
+  font-family:'Libre Caslon Text', Georgia, serif; font-weight:700;
+  font-size:clamp(1.3rem,2.6vw,1.9rem); letter-spacing:.04em;
+}
+.cam__word-2{
+  font-family:'Libre Caslon Text', Georgia, serif;
+  font-size:clamp(.95rem,1.8vw,1.2rem); margin-top:3px; padding-left:52%;
+}
+.cam__session{
+  margin-left:auto; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  opacity:.85; text-align:right;
+}
+
+.cam__body{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(28px,5vw,64px);
+  padding:clamp(26px,4.5vw,56px);
+}
+
+.cam__eyebrow{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--cam); }
+.cam__title{
+  font-family:'Libre Caslon Text', Georgia, serif; font-weight:700;
+  font-size:clamp(2.4rem,5.4vw,4.2rem); letter-spacing:-.02em; line-height:1;
+  margin:12px 0 16px;
+}
+.cam__txt{ color:var(--fg-mid); font-size:1.02rem; max-width:48ch; }
+
+/* ─── El sello ─── */
+.cam__stamp{
+  position:relative;
+  width:clamp(150px,18vw,196px); aspect-ratio:1;
+  margin-top:clamp(26px,4vw,40px);
+  display:grid; place-items:center; align-content:center;
+  border:4px solid var(--cam); border-radius:50%;
+  color:var(--cam);
+  transform:rotate(-12deg);
+}
+.cam__stamp-ring{
+  position:absolute; inset:7px; border-radius:50%;
+  border:1.5px dashed var(--cam); opacity:.7;
+}
+.cam__stamp-c1{
+  font-family:'Libre Caslon Text', Georgia, serif; font-weight:700;
+  font-size:clamp(3.6rem,7vw,5rem); line-height:.9; letter-spacing:-.02em;
+}
+.cam__stamp-sub{ font-size:.58rem; letter-spacing:.16em; font-weight:700; margin-top:6px; }
+
+.js .cam:not(.go) .cam__stamp{ opacity:0; transform:rotate(-40deg) scale(3.2); }
+.cam.go .cam__stamp{ animation:camStamp .55s cubic-bezier(.5,0,.75,0) .45s both; }
+@keyframes camStamp{
+  0%  { opacity:0; transform:rotate(-40deg) scale(3.2); }
+  85% { opacity:1; transform:rotate(-10deg) scale(.92); }
+  100%{ opacity:1; transform:rotate(-12deg) scale(1); }
+}
+/* Partículas del impacto: las crea script.js con su ángulo y distancia. */
+.cam__burst{ position:absolute; inset:50%; pointer-events:none; }
+.cam__burst i{
+  position:absolute; left:0; top:0;
+  width:9px; height:9px; margin:-4.5px;
+  background:var(--cam);
+  opacity:0;
+}
+.cam__burst i:nth-child(3n){ background:var(--star); border-radius:50%; }
+.cam__burst i:nth-child(4n){ background:var(--fg); width:5px; height:14px; }
+.cam.go .cam__burst i{ animation:camBurst .9s var(--ease) 1s both; }
+@keyframes camBurst{
+  0%  { opacity:1; transform:rotate(var(--a)) translateX(30px) scale(1); }
+  100%{ opacity:0; transform:rotate(var(--a)) translateX(var(--d)) scale(.3) rotate(200deg); }
+}
+
+/* ─── El gráfico en escala Cambridge ─── */
+.cam__chart{ display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:14px; align-self:end; }
+.cam__scale{ position:relative; width:64px; height:var(--H); border-right:var(--bw) solid var(--line); }
+.cam__tick{
+  position:absolute; right:8px;
+  bottom:calc((var(--v) - 150) / 60 * 100%);
+  transform:translateY(50%);
+  font-family:var(--f-mono); font-size:.62rem; color:var(--fg-dim);
+}
+.cam__tick::after{
+  content:""; position:absolute; right:-8px; top:50%; width:5px; height:1px; background:var(--line);
+}
+.cam__tick--c1{ color:var(--cam); font-weight:700; }
+.cam__band-lvl{
+  position:absolute; left:0;
+  bottom:calc((var(--a) - 150) / 60 * 100%);
+  height:calc((var(--b) - var(--a)) / 60 * 100%);
+  display:flex; align-items:center;
+  font-family:'Libre Caslon Text', Georgia, serif; font-weight:700; font-size:1rem;
+  color:var(--fg-dim);
+}
+.cam__band-lvl--c1{ color:var(--cam); font-size:1.25rem; }
+
+.cam__skills{
+  position:relative;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(10px,2vw,22px);
+}
+/* Franja C1 (180–200) cruzando las tres columnas. */
+.cam__skills::before{
+  content:""; position:absolute; left:0; right:0; z-index:0;
+  top:calc(var(--H) * (1 - 50/60));
+  height:calc(var(--H) * 20/60);
+  background:var(--cam-wash);
+  border-block:1px dashed var(--cam);
+  pointer-events:none;
+}
+
+.cam__skill{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.cam__col{
+  position:relative; width:100%; height:var(--H);
+  display:flex; align-items:flex-end; justify-content:center;
+}
+.cam__fill{
+  position:relative;
+  width:min(64px, 70%); height:var(--h);
+  background:linear-gradient(var(--cam), var(--cam-deep));
+  border-radius:var(--r) var(--r) 0 0;
+  box-shadow:4px 0 0 var(--cam-wash);
+}
+.cam__skill--near .cam__fill{
+  background:repeating-linear-gradient(135deg, var(--cam) 0 6px, var(--cam-deep) 6px 12px);
+  opacity:.8;
+}
+.js .cam:not(.go) .cam__fill{ height:0; }
+.cam.go .cam__fill{ animation:camRise 1.6s cubic-bezier(.2,1.25,.4,1) both; }
+.cam.go .cam__skill:nth-of-type(1) .cam__fill{ animation-delay:.6s; }
+.cam.go .cam__skill:nth-of-type(2) .cam__fill{ animation-delay:.8s; }
+.cam.go .cam__skill:nth-of-type(3) .cam__fill{ animation-delay:1s; }
+@keyframes camRise{ from{ height:0; } to{ height:var(--h); } }
+
+.cam__flag{
+  position:absolute; left:50%; top:-28px; transform:translateX(-50%);
+  background:var(--cam); color:#fff;
+  font-size:.7rem; font-weight:700; padding:3px 8px; border-radius:var(--r);
+  white-space:nowrap;
+}
+
+.cam__score{
+  margin-top:14px;
+  font-family:var(--f-display); font-weight:800;
+  font-size:clamp(2.2rem,4vw,3.2rem); letter-spacing:-.04em; line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.cam__name{ font-family:'Libre Caslon Text', Georgia, serif; font-weight:700; font-size:1.05rem; margin-top:6px; }
+.cam__lvl{
+  margin-top:8px;
+  font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700;
+  color:#fff; background:var(--cam); padding:4px 9px; border-radius:var(--r);
+}
+.cam__skill--near .cam__lvl{ background:transparent; color:var(--cam); border:var(--bw) solid var(--cam); }
+.cam__note{ margin-top:6px; font-size:.6rem; letter-spacing:.06em; color:var(--fg-dim); }
+
+.cam__legend{
+  grid-column:1 / -1; margin-top:22px;
+  font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-dim);
+}
+
+@media (max-width:900px){
+  .cam__body{ grid-template-columns:1fr; }
+  .cam__stamp{ position:absolute; right:clamp(16px,4vw,40px); top:clamp(90px,14vw,120px); margin:0;
+               width:clamp(108px,24vw,150px); }
+  .cam__stamp-c1{ font-size:clamp(2.6rem,7vw,3.6rem); }
+  .cam__intro{ padding-right:clamp(110px,26vw,160px); }
+}
+@media (max-width:560px){
+  .cam{ box-shadow:6px 6px 0 var(--cam); }
+  .cam__session{ display:none; }
+  .cam__intro{ padding-right:0; }
+  .cam__stamp{ position:relative; right:auto; top:auto; margin:22px 0 0; }
+  .cam__scale{ width:58px; }
+  .cam__tick{ right:6px; }
+  .cam__band-lvl{ font-size:.8rem; }
+  .cam__band-lvl--c1{ font-size:.95rem; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wk__track, .wk.go .wk__num, .wk.go .wk__stars svg, .wk.go .wkc,
+  .cam.go, .cam.go .cam__band::after, .cam.go .cam__stamp, .cam.go .cam__fill, .cam.go .cam__burst i{
+    animation:none !important;
+  }
+  .js .wk:not(.go) .wk__stars svg, .js .wk:not(.go) .wkc,
+  .js .cam:not(.go) .cam__stamp{ opacity:1; transform:none; }
+  .js .cam:not(.go) .cam__stamp{ transform:rotate(-12deg); }
+  .js .cam:not(.go) .cam__fill{ height:var(--h); }
 }
