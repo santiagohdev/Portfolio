@@ -1894,6 +1894,15 @@ body.caos-total{ overflow:hidden; }
 }
 .cam__txt{ color:var(--fg-mid); font-size:1.02rem; max-width:48ch; }
 
+/* Código del centro, con el mismo aire de ficha que los datos de los certificados. */
+.cam__ref{
+  display:inline-flex; align-items:stretch; margin-top:22px;
+  border:var(--bw) solid var(--cam); border-radius:var(--r);
+  font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+}
+.cam__ref dt{ padding:7px 11px; color:var(--fg-dim); border-right:var(--bw) solid var(--cam); }
+.cam__ref dd{ padding:7px 12px; color:#fff; background:var(--cam); font-weight:700; letter-spacing:.14em; }
+
 /* ─── El sello ─── */
 .cam__stamp{
   position:relative;
