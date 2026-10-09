@@ -352,7 +352,7 @@
       <span class="sec__rule"></span>
     </div>
 
-    <!-- Las siete en una sola grilla de dos columnas. La sección se sale
+    <!-- Los cuatro principales en una grilla de dos columnas. La sección se sale
          del ancho de lectura del resto del sitio para aprovechar los costados. -->
     <div class="proj-grid">
       <article class="proj reveal" data-cursor="card" data-embed="1"
@@ -501,123 +501,47 @@
       </div>
           </article>
 
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/weather.webp"
-      data-title="Weather Dashboard"
-      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
-      data-demo="https://weather-app-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Weather-App"
-      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 5 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
-      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 5 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
 
-        <img src="images/weather.webp" alt="Weather Dashboard" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <p class="proj__kicker mono">JavaScript · API</p>
-        <h3 class="proj__title">Weather Dashboard</h3>
-        <p class="proj__desc"
-           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 5 languages."
-           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.">
-          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.
-        </p>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
-          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
-        </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
+
+    </div>
+
+    <!-- Prácticas: proyectos chicos de aprendizaje. Van aparte y en lista
+         para que la atención quede en los trabajos principales, pero siguen
+         en el HTML con sus enlaces para quien quiera verlos. -->
+    <div class="labs reveal">
+      <h3 class="labs__title" data-en="Practice projects" data-es="Prácticas">Prácticas</h3>
+      <ul class="labs__list">
+        <li class="lab">
+          <div class="lab__main">
+            <h4 class="lab__title">Weather Dashboard <span class="lab__stack mono">JavaScript · OpenWeather API</span></h4>
+            <p class="lab__desc" data-en="Real-time weather app built around the day&#39;s temperature curve, with skies drawn in CSS that change with the weather and the time of day." data-es="App de clima en tiempo real centrada en la curva de temperatura del día, con cielos dibujados en CSS que cambian según el clima y la hora.">App de clima en tiempo real centrada en la curva de temperatura del día, con cielos dibujados en CSS que cambian según el clima y la hora.</p>
+          </div>
+          <div class="lab__links">
             <a class="proj__link" href="https://weather-app-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
             <a class="proj__link" href="https://github.com/santiagohdev/Weather-App" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
           </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/task.webp"
-      data-title="Task Tracker"
-      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
-      data-demo="https://task-tracker-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Task-Tracker"
-      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
-      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
-
-        <img src="images/task.webp" alt="Task Tracker" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <p class="proj__kicker mono">React · LocalStorage</p>
-        <h3 class="proj__title">Task Tracker</h3>
-        <p class="proj__desc"
-           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
-           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
-          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
-        </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
+        </li>
+        <li class="lab">
+          <div class="lab__main">
+            <h4 class="lab__title">Task Tracker <span class="lab__stack mono">React · LocalStorage</span></h4>
+            <p class="lab__desc" data-en="Task manager with drag &amp; drop reordering, priorities, inline editing with keyboard shortcuts and local persistence." data-es="Gestor de tareas con reordenamiento drag &amp; drop, prioridades, edición inline con atajos de teclado y guardado local.">Gestor de tareas con reordenamiento drag &amp; drop, prioridades, edición inline con atajos de teclado y guardado local.</p>
+          </div>
+          <div class="lab__links">
             <a class="proj__link" href="https://task-tracker-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
             <a class="proj__link" href="https://github.com/santiagohdev/Task-Tracker" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
           </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card"
-      data-img="images/bruma.webp"
-      data-title="Bruma — Café de especialidad"
-      data-techs="HTML,CSS,JavaScript,Diseño UI"
-      data-demo="https://cafe-theta-one.vercel.app"
-      data-repo="https://github.com/santiagohdev/cafe"
-      data-long-es="Bruma no existe: es una cafetería inventada que usé como pretexto para construir un sitio institucional completo desde cero, sin frameworks ni plantillas. No hubo cliente ni encargo — el objetivo era ejercitar un proyecto entero de punta a punta y tener algo con lo que practicar diseño y estructura. Incluye menú de cinco categorías con etiquetas de dieta, ficha de siete orígenes de café con notas de cata, galería con lightbox navegable por teclado, mapa embebido y formulario de reserva con validación propia. Dos detalles que lo separan de una maqueta: el estado de apertura del local se calcula contra la hora real del visitante, y todo el contenido —precios, platos, horarios— vive en un único archivo de datos, para que el dueño pueda actualizar la carta sin tocar una línea de código. Responsive, accesible y sin dependencias."
-      data-long-en="Bruma doesn&#39;t exist: it&#39;s an invented coffee shop I used as a pretext to build a complete business site from scratch, with no frameworks or templates. There was no client and no brief — the point was to exercise a whole project end to end and have something to practise design and structure on. It includes a five-category menu with dietary tags, seven coffee origins with tasting notes, a keyboard-navigable lightbox gallery, an embedded map and a booking form with custom validation. Two details set it apart from a mockup: the open/closed status is computed against the visitor&#39;s real clock, and all content — prices, dishes, opening hours — lives in a single data file so the owner can update the menu without touching code. Responsive, accessible and dependency-free.">
-      <div class="proj__media" data-cursor="hidden">
-        <img src="images/bruma.webp" alt="Bruma — Café de especialidad" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
-        <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
-        <p class="proj__desc"
-           data-en="A fictional coffee shop I invented as an excuse to build a complete site from scratch, with no framework. Not a real client: a practice piece to exercise the whole thing end to end: menu, gallery with lightbox, map and booking form."
-           data-es="Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta: menú, galería con lightbox, mapa y formulario de reserva.">
-          Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta: menú, galería con lightbox, mapa y formulario de reserva.
-        </p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-          <span class="tag">Diseño UI</span><span class="tag">Responsive</span>
-        </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
+        </li>
+        <li class="lab">
+          <div class="lab__main">
+            <h4 class="lab__title">Bruma <span class="lab__stack mono">HTML · CSS · JavaScript</span></h4>
+            <p class="lab__desc" data-en="Website for a fictional specialty coffee shop, built from scratch with no framework: menu, gallery with lightbox, map and booking form." data-es="Sitio de una cafetería de especialidad ficticia, hecho desde cero y sin frameworks: menú, galería con lightbox, mapa y formulario de reserva.">Sitio de una cafetería de especialidad ficticia, hecho desde cero y sin frameworks: menú, galería con lightbox, mapa y formulario de reserva.</p>
+          </div>
+          <div class="lab__links">
             <a class="proj__link" href="https://cafe-theta-one.vercel.app" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
             <a class="proj__link" href="https://github.com/santiagohdev/cafe" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
           </div>
-      </div>
-          </article>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
