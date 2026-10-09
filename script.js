@@ -33,23 +33,33 @@ const ICONOS = {
   mysql:  '<svg viewBox="0 0 24 24" fill="none" stroke="#00618A" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg>',
   postgres: '<svg viewBox="0 0 24 24" fill="none" stroke="#336791" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg>',
   git:    '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#F34F29" d="M124.7 58.4 69.6 3.3a11.2 11.2 0 0 0-15.9 0L42.3 14.8l14.5 14.5a13.3 13.3 0 0 1 16.9 17l14 14a13.3 13.3 0 1 1-8 7.5L66.6 54.7v34.4a13.3 13.3 0 1 1-11-.4V54a13.3 13.3 0 0 1-7.2-17.5L34.1 22.3 3.3 53.1a11.2 11.2 0 0 0 0 15.9l55.1 55.1a11.2 11.2 0 0 0 15.9 0l50.4-50.4a11.2 11.2 0 0 0 0-15.9"/></svg>',
+  php: '<svg viewBox="0 0 128 128" aria-hidden="true"><ellipse cx="64" cy="64" rx="62" ry="34" fill="#777BB4"/><text x="64" y="77" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="40" fill="#fff">php</text></svg>',
+  laravel: '<svg viewBox="0 0 128 128" aria-hidden="true"><g fill="none" stroke="#FF2D20" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"><path d="M18 28 42 14l24 14-24 14zM18 28v58l48 28 40-23V69L82 55l24-14-24-14-24 14"/><path d="M42 42v28l40-15M66 28v28M66 86l40-17M66 86V58"/></g></svg>',
+  tiendanube: '<svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#2C6BED" d="M38 98h56a26 26 0 0 0 3-51.8A34 34 0 0 0 32 40a29 29 0 0 0 6 58z"/><path fill="#fff" d="M47 78h34v8H47z" opacity=".9"/></svg>',
+  websocket: '<svg viewBox="0 0 128 128" aria-hidden="true"><g fill="none" stroke="#4F8BFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M20 46h84L84 26M108 82H24l20 20"/></g></svg>',
+  pwa: '<svg viewBox="0 0 128 128" aria-hidden="true"><rect x="4" y="34" width="120" height="60" rx="14" fill="#5A0FC8"/><text x="64" y="76" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="34" fill="#fff">PWA</text></svg>',
 };
 
 /* Sin porcentajes a propósito: un número autoasignado sin escala no dice
    nada y la precisión de dos dígitos promete una medición que no existe. El
    nivel se sostiene con los proyectos, que sí se pueden abrir. */
 const SKILLS = [
-  { name:'HTML5',      icon:'html5',    lvl:'expert' },
-  { name:'CSS3',       icon:'css3',     lvl:'expert' },
-  { name:'React',      icon:'react',    lvl:'adv'    },
-  { name:'JavaScript', icon:'js',       lvl:'adv'    },
-  { name:'TypeScript', icon:'ts',       lvl:'adv'    },
-  { name:'Node.js',    icon:'node',     lvl:'solid'  },
-  { name:'Express',    icon:'express',  lvl:'solid'  },
-  { name:'PostgreSQL', icon:'postgres', lvl:'solid'  },
-  { name:'MongoDB',    icon:'mongo',    lvl:'solid'  },
-  { name:'MySQL',      icon:'mysql',    lvl:'solid'  },
-  { name:'Git',        icon:'git',      lvl:'solid'  },
+  { name:'HTML5',      icon:'html5',      lvl:'expert' },
+  { name:'CSS3',       icon:'css3',       lvl:'expert' },
+  { name:'React',      icon:'react',      lvl:'adv'    },
+  { name:'JavaScript', icon:'js',         lvl:'adv'    },
+  { name:'TypeScript', icon:'ts',         lvl:'adv'    },
+  { name:'Tiendanube', icon:'tiendanube', lvl:'adv'    },
+  { name:'Node.js',    icon:'node',       lvl:'solid'  },
+  { name:'Express',    icon:'express',    lvl:'solid'  },
+  { name:'PHP',        icon:'php',        lvl:'solid'  },
+  { name:'Laravel',    icon:'laravel',    lvl:'solid'  },
+  { name:'PostgreSQL', icon:'postgres',   lvl:'solid'  },
+  { name:'MongoDB',    icon:'mongo',      lvl:'solid'  },
+  { name:'MySQL',      icon:'mysql',      lvl:'solid'  },
+  { name:'WebSocket',  icon:'websocket',  lvl:'solid'  },
+  { name:'PWA',        icon:'pwa',        lvl:'solid'  },
+  { name:'Git',        icon:'git',        lvl:'solid'  },
 ];
 
 const LEVELS = {
@@ -149,6 +159,8 @@ const LOADER_MS = 1600;
 
 function runLoader(){
   const loader = $('#loader'), bar = $('#loaderBar'), pct = $('#loaderPct'), wipe = $('#wipe');
+  // El sitio ya no tiene pantalla de carga: si no está en el HTML, entra directo.
+  if (!loader){ boot(); return; }
   document.body.classList.add('locked');
 
   if (REDUCED){
@@ -329,6 +341,7 @@ function initCursor(){
   if (matchMedia('(hover: none), (pointer: coarse)').matches) return;
 
   const dot = $('#cursorDot'), ring = $('#cursorRing');
+  if (!dot || !ring) return;
   let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
 
   addEventListener('mousemove', (e) => {

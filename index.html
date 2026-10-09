@@ -33,7 +33,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Libre+Caslon+Text:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500;700&family=Libre+Caslon+Text:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 <!-- ══════════ DATOS ESTRUCTURADOS ══════════ -->
@@ -61,7 +61,7 @@
     "name": "Cambridge C1 Advanced — Speaking C1, Writing C1",
     "recognizedBy": { "@type": "Organization", "name": "Cambridge University Press & Assessment" }
   },
-  "knowsAbout": ["JavaScript", "TypeScript", "React", "Node.js", "Express", "MongoDB", "MySQL", "PostgreSQL", "CRDT"],
+  "knowsAbout": ["JavaScript", "TypeScript", "React", "Node.js", "Express", "PHP", "Laravel", "MongoDB", "MySQL", "PostgreSQL", "WebSocket", "PWA", "Tiendanube", "CRDT"],
   "sameAs": [
     "https://github.com/santiagohdev",
     "https://www.linkedin.com/in/santiagohermosilla/"
@@ -71,22 +71,6 @@
 </head>
 <body>
 
-<!-- ══════════ CURSOR ══════════ -->
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
-
-<!-- ══════════ LOADER ══════════ -->
-<div class="loader" id="loader">
-  <div class="loader__inner">
-    <div class="loader__name" id="loaderName" aria-hidden="true"></div>
-    <div class="loader__meta">
-      <span class="mono" data-en="FULL STACK DEVELOPER" data-es="DESARROLLADOR FULL STACK">DESARROLLADOR FULL STACK</span>
-      <span class="mono" id="loaderPct">00</span>
-    </div>
-    <div class="loader__track"><div class="loader__bar" id="loaderBar"></div></div>
-  </div>
-</div>
-<div class="wipe" id="wipe" aria-hidden="true"></div>
 
 <!-- ══════════ NAV ══════════ -->
 <header class="nav" id="nav">
@@ -96,10 +80,10 @@
   </a>
 
   <nav class="nav__links" id="navLinks">
-    <a href="#about"      data-en="About"      data-es="Sobre mí"    data-cursor="link">Sobre mí</a>
-    <a href="#stack"      data-en="Skills"     data-es="Stack"       data-cursor="link">Stack</a>
-    <a href="#projects"   data-en="Projects"   data-es="Proyectos"   data-cursor="link">Proyectos</a>
     <a href="#experience" data-en="Experience" data-es="Experiencia" data-cursor="link">Experiencia</a>
+    <a href="#projects"   data-en="Projects"   data-es="Proyectos"   data-cursor="link">Proyectos</a>
+    <a href="#stack"      data-en="Skills"     data-es="Stack"       data-cursor="link">Stack</a>
+    <a href="#about"      data-en="About"      data-es="Sobre mí"    data-cursor="link">Sobre mí</a>
     <a href="#certs"      data-en="Certs"      data-es="Certificados" data-cursor="link">Certificados</a>
     <a href="#english"    data-en="English"    data-es="Inglés"      data-cursor="link">Inglés</a>
     <a href="#contact"    data-en="Contact"    data-es="Contacto"    data-cursor="link">Contacto</a>
@@ -123,32 +107,23 @@
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="hero__grid" aria-hidden="true"></div>
   <div class="wrap hero__wrap">
+    <div class="hero__main">
+      <h1 class="hero__name reveal">
+        <span class="hero__line">Santiago</span>
+        <span class="hero__line hero__line--soft">Hermosilla</span>
+      </h1>
+      <p class="hero__role reveal" data-en="Full Stack Developer · Buenos Aires" data-es="Desarrollador Full Stack · Buenos Aires">Desarrollador Full Stack · Buenos Aires</p>
 
-    <div class="status reveal">
-      <span class="status__dot"></span>
-      <span class="mono" data-en="Available for opportunities" data-es="Disponible para oportunidades">Disponible para oportunidades</span>
-    </div>
+      <p class="hero__bio reveal"
+         data-en="I build web applications end to end, from the interface to the database, with React, TypeScript, Node and Laravel. Right now I work with clients in Argentina, Chile and Spain."
+         data-es="Hago aplicaciones web de punta a punta, desde la interfaz hasta la base de datos, con React, TypeScript, Node y Laravel. Hoy trabajo con clientes de Argentina, Chile y España.">
+        Hago aplicaciones web de punta a punta, desde la interfaz hasta la base de datos, con React, TypeScript, Node y Laravel. Hoy trabajo con clientes de Argentina, Chile y España.
+      </p>
 
-    <h1 class="hero__name reveal">
-      <span class="hero__line">Santiago</span>
-      <span class="hero__line hero__line--out">Hermosilla</span>
-    </h1>
-
-    <p class="hero__type reveal">
-      <span class="hero__type-txt" id="typewriter"></span><span class="caret" aria-hidden="true"></span>
-    </p>
-
-    <p class="hero__bio reveal"
-       data-en="Full Stack Developer from Buenos Aires, passionate about building clean, interactive web experiences. I got into programming out of curiosity and a love for design — that moment where logic meets creativity. I focus on writing clean, maintainable code and building interfaces that feel intuitive."
-       data-es="Desarrollador Full Stack de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Empecé en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad. Me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas.">
-      Desarrollador Full Stack de Buenos Aires, apasionado por construir experiencias web limpias e interactivas. Empecé en la programación por curiosidad y amor por el diseño — ese momento donde la lógica se encuentra con la creatividad. Me enfoco en escribir código limpio y mantenible, y construir interfaces que se sientan intuitivas.
-    </p>
-
-    <div class="hero__cta reveal">
-      <a href="#projects" class="btn btn--solid" data-cursor="link" data-en="See my work" data-es="Ver mi trabajo">Ver mi trabajo</a>
-      <a href="#contact" class="btn btn--ghost" data-cursor="link" data-en="Write to me" data-es="Escribime">Escribime</a>
+      <div class="hero__cta reveal">
+        <a href="#experience" class="btn btn--solid" data-cursor="link" data-en="See my work" data-es="Ver mi trabajo">Ver mi trabajo</a>
+        <a href="#contact" class="btn btn--ghost" data-cursor="link" data-en="Contact" data-es="Contacto">Contacto</a>
       <details class="cvdl">
         <summary class="btn btn--ghost" data-cursor="link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 9.5 4.5 4.5 4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
@@ -166,7 +141,7 @@
           </a>
         </div>
       </details>
-    </div>
+      </div>
 
     <div class="hero__pills reveal">
       <a class="pill" href="https://github.com/santiagohdev" target="_blank" rel="noopener" data-cursor="link">
@@ -182,75 +157,475 @@
         Email
       </a>
     </div>
+    </div>
 
+    <dl class="profile reveal" aria-label="Resumen del perfil">
+      <div class="profile__row">
+        <dt data-en="Now" data-es="Ahora">Ahora</dt>
+        <dd data-en="Freelance on Workana · 5.0 rating" data-es="Freelance en Workana · calificación 5.0">Freelance en Workana · calificación 5.0</dd>
+      </div>
+      <div class="profile__row">
+        <dt data-en="Education" data-es="Formación">Formación</dt>
+        <dd data-en="Full Stack Web Development diploma · UTN" data-es="Diplomatura en Programación Web Full Stack · UTN">Diplomatura en Programación Web Full Stack · UTN</dd>
+      </div>
+      <div class="profile__row">
+        <dt data-en="English" data-es="Inglés">Inglés</dt>
+        <dd data-en="Cambridge C1 Advanced · Speaking and Writing at C1" data-es="Cambridge C1 Advanced · Speaking y Writing en C1">Cambridge C1 Advanced · Speaking y Writing en C1</dd>
+      </div>
+      <div class="profile__row">
+        <dt data-en="Main stack" data-es="Stack principal">Stack principal</dt>
+        <dd>React · TypeScript · Node.js · Laravel · PostgreSQL</dd>
+      </div>
+      <div class="profile__row">
+        <dt data-en="Looking for" data-es="Busco">Busco</dt>
+        <dd data-en="Full-time role, remote or hybrid. Open to relocating to Europe." data-es="Puesto full time, remoto o híbrido. Abierto a mudarme a Europa.">Puesto full time, remoto o híbrido. Abierto a mudarme a Europa.</dd>
+      </div>
+    </dl>
   </div>
-  <div class="hero__scroll mono" aria-hidden="true"><span data-en="SCROLL" data-es="SCROLL">SCROLL</span></div>
 </section>
 
-<!-- ══════════ ABOUT ══════════ -->
-<section class="sec" id="about">
+<!-- ══════════ EXPERIENCIA ══════════ -->
+<section class="sec" id="experience">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">01</span>
-      <h2 class="sec__title" data-en="About" data-es="Sobre mí">Sobre mí</h2>
+      <h2 class="sec__title" data-en="Experience" data-es="Experiencia">Experiencia</h2>
       <span class="sec__rule"></span>
     </div>
 
-    <div class="about">
-      <div class="about__text reveal">
-        <p data-en="I'm Santiago — a Full Stack Developer based in Buenos Aires, Argentina. I got into programming out of pure curiosity and a love for design: that exact point where logic meets creativity is where I like to work. What started as tinkering with layouts turned into building complete products, front to back."
-           data-es="Soy Santiago — Desarrollador Full Stack radicado en Buenos Aires, Argentina. Entré a la programación por pura curiosidad y amor por el diseño: ese punto exacto donde la lógica se encuentra con la creatividad es donde me gusta trabajar. Lo que empezó como jugar con layouts se convirtió en construir productos completos, de punta a punta.">
-          Soy Santiago — Desarrollador Full Stack radicado en Buenos Aires, Argentina. Entré a la programación por pura curiosidad y amor por el diseño: ese punto exacto donde la lógica se encuentra con la creatividad es donde me gusta trabajar. Lo que empezó como jugar con layouts se convirtió en construir productos completos, de punta a punta.
-        </p>
-        <p data-en="Day to day I work with React, TypeScript and Node.js, and I care a lot about clean, maintainable code — the kind you can come back to six months later without flinching. On the interface side I chase the same thing: screens that feel obvious to use, fast on any device, and consistent down to the details."
-           data-es="En el día a día trabajo con React, TypeScript y Node.js, y me importa mucho el código limpio y mantenible — ese al que podés volver seis meses después sin sufrir. Del lado de la interfaz busco lo mismo: pantallas que se sientan obvias de usar, rápidas en cualquier dispositivo y consistentes hasta en los detalles.">
-          En el día a día trabajo con React, TypeScript y Node.js, y me importa mucho el código limpio y mantenible — ese al que podés volver seis meses después sin sufrir. Del lado de la interfaz busco lo mismo: pantallas que se sientan obvias de usar, rápidas en cualquier dispositivo y consistentes hasta en los detalles.
-        </p>
-      </div>
+    <p class="exp__lead reveal"
+       data-en="I work independently for real clients in Argentina, Chile and Spain, through Workana and by direct referral."
+       data-es="Trabajo de forma independiente para clientes reales de Argentina, Chile y España, por Workana y por contacto directo.">
+      Trabajo de forma independiente para clientes reales de Argentina, Chile y España, por Workana y por contacto directo.
+    </p>
 
-      <dl class="specs reveal">
-        <div class="specs__row">
-          <dt class="mono" data-en="Location" data-es="Ubicación">Ubicación</dt>
-          <dd>Buenos Aires, Argentina 🇦🇷</dd>
+    <!-- ══════════ FREELANCE EN WORKANA ══════════
+         Lo que un reclutador escanea en segundos: dónde, para quién, qué hice
+         y con qué. Nada de números que no se puedan comprobar, y los trabajos
+         de seguridad contados en general para no exponer al cliente. -->
+    <div class="wk" data-anim>
+      <header class="wk__head">
+        <div class="wk__claim">
+          <span class="wk__eyebrow mono">Freelance · Workana · 2026 — <span data-en="Present" data-es="Presente">Presente</span></span>
+          <h3 class="wk__title">
+            <span data-en="Remote development for clients in" data-es="Desarrollo remoto para clientes de">Desarrollo remoto para clientes de</span>
+            <em data-en="Chile and Spain." data-es="Chile y España.">Chile y España.</em>
+          </h3>
+          <p class="wk__txt"
+             data-en="Projects taken end to end: scoping with the client, development, rollout and maintenance."
+             data-es="Proyectos tomados de punta a punta: relevamiento con el cliente, desarrollo, puesta en marcha y mantenimiento.">
+            Proyectos tomados de punta a punta: relevamiento con el cliente, desarrollo, puesta en marcha y mantenimiento.
+          </p>
         </div>
-        <div class="specs__row">
-          <dt class="mono">Email</dt>
-          <dd><a href="mailto:santiagohermosilla76@gmail.com" data-cursor="link">santiagohermosilla76@gmail.com</a></dd>
+        <div class="wk__score">
+          <span class="wk__num" data-count="5" data-dec="1" aria-hidden="true">0.0</span>
+          <div class="wk__stars" role="img" aria-label="5.0 de 5 estrellas en Workana">
+            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
+          </div>
+          <span class="wk__rlabel mono" data-en="Rating on Workana" data-es="Calificación en Workana">Calificación en Workana</span>
         </div>
-        <div class="specs__row">
-          <dt class="mono">GitHub</dt>
-          <dd><a href="https://github.com/santiagohdev" target="_blank" rel="noopener" data-cursor="link">@santiagohdev</a></dd>
+      </header>
+
+      <div class="wk__cases">
+        <article class="wkc" data-cursor="card">
+          <span class="wkc__big" aria-hidden="true">CRDT</span>
+          <span class="wkc__where mono">Chile</span>
+          <h4 class="wkc__title" data-en="Collaborative event-layout platform" data-es="Plataforma colaborativa de planos para eventos">Plataforma colaborativa de planos para eventos</h4>
+          <p class="wkc__txt"
+             data-en="Real-time editor where several people design an event layout together: tables, numbered seats, measurements and PNG/PDF export. Sync runs on a CRDT I wrote from scratch, with no libraries."
+             data-es="Editor en tiempo real para que varias personas diseñen juntas el layout de un evento: mesas, sillas numeradas, medidas y exportación a PNG y PDF. La sincronización usa un CRDT propio, sin librerías.">
+            Editor en tiempo real para que varias personas diseñen juntas el layout de un evento: mesas, sillas numeradas, medidas y exportación a PNG y PDF. La sincronización usa un CRDT propio, sin librerías.
+          </p>
+          <div class="tags">
+            <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+            <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+        <article class="wkc" data-cursor="card">
+          <span class="wkc__big" aria-hidden="true">API</span>
+          <span class="wkc__where mono"><span data-en="Spain" data-es="España">España</span></span>
+          <h4 class="wkc__title" data-en="Securing a production API" data-es="Seguridad de una API en producción">Seguridad de una API en producción</h4>
+          <p class="wkc__txt"
+             data-en="Security audit and access control for the Laravel API used by an industrial plant: API-key authentication, web vulnerability fixes and an injection review. Rolled out without interrupting operations."
+             data-es="Auditoría de seguridad y control de acceso de la API en Laravel que usa una planta industrial: autenticación por API key, corrección de vulnerabilidades web y revisión de inyecciones. Implementado sin interrumpir la operación.">
+            Auditoría de seguridad y control de acceso de la API en Laravel que usa una planta industrial: autenticación por API key, corrección de vulnerabilidades web y revisión de inyecciones. Implementado sin interrumpir la operación.
+          </p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">PHP</span>
+            <span class="tag" data-en="API security" data-es="Seguridad de APIs">Seguridad de APIs</span>
+            <span class="tag" data-en="Audit" data-es="Auditoría">Auditoría</span>
+          </div>
+        </article>
+
+        <article class="wkc" data-cursor="card">
+          <span class="wkc__big" aria-hidden="true">PWA</span>
+          <span class="wkc__where mono"><span data-en="Spain" data-es="España">España</span></span>
+          <h4 class="wkc__title" data-en="Multi-device hub for industrial scales" data-es="Central multi-dispositivo para básculas industriales">Central multi-dispositivo para básculas industriales</h4>
+          <p class="wkc__txt"
+             data-en="Backend and admin panel to manage several scales from one hub: code-based enrolment, per-device authentication and weighing history on the server. The scale app is a PWA that works offline. In production."
+             data-es="Backend y panel para gestionar varias básculas desde una central: alta por código, autenticación por dispositivo e historial de pesadas en el servidor. La app de la báscula es una PWA que funciona offline. En producción.">
+            Backend y panel para gestionar varias básculas desde una central: alta por código, autenticación por dispositivo e historial de pesadas en el servidor. La app de la báscula es una PWA que funciona offline. En producción.
+          </p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">Sanctum</span><span class="tag">JavaScript</span>
+            <span class="tag">PWA</span><span class="tag">REST API</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <ol class="tl">
+
+      <li class="tl__item reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <span class="tl__when mono">2026 — <span data-en="Present" data-es="Presente">Presente</span></span>
+        <div class="tl__body">
+          <h3 class="tl__role" data-en="Independent Web Developer" data-es="Desarrollador Web Independiente">Desarrollador Web Independiente</h3>
+          <p class="tl__txt"
+             data-en="I take on projects end to end: I talk to the client, build the system and keep it running afterwards. Online stores, real-time platforms, APIs and custom systems for clients in Argentina, Chile and Spain, with a 5.0 rating on Workana."
+             data-es="Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sistema y después lo mantengo andando. Tiendas online, plataformas en tiempo real, APIs y sistemas a medida para clientes de Argentina, Chile y España, con calificación 5.0 en Workana.">
+            Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sistema y después lo mantengo andando. Tiendas online, plataformas en tiempo real, APIs y sistemas a medida para clientes de Argentina, Chile y España, con calificación 5.0 en Workana.
+          </p>
         </div>
-        <div class="specs__row">
-          <dt class="mono">LinkedIn</dt>
-          <dd><a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" rel="noopener" data-cursor="link">/santiagohermosilla</a></dd>
+      </li>
+
+      <li class="tl__item reveal">
+        <span class="tl__dot tl__dot--hl" aria-hidden="true"></span>
+        <span class="tl__when mono">2026</span>
+        <div class="tl__body tl__body--cliente">
+          <!-- La cifra va de fondo, tenue: da la escala de un vistazo sin
+               convertir el bloque en un cartel de números. -->
+          <span class="tl__escala" aria-hidden="true">2,6 M</span>
+
+          <h3 class="tl__role">
+            <span data-en="First client" data-es="Primer cliente">Primer cliente</span>
+            <span class="tl__sep" aria-hidden="true">·</span>
+            <a href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link">Eugenia Quevedo</a>
+          </h3>
+
+          <a class="tl__ig" href="https://instagram.com/soyeugequevedook" target="_blank" rel="noopener" data-cursor="link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="mono">@soyeugequevedook</span>
+            <span class="tl__ig-num mono" data-en="2.6M followers" data-es="2,6 M seguidores">2,6 M seguidores</span>
+          </a>
+
+          <div class="tags tl__tags">
+            <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">JavaScript</span>
+            <span class="tag">CSS3</span><span class="tag">HTML5</span><span class="tag">Swiper</span>
+            <span class="tag" data-en="Responsive design" data-es="Diseño responsive">Diseño responsive</span>
+            <span class="tag">IntersectionObserver</span>
+          </div>
+          <p class="tl__txt"
+             data-en="Custom Tiendanube theme, built with Twig, HTML, CSS and JavaScript. I built the header from scratch, with styles that change per page type; a hand-written infinite product carousel with no libraries; scroll-triggered animations using IntersectionObserver; an HTML5 background video and a click-to-load YouTube player, so the first visit isn't penalised. Fully responsive. I still handle maintenance and UX improvements, working directly with the client on a live store with real traffic and active sales campaigns."
+             data-es="Tema propio sobre Tiendanube, desarrollado en Twig, HTML, CSS y JavaScript. Construí la cabecera desde cero, con estilos que cambian según el tipo de página; un carrusel infinito de productos hecho a mano, sin librerías; animaciones de entrada con IntersectionObserver; video de fondo en HTML5 y un reproductor de YouTube que sólo carga al hacer clic, para no penalizar la primera visita. Todo responsive. Sigo a cargo del mantenimiento y de las mejoras de experiencia de uso, coordinando directamente con la clienta sobre una tienda en producción con tráfico real y campañas de venta activas.">
+            Tema propio sobre Tiendanube, desarrollado en Twig, HTML, CSS y JavaScript. Construí la cabecera desde cero, con estilos que cambian según el tipo de página; un carrusel infinito de productos hecho a mano, sin librerías; animaciones de entrada con IntersectionObserver; video de fondo en HTML5 y un reproductor de YouTube que sólo carga al hacer clic, para no penalizar la primera visita. Todo responsive. Sigo a cargo del mantenimiento y de las mejoras de experiencia de uso, coordinando directamente con la clienta sobre una tienda en producción con tráfico real y campañas de venta activas.
+          </p>
         </div>
-        <div class="specs__row">
-          <dt class="mono" data-en="Status" data-es="Estado">Estado</dt>
-          <dd class="specs__live">
-            <span class="status__dot"></span>
-            <span data-en="Available for opportunities" data-es="Disponible para oportunidades">Disponible para oportunidades</span>
-          </dd>
+      </li>
+
+      <li class="tl__item reveal">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <span class="tl__when mono" data-en="Sept 2025 — Jul 2026" data-es="sept 2025 — jul 2026">sept 2025 — jul 2026</span>
+        <div class="tl__body">
+          <h3 class="tl__role" data-en="Training at UTN" data-es="Formación en la UTN">Formación en la UTN</h3>
+          <p class="tl__txt"
+             data-en="Full Stack Web Development diploma at Universidad Tecnológica Nacional: two levelled courses, Front End and Back End, while I started taking on my first paid work."
+             data-es="Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional: dos cursos nivelados, Front End y Back End, mientras empezaba a tomar mis primeros trabajos pagos.">
+            Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional: dos cursos nivelados, Front End y Back End, mientras empezaba a tomar mis primeros trabajos pagos.
+          </p>
         </div>
-        <div class="specs__row">
-          <dt class="mono" data-en="Looking for" data-es="Busco">Busco</dt>
-          <dd data-en="Full Stack, Frontend or Backend developer roles, full-time. I work well remotely and I also enjoy being in an office, so hybrid or on-site suit me just as well. Happy to relocate to Europe. I also take on freelance projects."
-              data-es="Puestos de desarrollador Full Stack, Frontend o Backend, jornada completa. Me manejo bien en remoto y también me gusta la oficina, así que híbrido o presencial me sirven igual. Estoy dispuesto a mudarme a Europa. Y tomo proyectos freelance.">Puestos de desarrollador Full Stack, Frontend o Backend, jornada completa. Me manejo bien en remoto y también me gusta la oficina, así que híbrido o presencial me sirven igual. Estoy dispuesto a mudarme a Europa. Y tomo proyectos freelance.</dd>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ PROYECTOS ══════════ -->
+<section class="sec sec--alt" id="projects">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <h2 class="sec__title" data-en="Projects" data-es="Proyectos">Proyectos</h2>
+      <span class="sec__rule"></span>
+    </div>
+
+    <!-- Las siete en una sola grilla de dos columnas. La sección se sale
+         del ancho de lectura del resto del sitio para aprovechar los costados. -->
+    <div class="proj-grid">
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+          data-embed-espera="1"
+          data-img="images/workflow.webp"
+          data-title="Workflow — SaaS multiempresa de gestión de tareas"
+          data-techs="TypeScript,React,Node.js,Express,PostgreSQL,Stripe"
+          data-demo="https://workflow-saas-8006.onrender.com"
+          data-repo="https://github.com/santiagohdev/workflow-saas"
+          data-long-es="Gestor de tareas vendido como servicio a empresas. El tablero es la parte visible; lo que sostiene el producto son las tres capas de abajo. La primera es el aislamiento: varias empresas conviven en la misma base y ninguna ve nada de otra. Cada tabla de contenido lleva su organización y toda consulta filtra por ella, porque un join de más es barato y una fuga entre clientes no. Pedir datos de una organización ajena responde 404 y no 403: un 403 confirmaría que existe, y eso ya es información que no le corresponde a quien no es miembro. La segunda son los roles. Una misma persona puede pertenecer a varias empresas con un rol distinto en cada una, así que el rol vive en la membresía y no en el usuario. Nadie puede otorgar un rol por encima del propio ni quitar al único dueño, porque un admin que pueda nombrar owners se convierte en owner cuando quiera. La tercera son los límites del plan, verificados en el servidor antes de crear, nunca escondiendo el botón. El cobro se integra con Stripe siguiendo la regla que evita el fraude más común: el plan lo cambia el webhook con su firma HMAC-SHA256 verificada sobre el cuerpo crudo, jamás la respuesta que ve el navegador. Por debajo, Express con TypeScript ejecutado sin compilar, PostgreSQL en Supabase y contraseñas con scrypt."
+          data-long-en="A task manager sold as a service to companies. The board is the visible part; what holds the product up are the three layers underneath. The first is isolation: several companies live in the same database and none of them sees anything belonging to another. Every content table carries its organization and every query filters by it, because an extra join is cheap and a leak between clients is not. Asking for another organization&#39;s data returns 404 rather than 403: a 403 would confirm it exists, and that is already information a non-member should not have. The second is roles. One person can belong to several companies with a different role in each, so the role lives on the membership rather than on the user. Nobody can grant a role above their own or remove the last owner, because an admin who can appoint owners becomes an owner whenever they like. The third is plan limits, enforced on the server before creating anything, never by hiding a button. Billing integrates with Stripe following the rule that prevents the most common fraud: the plan is changed by the webhook, with its HMAC-SHA256 signature verified over the raw body, never by the response the browser sees. Underneath it is Express with TypeScript run without a build step, PostgreSQL on Supabase and scrypt-hashed passwords."
+          data-note-es="Entrá con las cuentas de prueba que ofrece la pantalla de inicio: Ana es dueña con plan gratuito, Cami solo lee y Dani está en otra empresa. Cambiar entre Ana y Dani muestra el aislamiento. El cobro está simulado y la demo corre en un plan gratuito que duerme la app: el primer acceso puede tardar unos 50 segundos."
+          data-note-en="Sign in with the demo accounts offered on the login screen: Ana is an owner on the free plan, Cami is read-only and Dani belongs to a different company. Switching between Ana and Dani shows the isolation. Billing is simulated and the demo runs on a free tier that puts the app to sleep: the first visit can take around 50 seconds.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/workflow.webp" alt="Workflow — tablero de tareas de un SaaS multiempresa" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <p class="proj__kicker mono" data-en="Own project · SaaS architecture" data-es="Proyecto propio · Arquitectura SaaS">Proyecto propio · Arquitectura SaaS</p>
+      <h3 class="proj__title">Workflow — <span data-en="Multi-tenant SaaS" data-es="SaaS multiempresa">SaaS multiempresa</span></h3>
+      <p class="proj__desc"
+         data-en="Task manager sold to companies: several of them share one database without ever seeing each other, four roles decide what each person can do, and the free plan&#39;s limits are enforced on the server. The plan only changes when a Stripe webhook signature verifies — never because the browser said so."
+         data-es="Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.">
+        Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.
+      </p>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+        <span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Stripe</span>
+      </div>
+          <div class="proj__links">
+            <a class="proj__link" href="https://workflow-saas-8006.onrender.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/workflow-saas" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+          </div>
+        </article>
+
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+          data-embed-espera="1"
+          data-img="images/slate.webp"
+          data-title="Slate — Edición colaborativa en tiempo real"
+          data-techs="TypeScript,React,Node.js,WebSocket,PostgreSQL,CRDT"
+          data-demo="https://coedit-a0jk.onrender.com"
+          data-repo="https://github.com/santiagohdev/coedit"
+          data-long-es="Pizarra y editor de texto donde varias personas trabajan sobre el mismo documento a la vez. El problema difícil no es dibujar: es que dos personas editen el mismo punto al mismo tiempo, con internet intermitente, y que todos terminen viendo exactamente lo mismo sin que haya un servidor que decida quién gana. Lo resolví escribiendo tres CRDTs a mano, sin librerías de sincronización: un RGA para el texto, un conjunto con tombstones para los trazos del lienzo y un mapa last-write-wins por campo para las notas, todos con orden total y desempate por sitio. Las operaciones que llegan antes que su ancla se encolan y se drenan cuando aparece, y al reconectar se hace merge en vez de reemplazo, así una edición hecha sin internet no se pierde. La convergencia está verificada con tests de propiedades: escenarios aleatorios que barajan el orden de entrega y duplican mensajes, comprobando que todas las réplicas terminan idénticas. Por debajo va Express con WebSocket sobre la misma sesión, contraseñas con scrypt y un adaptador de base que habla SQLite en desarrollo y PostgreSQL en producción."
+          data-long-en="A whiteboard and text editor where several people work on the same document at once. The hard part isn&#39;t the drawing: it&#39;s two people editing the same spot at the same time, over flaky internet, and everyone ending up seeing exactly the same thing without a server deciding who wins. I solved it by writing three CRDTs by hand, with no sync libraries: an RGA for text, a tombstone set for canvas strokes and a per-field last-write-wins map for notes, all with total ordering and a site-based tiebreak. Operations that arrive before their anchor are buffered and drained once it shows up, and reconnecting merges rather than replaces, so an edit made offline is never lost. Convergence is verified with property-based tests: randomised scenarios that shuffle delivery order and duplicate messages, checking every replica ends up identical. Underneath it&#39;s Express with WebSocket over the same session, scrypt-hashed passwords and a database adapter that speaks SQLite in development and PostgreSQL in production."
+          data-note-es="La demo está en un plan gratuito que duerme la app: el primer acceso puede tardar unos 20 segundos en levantar."
+          data-note-en="The demo runs on a free tier that puts the app to sleep: the first visit can take around 20 seconds to wake up.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/slate.webp" alt="Slate — pizarra colaborativa en tiempo real" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <p class="proj__kicker mono" data-en="Own project · Distributed systems" data-es="Proyecto propio · Sistemas distribuidos">Proyecto propio · Sistemas distribuidos</p>
+      <h3 class="proj__title">Slate — <span data-en="Real-time collaboration" data-es="Colaboración en tiempo real">Colaboración en tiempo real</span></h3>
+      <p class="proj__desc"
+         data-en="Whiteboard and text editor for several people at once. Three CRDTs written from scratch, with no sync libraries, so edits never conflict, survive going offline and converge to the same state, with convergence verified by tests."
+         data-es="Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero, sin librerías de sincronización, para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado, con la convergencia verificada por tests.">
+        Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero, sin librerías de sincronización, para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado, con la convergencia verificada por tests.
+      </p>
+      <div class="tags">
+        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
+        <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">CRDT</span>
+      </div>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://coedit-a0jk.onrender.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/coedit" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+          </div>
+        </article>
+
+      <article class="proj reveal" data-cursor="card"
+          data-img="images/eugenia.webp"
+          data-title="Eugenia Quevedo — Tienda Oficial"
+          data-techs="Tiendanube,Twig,HTML,CSS,JavaScript"
+          data-demo="https://www.eugeniaquevedo.com"
+          data-repo=""
+          data-long-es="Tienda online oficial de la cantante Eugenia Quevedo, desarrollada sobre Tiendanube con un tema a medida en Twig, HTML, CSS y JavaScript. No es una plantilla adaptada: el diseño se construyó desde cero para la identidad de la artista. Es una tienda en producción, con tráfico real y campañas de venta activas, así que cada cambio se hace sobre algo que está vendiendo. Además del desarrollo inicial, hago mejoras de layout y experiencia de usuario y mantenimiento continuo, coordinando directamente con la clienta."
+          data-long-en="Official online store for singer Eugenia Quevedo, built on Tiendanube with a custom theme in Twig, HTML, CSS and JavaScript. Not an adapted template: the design was built from scratch for the artist&#39;s identity. It is a live store with real traffic and active sales campaigns, so every change ships onto something that is actively selling. Beyond the initial build I handle layout and UX improvements and ongoing maintenance, coordinating directly with the client.">
+          <div class="proj__media" data-cursor="hidden">
+      <img src="images/eugenia.webp" alt="Eugenia Quevedo — Tienda Oficial" loading="lazy">
+      <div class="proj__veil">
+        <button type="button" class="btn btn--solid btn--sm" data-en="See details" data-es="Ver detalles">Ver detalles</button>
+      </div>
+          </div>
+          <div class="proj__body">
+      <p class="proj__kicker mono" data-en="Client work · Tiendanube" data-es="Trabajo para cliente · Tiendanube">Trabajo para cliente · Tiendanube</p>
+      <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
+      <p class="proj__desc"
+         data-en="The singer&#39;s official store, with a custom Tiendanube theme built from scratch. A live store with real traffic and active sales campaigns, with ongoing maintenance."
+         data-es="La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.">
+        La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.
+      </p>
+      <div class="tags">
+        <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">HTML</span>
+        <span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+          </div>
+          </div>
+        </article>
+
+      <article class="proj reveal" data-cursor="card"
+      data-img="images/framebox.webp"
+      data-title="FrameBox"
+      data-techs="React,Express,MongoDB,MySQL,JWT,bcrypt,Nodemailer"
+      data-demo="https://framebox-frontend.vercel.app/login?demo=1"
+      data-repo="https://github.com/santiagohdev/Framebox-Frontend"
+      data-repo2="https://github.com/santiagohdev/Framebox-Backend"
+      data-repo-label="Frontend" data-repo2-label="Backend"
+      data-long-es="Biblioteca personal de películas y Trabajo Integrador Final de la Diplomatura Full Stack de la UTN. Cada usuario arma su propia colección: marca lo que vio y lo que quiere ver, la ordena por estado y género, le pone su puntaje y destaca sus favoritas. Por debajo es una app completa con frontend en React y backend en Express, con CRUD real sobre dos entidades relacionadas y arquitectura en capas (routes → controllers → services → repositories). El registro e inicio de sesión usan hash bcrypt, JWT con expiración y verificación de e-mail vía Nodemailer. Frontend y backend viven en repositorios separados y ambos están desplegados públicamente."
+      data-long-en="A personal movie library and the final project of the UTN Full Stack diploma. Each user builds their own collection: marking what they've watched and what they want to watch, sorting it by status and genre, rating it and flagging favourites. Underneath it's a complete app with a React frontend and an Express backend, with real CRUD over two related entities and a layered architecture (routes → controllers → services → repositories). Sign-up and login use bcrypt hashing, JWT with expiration and e-mail verification via Nodemailer. Frontend and backend live in separate repositories and both are publicly deployed.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/framebox.webp" alt="FrameBox" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
         </div>
-        <div class="specs__row">
-          <dt class="mono" data-en="Languages" data-es="Idiomas">Idiomas</dt>
-          <dd data-en="Spanish (native) · English (C1)" data-es="Español (nativo) · Inglés (C1)">Español (nativo) · Inglés (C1)</dd>
+      </div>
+      <div class="proj__body">
+        <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
+        <h3 class="proj__title">FrameBox</h3>
+        <p class="proj__desc"
+           data-en="Personal movie library: track what you've watched and what's next, sort by status and genre, rate and favourite. React + Express, layered architecture, bcrypt + JWT auth and e-mail verification."
+           data-es="Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.">
+          Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span>
+          <span class="tag">MySQL</span><span class="tag">JWT</span><span class="tag">bcrypt</span><span class="tag">Nodemailer</span>
         </div>
-      </dl>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://framebox-frontend.vercel.app/login?demo=1" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/Framebox-Frontend" target="_blank" rel="noopener" data-cursor="link" data-en="Code · Frontend" data-es="Código · Frontend">Código · Frontend</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/Framebox-Backend" target="_blank" rel="noopener" data-cursor="link" data-en="Code · Backend" data-es="Código · Backend">Código · Backend</a>
+          </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+      data-img="images/weather.webp"
+      data-title="Weather Dashboard"
+      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
+      data-demo="https://weather-app-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev/Weather-App"
+      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 5 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
+      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 5 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
+      <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
+        <img src="images/weather.webp" alt="Weather Dashboard" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <p class="proj__kicker mono">JavaScript · API</p>
+        <h3 class="proj__title">Weather Dashboard</h3>
+        <p class="proj__desc"
+           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 5 languages."
+           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.">
+          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.
+        </p>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
+          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
+        </div>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://weather-app-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/Weather-App" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card" data-embed="1"
+      data-img="images/task.webp"
+      data-title="Task Tracker"
+      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
+      data-demo="https://task-tracker-santiago.vercel.app/"
+      data-repo="https://github.com/santiagohdev/Task-Tracker"
+      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
+      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
+      <div class="proj__media" data-cursor="hidden">
+        <button class="proj__live" type="button"
+                data-en="Try it live" data-es="Probar acá"
+                aria-label="Probar la demo en vivo">
+          <span class="proj__live-dot" aria-hidden="true"></span>
+          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
+        </button>
+
+        <img src="images/task.webp" alt="Task Tracker" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <p class="proj__kicker mono">React · LocalStorage</p>
+        <h3 class="proj__title">Task Tracker</h3>
+        <p class="proj__desc"
+           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
+           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
+          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
+        </p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
+        </div>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://task-tracker-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/Task-Tracker" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+      </div>
+          </article>
+
+      <article class="proj reveal" data-cursor="card"
+      data-img="images/bruma.webp"
+      data-title="Bruma — Café de especialidad"
+      data-techs="HTML,CSS,JavaScript,Diseño UI"
+      data-demo="https://cafe-theta-one.vercel.app"
+      data-repo="https://github.com/santiagohdev/cafe"
+      data-long-es="Bruma no existe: es una cafetería inventada que usé como pretexto para construir un sitio institucional completo desde cero, sin frameworks ni plantillas. No hubo cliente ni encargo — el objetivo era ejercitar un proyecto entero de punta a punta y tener algo con lo que practicar diseño y estructura. Incluye menú de cinco categorías con etiquetas de dieta, ficha de siete orígenes de café con notas de cata, galería con lightbox navegable por teclado, mapa embebido y formulario de reserva con validación propia. Dos detalles que lo separan de una maqueta: el estado de apertura del local se calcula contra la hora real del visitante, y todo el contenido —precios, platos, horarios— vive en un único archivo de datos, para que el dueño pueda actualizar la carta sin tocar una línea de código. Responsive, accesible y sin dependencias."
+      data-long-en="Bruma doesn&#39;t exist: it&#39;s an invented coffee shop I used as a pretext to build a complete business site from scratch, with no frameworks or templates. There was no client and no brief — the point was to exercise a whole project end to end and have something to practise design and structure on. It includes a five-category menu with dietary tags, seven coffee origins with tasting notes, a keyboard-navigable lightbox gallery, an embedded map and a booking form with custom validation. Two details set it apart from a mockup: the open/closed status is computed against the visitor&#39;s real clock, and all content — prices, dishes, opening hours — lives in a single data file so the owner can update the menu without touching code. Responsive, accessible and dependency-free.">
+      <div class="proj__media" data-cursor="hidden">
+        <img src="images/bruma.webp" alt="Bruma — Café de especialidad" loading="lazy">
+        <div class="proj__veil">
+          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        </div>
+      </div>
+      <div class="proj__body">
+        <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
+        <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
+        <p class="proj__desc"
+           data-en="A fictional coffee shop I invented as an excuse to build a complete site from scratch, with no framework. Not a real client: a practice piece to exercise the whole thing end to end: menu, gallery with lightbox, map and booking form."
+           data-es="Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta: menú, galería con lightbox, mapa y formulario de reserva.">
+          Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta: menú, galería con lightbox, mapa y formulario de reserva.
+        </p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          <span class="tag">Diseño UI</span><span class="tag">Responsive</span>
+        </div>
+          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
+               y los buscadores leen el HTML, no ejecutan el modal. -->
+          <div class="proj__links">
+            <a class="proj__link" href="https://cafe-theta-one.vercel.app" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
+            <a class="proj__link" href="https://github.com/santiagohdev/cafe" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
+          </div>
+      </div>
+          </article>
     </div>
   </div>
 </section>
 
 <!-- ══════════ STACK ══════════ -->
-<section class="sec sec--alt" id="stack">
+<section class="sec" id="stack">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">02</span>
       <h2 class="sec__title" data-en="Stack" data-es="Stack">Stack</h2>
       <span class="sec__rule"></span>
     </div>
@@ -306,6 +681,15 @@
       </div>
       <div class="sk reveal" data-cursor="card" style="transition-delay:225ms">
         <div class="sk__top">
+          <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#2C6BED" d="M38 98h56a26 26 0 0 0 3-51.8A34 34 0 0 0 32 40a29 29 0 0 0 6 58z"/><path fill="#fff" d="M47 78h34v8H47z" opacity=".9"/></svg></span>
+          <span>
+            <span class="sk__name">Tiendanube</span><br>
+            <span class="sk__level" data-lvl="adv" data-es="Avanzado" data-en="Advanced">Avanzado</span>
+          </span>
+        </div>
+      </div>
+      <div class="sk reveal" data-cursor="card" style="transition-delay:270ms">
+        <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#83CD29" d="M64 128a11 11 0 0 1-5.5-1.5l-17.5-10.4c-2.6-1.5-1.3-2-.5-2.3 3.5-1.2 4.2-1.5 7.9-3.6.4-.2.9-.1 1.3.1l13.4 8c.5.3 1.2.3 1.6 0l52.4-30.3c.5-.3.8-.8.8-1.4V26.1c0-.6-.3-1.1-.8-1.4L64.8 -5.5c-.5-.3-1.1-.3-1.6 0L10.9 24.8c-.5.3-.8.8-.8 1.4v60.5c0 .6.3 1.1.8 1.4l14.3 8.3c7.8 3.9 12.6-.7 12.6-5.3V31.4c0-.8.7-1.5 1.5-1.5h6.6c.8 0 1.5.7 1.5 1.5v59.7c0 10.4-5.7 16.3-15.5 16.3-3 0-5.4 0-12.1-3.3L5.9 96.2A11 11 0 0 1 .4 86.7V26.1c0-3.9 2.1-7.6 5.5-9.5L58.5 -13.7a11.5 11.5 0 0 1 11 0l52.5 30.3c3.4 2 5.5 5.6 5.5 9.5v60.6c0 3.9-2.1 7.5-5.5 9.5l-52.5 30.3A11 11 0 0 1 64 128" transform="translate(0 8) scale(1 .87)"/><path fill="#83CD29" d="M104 76.3c0-11.3-7.6-14.3-23.7-16.4-16.3-2.2-17.9-3.3-17.9-7.1 0-3.2 1.4-7.4 13.4-7.4 10.7 0 14.7 2.3 16.3 9.5.1.7.8 1.2 1.5 1.2h6.8c.4 0 .8-.2 1.1-.5.3-.3.4-.7.4-1.1-1.1-12.5-9.4-18.3-26.1-18.3-14.9 0-23.7 6.3-23.7 16.8 0 11.4 8.8 14.6 23.1 16 17 1.7 18.4 4.2 18.4 7.5 0 5.9-4.7 8.4-15.8 8.4-13.9 0-17-3.5-18-10.4-.1-.7-.7-1.3-1.5-1.3h-6.8c-.8 0-1.5.7-1.5 1.5 0 8.8 4.8 19.4 27.8 19.4 16.5 0 26.2-6.6 26.2-17.8"/></svg></span>
           <span>
             <span class="sk__name">Node.js</span><br>
@@ -313,7 +697,7 @@
           </span>
         </div>
       </div>
-      <div class="sk reveal" data-cursor="card" style="transition-delay:270ms">
+      <div class="sk reveal" data-cursor="card" style="transition-delay:315ms">
         <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><path fill="currentColor" d="M126.7 88.2c-8.9 2.3-14.4-2.1-19.8-9.6l-12.7-17.6-1.8-2.5-14.8 20.1c-5.1 7-10.5 10-19.1 7.7l24.6-33-22.9-29.8c8.4-1.6 14.2-.8 19.4 6.7l14.7 20.2 14.8-20.1c5.1-7 10.6-9.6 18.9-7.5-3.3 4.3-6.4 8.5-9.6 12.7-4.3 5.5-8.4 11.1-12.8 16.5-1.6 1.9-1.4 3.2.1 5.1zM1.3 60.2c.6-3 1-6.1 1.9-9C9.5 28.7 35.3 19.3 53 33.2c10.4 8.2 13 19.7 12.5 32.6H8.4c-.9 22.8 15.6 36.6 36.5 29.6 7.4-2.5 11.7-8.2 13.9-15.4.9-3.4 2.7-4 6.1-3-1.7 8.8-5.6 16.2-13.7 20.8-12.1 6.8-29.4 4.6-38.5-4.8C7.4 87.6 4.7 80.4 3.5 72.5c-.2-1.3-.6-2.6-.9-3.9q-.15-4.2-.3-8.4m7.2 0h50.8c-.3-16.2-10.4-27.7-24.2-27.8-15.2-.2-26 11-26.6 27.8"/></svg></span>
           <span>
@@ -322,7 +706,25 @@
           </span>
         </div>
       </div>
-      <div class="sk reveal" data-cursor="card" style="transition-delay:315ms">
+      <div class="sk reveal" data-cursor="card" style="transition-delay:360ms">
+        <div class="sk__top">
+          <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><ellipse cx="64" cy="64" rx="62" ry="34" fill="#777BB4"/><text x="64" y="77" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-style="italic" font-size="40" fill="#fff">php</text></svg></span>
+          <span>
+            <span class="sk__name">PHP</span><br>
+            <span class="sk__level" data-lvl="solid" data-es="Sólido" data-en="Solid">Sólido</span>
+          </span>
+        </div>
+      </div>
+      <div class="sk reveal" data-cursor="card" style="transition-delay:405ms">
+        <div class="sk__top">
+          <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><g fill="none" stroke="#FF2D20" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"><path d="M18 28 42 14l24 14-24 14zM18 28v58l48 28 40-23V69L82 55l24-14-24-14-24 14"/><path d="M42 42v28l40-15M66 28v28M66 86l40-17M66 86V58"/></g></svg></span>
+          <span>
+            <span class="sk__name">Laravel</span><br>
+            <span class="sk__level" data-lvl="solid" data-es="Sólido" data-en="Solid">Sólido</span>
+          </span>
+        </div>
+      </div>
+      <div class="sk reveal" data-cursor="card" style="transition-delay:450ms">
         <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 24 24" fill="none" stroke="#336791" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></span>
           <span>
@@ -331,7 +733,7 @@
           </span>
         </div>
       </div>
-      <div class="sk reveal" data-cursor="card" style="transition-delay:360ms">
+      <div class="sk reveal" data-cursor="card" style="transition-delay:495ms">
         <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#4FAA41" d="M82.6 58.5c-3.6-15.8-11.5-25.9-14.8-30.4-3.4-4.7-6.2-9.2-6.7-10-.5-.8-1.2-2.4-1.5-3.1-.3.6-1 2.3-1.5 3.1-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1l1.4 9.9c.1.6.7 1 1.3 1h.2c.6 0 1.1-.4 1.3-1l1.4-9.9c.1-.4.4-.8.7-1 2.5-1.7 10.1-7.1 15.4-16.3 5.3-9.2 8.3-23.1 4.6-39.2z"/><path fill="#3F9037" d="M60.1 116.4V15.1c-.4.7-.9 1.6-1.2 2.2-.5.8-3.3 5.3-6.7 10-3.3 4.5-11.2 14.6-14.8 30.4-3.7 16.1-.7 30 4.6 39.2 5.3 9.2 12.9 14.6 15.4 16.3.3.2.6.6.7 1z"/></svg></span>
           <span>
@@ -340,7 +742,7 @@
           </span>
         </div>
       </div>
-      <div class="sk reveal" data-cursor="card" style="transition-delay:405ms">
+      <div class="sk reveal" data-cursor="card" style="transition-delay:540ms">
         <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 24 24" fill="none" stroke="#00618A" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></span>
           <span>
@@ -349,7 +751,25 @@
           </span>
         </div>
       </div>
-      <div class="sk reveal" data-cursor="card" style="transition-delay:450ms">
+      <div class="sk reveal" data-cursor="card" style="transition-delay:585ms">
+        <div class="sk__top">
+          <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><g fill="none" stroke="#4F8BFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M20 46h84L84 26M108 82H24l20 20"/></g></svg></span>
+          <span>
+            <span class="sk__name">WebSocket</span><br>
+            <span class="sk__level" data-lvl="solid" data-es="Sólido" data-en="Solid">Sólido</span>
+          </span>
+        </div>
+      </div>
+      <div class="sk reveal" data-cursor="card" style="transition-delay:630ms">
+        <div class="sk__top">
+          <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><rect x="4" y="34" width="120" height="60" rx="14" fill="#5A0FC8"/><text x="64" y="76" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="34" fill="#fff">PWA</text></svg></span>
+          <span>
+            <span class="sk__name">PWA</span><br>
+            <span class="sk__level" data-lvl="solid" data-es="Sólido" data-en="Solid">Sólido</span>
+          </span>
+        </div>
+      </div>
+      <div class="sk reveal" data-cursor="card" style="transition-delay:675ms">
         <div class="sk__top">
           <span class="sk__logo"><svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#F34F29" d="M124.7 58.4 69.6 3.3a11.2 11.2 0 0 0-15.9 0L42.3 14.8l14.5 14.5a13.3 13.3 0 0 1 16.9 17l14 14a13.3 13.3 0 1 1-8 7.5L66.6 54.7v34.4a13.3 13.3 0 1 1-11-.4V54a13.3 13.3 0 0 1-7.2-17.5L34.1 22.3 3.3 53.1a11.2 11.2 0 0 0 0 15.9l55.1 55.1a11.2 11.2 0 0 0 15.9 0l50.4-50.4a11.2 11.2 0 0 0 0-15.9"/></svg></span>
           <span>
@@ -362,491 +782,67 @@
   </div>
 </section>
 
-<!-- ══════════ PROYECTOS ══════════ -->
-<section class="sec" id="projects">
+<!-- ══════════ ABOUT ══════════ -->
+<section class="sec sec--alt" id="about">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">03</span>
-      <h2 class="sec__title" data-en="Projects" data-es="Proyectos">Proyectos</h2>
+      <h2 class="sec__title" data-en="About" data-es="Sobre mí">Sobre mí</h2>
       <span class="sec__rule"></span>
     </div>
 
-    <!-- Las siete en una sola grilla de dos columnas. La sección se sale
-         del ancho de lectura del resto del sitio para aprovechar los costados. -->
-    <div class="proj-grid">
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-          data-embed-espera="1"
-          data-img="images/workflow.webp"
-          data-title="Workflow — SaaS multiempresa de gestión de tareas"
-          data-techs="TypeScript,React,Node.js,Express,PostgreSQL,Stripe"
-          data-demo="https://workflow-saas-8006.onrender.com"
-          data-repo="https://github.com/santiagohdev/workflow-saas"
-          data-long-es="Gestor de tareas vendido como servicio a empresas. El tablero es la parte visible; lo que sostiene el producto son las tres capas de abajo. La primera es el aislamiento: varias empresas conviven en la misma base y ninguna ve nada de otra. Cada tabla de contenido lleva su organización y toda consulta filtra por ella, porque un join de más es barato y una fuga entre clientes no. Pedir datos de una organización ajena responde 404 y no 403: un 403 confirmaría que existe, y eso ya es información que no le corresponde a quien no es miembro. La segunda son los roles. Una misma persona puede pertenecer a varias empresas con un rol distinto en cada una, así que el rol vive en la membresía y no en el usuario. Nadie puede otorgar un rol por encima del propio ni quitar al único dueño, porque un admin que pueda nombrar owners se convierte en owner cuando quiera. La tercera son los límites del plan, verificados en el servidor antes de crear, nunca escondiendo el botón. El cobro se integra con Stripe siguiendo la regla que evita el fraude más común: el plan lo cambia el webhook con su firma HMAC-SHA256 verificada sobre el cuerpo crudo, jamás la respuesta que ve el navegador. Por debajo, Express con TypeScript ejecutado sin compilar, PostgreSQL en Supabase y contraseñas con scrypt."
-          data-long-en="A task manager sold as a service to companies. The board is the visible part; what holds the product up are the three layers underneath. The first is isolation: several companies live in the same database and none of them sees anything belonging to another. Every content table carries its organization and every query filters by it, because an extra join is cheap and a leak between clients is not. Asking for another organization&#39;s data returns 404 rather than 403: a 403 would confirm it exists, and that is already information a non-member should not have. The second is roles. One person can belong to several companies with a different role in each, so the role lives on the membership rather than on the user. Nobody can grant a role above their own or remove the last owner, because an admin who can appoint owners becomes an owner whenever they like. The third is plan limits, enforced on the server before creating anything, never by hiding a button. Billing integrates with Stripe following the rule that prevents the most common fraud: the plan is changed by the webhook, with its HMAC-SHA256 signature verified over the raw body, never by the response the browser sees. Underneath it is Express with TypeScript run without a build step, PostgreSQL on Supabase and scrypt-hashed passwords."
-          data-note-es="Entrá con las cuentas de prueba que ofrece la pantalla de inicio: Ana es dueña con plan gratuito, Cami solo lee y Dani está en otra empresa. Cambiar entre Ana y Dani muestra el aislamiento. El cobro está simulado y la demo corre en un plan gratuito que duerme la app: el primer acceso puede tardar unos 50 segundos."
-          data-note-en="Sign in with the demo accounts offered on the login screen: Ana is an owner on the free plan, Cami is read-only and Dani belongs to a different company. Switching between Ana and Dani shows the isolation. Billing is simulated and the demo runs on a free tier that puts the app to sleep: the first visit can take around 50 seconds.">
-          <div class="proj__media" data-cursor="hidden">
-      <img src="images/workflow.webp" alt="Workflow — tablero de tareas de un SaaS multiempresa" loading="lazy">
-      <div class="proj__veil">
-        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-      </div>
-          </div>
-          <div class="proj__body">
-      <span class="proj__idx mono">01</span>
-      <p class="proj__kicker mono" data-en="Own project · SaaS architecture" data-es="Proyecto propio · Arquitectura SaaS">Proyecto propio · Arquitectura SaaS</p>
-      <h3 class="proj__title">Workflow — <span data-en="Multi-tenant SaaS" data-es="SaaS multiempresa">SaaS multiempresa</span></h3>
-      <p class="proj__desc"
-         data-en="Task manager sold to companies: several of them share one database without ever seeing each other, four roles decide what each person can do, and the free plan&#39;s limits are enforced on the server. The plan only changes when a Stripe webhook signature verifies — never because the browser said so."
-         data-es="Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.">
-        Gestor de tareas vendido a empresas: varias comparten una misma base sin verse entre sí, cuatro roles deciden qué puede hacer cada persona y los límites del plan gratuito se verifican en el servidor. El plan solo cambia cuando la firma de un webhook de Stripe verifica, nunca porque lo diga el navegador.
-      </p>
-      <div class="tags">
-        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
-        <span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">Stripe</span>
-      </div>
-          <div class="proj__links">
-            <a class="proj__link" href="https://workflow-saas-8006.onrender.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/workflow-saas" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
-          </div>
-          </div>
-        </article>
-
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-          data-embed-espera="1"
-          data-img="images/slate.webp"
-          data-title="Slate — Edición colaborativa en tiempo real"
-          data-techs="TypeScript,React,Node.js,WebSocket,PostgreSQL,CRDT"
-          data-demo="https://coedit-a0jk.onrender.com"
-          data-repo="https://github.com/santiagohdev/coedit"
-          data-long-es="Pizarra y editor de texto donde varias personas trabajan sobre el mismo documento a la vez. El problema difícil no es dibujar: es que dos personas editen el mismo punto al mismo tiempo, con internet intermitente, y que todos terminen viendo exactamente lo mismo sin que haya un servidor que decida quién gana. Lo resolví escribiendo tres CRDTs a mano, sin librerías de sincronización: un RGA para el texto, un conjunto con tombstones para los trazos del lienzo y un mapa last-write-wins por campo para las notas, todos con orden total y desempate por sitio. Las operaciones que llegan antes que su ancla se encolan y se drenan cuando aparece, y al reconectar se hace merge en vez de reemplazo, así una edición hecha sin internet no se pierde. La convergencia está verificada con tests de propiedades: escenarios aleatorios que barajan el orden de entrega y duplican mensajes, comprobando que todas las réplicas terminan idénticas. Por debajo va Express con WebSocket sobre la misma sesión, contraseñas con scrypt y un adaptador de base que habla SQLite en desarrollo y PostgreSQL en producción."
-          data-long-en="A whiteboard and text editor where several people work on the same document at once. The hard part isn&#39;t the drawing: it&#39;s two people editing the same spot at the same time, over flaky internet, and everyone ending up seeing exactly the same thing without a server deciding who wins. I solved it by writing three CRDTs by hand, with no sync libraries: an RGA for text, a tombstone set for canvas strokes and a per-field last-write-wins map for notes, all with total ordering and a site-based tiebreak. Operations that arrive before their anchor are buffered and drained once it shows up, and reconnecting merges rather than replaces, so an edit made offline is never lost. Convergence is verified with property-based tests: randomised scenarios that shuffle delivery order and duplicate messages, checking every replica ends up identical. Underneath it&#39;s Express with WebSocket over the same session, scrypt-hashed passwords and a database adapter that speaks SQLite in development and PostgreSQL in production."
-          data-note-es="La demo está en un plan gratuito que duerme la app: el primer acceso puede tardar unos 20 segundos en levantar."
-          data-note-en="The demo runs on a free tier that puts the app to sleep: the first visit can take around 20 seconds to wake up.">
-          <div class="proj__media" data-cursor="hidden">
-      <img src="images/slate.webp" alt="Slate — pizarra colaborativa en tiempo real" loading="lazy">
-      <div class="proj__veil">
-        <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-      </div>
-          </div>
-          <div class="proj__body">
-      <span class="proj__idx mono">02</span>
-      <p class="proj__kicker mono" data-en="Own project · Distributed systems" data-es="Proyecto propio · Sistemas distribuidos">Proyecto propio · Sistemas distribuidos</p>
-      <h3 class="proj__title">Slate — <span data-en="Real-time collaboration" data-es="Colaboración en tiempo real">Colaboración en tiempo real</span></h3>
-      <p class="proj__desc"
-         data-en="Whiteboard and text editor for several people at once. Three CRDTs written from scratch — no sync libraries — so edits never conflict, survive going offline and converge to the same state, with convergence verified by tests."
-         data-es="Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado, con la convergencia verificada por tests.">
-        Pizarra y editor de texto para varias personas a la vez. Tres CRDTs escritos desde cero — sin librerías de sincronización — para que las ediciones nunca choquen, sobrevivan a quedarse sin internet y converjan al mismo estado, con la convergencia verificada por tests.
-      </p>
-      <div class="tags">
-        <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
-        <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">CRDT</span>
-      </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://coedit-a0jk.onrender.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/coedit" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
-          </div>
-          </div>
-        </article>
-
-      <article class="proj reveal" data-cursor="card"
-          data-img="images/eugenia.webp"
-          data-title="Eugenia Quevedo — Tienda Oficial"
-          data-techs="Tiendanube,Twig,HTML,CSS,JavaScript"
-          data-demo="https://www.eugeniaquevedo.com"
-          data-repo=""
-          data-long-es="Tienda online oficial de la cantante Eugenia Quevedo, desarrollada sobre Tiendanube con un tema a medida en Twig, HTML, CSS y JavaScript. No es una plantilla adaptada: el diseño se construyó desde cero para la identidad de la artista. Es una tienda en producción, con tráfico real y campañas de venta activas, así que cada cambio se hace sobre algo que está vendiendo. Además del desarrollo inicial, hago mejoras de layout y experiencia de usuario y mantenimiento continuo, coordinando directamente con la clienta."
-          data-long-en="Official online store for singer Eugenia Quevedo, built on Tiendanube with a custom theme in Twig, HTML, CSS and JavaScript. Not an adapted template: the design was built from scratch for the artist&#39;s identity. It is a live store with real traffic and active sales campaigns, so every change ships onto something that is actively selling. Beyond the initial build I handle layout and UX improvements and ongoing maintenance, coordinating directly with the client.">
-          <div class="proj__media" data-cursor="hidden">
-      <img src="images/eugenia.webp" alt="Eugenia Quevedo — Tienda Oficial" loading="lazy">
-      <div class="proj__veil">
-        <button type="button" class="btn btn--solid btn--sm" data-en="See details" data-es="Ver detalles">Ver detalles</button>
-      </div>
-          </div>
-          <div class="proj__body">
-      <span class="proj__idx mono">03</span>
-      <p class="proj__kicker mono" data-en="Client work · Tiendanube" data-es="Trabajo para cliente · Tiendanube">Trabajo para cliente · Tiendanube</p>
-      <h3 class="proj__title">Eugenia Quevedo — <span data-en="Official Store" data-es="Tienda Oficial">Tienda Oficial</span></h3>
-      <p class="proj__desc"
-         data-en="The singer&#39;s official store, with a custom Tiendanube theme built from scratch. A live store with real traffic and active sales campaigns, with ongoing maintenance."
-         data-es="La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.">
-        La tienda oficial de la cantante, con tema propio sobre Tiendanube hecho desde cero. Tienda en producción, con tráfico real y campañas de venta activas, y mantenimiento continuo.
-      </p>
-      <div class="tags">
-        <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">HTML</span>
-        <span class="tag">CSS</span><span class="tag">JavaScript</span>
-      </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-          </div>
-          </div>
-        </article>
-
-      <article class="proj reveal" data-cursor="card"
-      data-img="images/framebox.webp"
-      data-title="FrameBox"
-      data-techs="React,Express,MongoDB,MySQL,JWT,bcrypt,Nodemailer"
-      data-demo="https://framebox-frontend.vercel.app/login?demo=1"
-      data-repo="https://github.com/santiagohdev/Framebox-Frontend"
-      data-repo2="https://github.com/santiagohdev/Framebox-Backend"
-      data-repo-label="Frontend" data-repo2-label="Backend"
-      data-long-es="Biblioteca personal de películas y Trabajo Integrador Final de la Diplomatura Full Stack de la UTN. Cada usuario arma su propia colección: marca lo que vio y lo que quiere ver, la ordena por estado y género, le pone su puntaje y destaca sus favoritas. Por debajo es una app completa con frontend en React y backend en Express, con CRUD real sobre dos entidades relacionadas y arquitectura en capas (routes → controllers → services → repositories). El registro e inicio de sesión usan hash bcrypt, JWT con expiración y verificación de e-mail vía Nodemailer. Frontend y backend viven en repositorios separados y ambos están desplegados públicamente."
-      data-long-en="A personal movie library and the final project of the UTN Full Stack diploma. Each user builds their own collection: marking what they've watched and what they want to watch, sorting it by status and genre, rating it and flagging favourites. Underneath it's a complete app with a React frontend and an Express backend, with real CRUD over two related entities and a layered architecture (routes → controllers → services → repositories). Sign-up and login use bcrypt hashing, JWT with expiration and e-mail verification via Nodemailer. Frontend and backend live in separate repositories and both are publicly deployed.">
-      <div class="proj__media" data-cursor="hidden">
-        <img src="images/framebox.webp" alt="FrameBox" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">04</span>
-        <p class="proj__kicker mono" data-en="Final project · UTN" data-es="Trabajo Integrador Final · UTN">Trabajo Integrador Final · UTN</p>
-        <h3 class="proj__title">FrameBox</h3>
-        <p class="proj__desc"
-           data-en="Personal movie library: track what you've watched and what's next, sort by status and genre, rate and favourite. React + Express, layered architecture, bcrypt + JWT auth and e-mail verification."
-           data-es="Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.">
-          Biblioteca personal de películas: seguí lo que viste y lo que sigue, ordenalo por estado y género, puntuá y marcá favoritas. React + Express, arquitectura en capas, auth bcrypt + JWT y verificación de e-mail.
+    <div class="about">
+      <div class="about__text reveal">
+        <p data-en="I'm Santiago, a developer from Buenos Aires. I started out designing interfaces and ended up building whole products: the part people see and the part that keeps it running."
+           data-es="Soy Santiago, desarrollador de Buenos Aires. Empecé diseñando interfaces y terminé construyendo productos completos: la parte que se ve y la que hace que todo funcione.">
+          Soy Santiago, desarrollador de Buenos Aires. Empecé diseñando interfaces y terminé construyendo productos completos: la parte que se ve y la que hace que todo funcione.
         </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span>
-          <span class="tag">MySQL</span><span class="tag">JWT</span><span class="tag">bcrypt</span><span class="tag">Nodemailer</span>
-        </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://framebox-frontend.vercel.app/login?demo=1" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/Framebox-Frontend" target="_blank" rel="noopener" data-cursor="link" data-en="Code · Frontend" data-es="Código · Frontend">Código · Frontend</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/Framebox-Backend" target="_blank" rel="noopener" data-cursor="link" data-en="Code · Backend" data-es="Código · Backend">Código · Backend</a>
-          </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/weather.webp"
-      data-title="Weather Dashboard"
-      data-techs="JavaScript,SVG,CSS3,HTML5,OpenWeather API,Open-Meteo"
-      data-demo="https://weather-app-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Weather-App"
-      data-long-es="App de clima en tiempo real sobre la API de OpenWeather. La pieza central es la curva de temperatura del día: se dibuja en SVG con suavizado Catmull-Rom, marca el momento actual, etiqueta solo el máximo y el mínimo en vez de todos los puntos, y tiene tooltip hora por hora. El fondo es un sistema de cielos en CSS con doce paletas según la condición y si es de día o de noche, con luces difusas que derivan lento y grano fino para que los gradientes no hagan bandas. Suma calidad del aire convertida a la escala de la EPA desde el PM2.5, índice UV desde Open-Meteo, pronóstico horario interpolado cada 30 minutos y soporte para 5 idiomas. La capa de presentación está separada de la lógica de datos, así una se puede rehacer sin tocar la otra."
-      data-long-en="Real-time weather app on the OpenWeather API. The centrepiece is the day&#39;s temperature curve: drawn in SVG with Catmull-Rom smoothing, it marks the current moment, labels only the high and the low instead of every point, and carries an hour-by-hour tooltip. The background is a CSS sky system with twelve palettes by condition and time of day, slow-drifting diffuse lights and fine grain so the gradients don&#39;t band. It also brings air quality converted to the EPA scale from PM2.5, a UV index from Open-Meteo, an hourly forecast interpolated every 30 minutes and support for 5 languages. The presentation layer is separated from the data logic, so either can be reworked without touching the other.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
-
-        <img src="images/weather.webp" alt="Weather Dashboard" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
-        </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">05</span>
-        <p class="proj__kicker mono">JavaScript · API</p>
-        <h3 class="proj__title">Weather Dashboard</h3>
-        <p class="proj__desc"
-           data-en="Real-time weather app built around the day&#39;s temperature curve, over a CSS sky system that shifts with the condition and the time of day. Air quality, UV index and support for 5 languages."
-           data-es="App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.">
-          App de clima en tiempo real cuya pieza central es la curva de temperatura del día, sobre un sistema de cielos en CSS que cambia con la condición y la hora. Calidad del aire, índice UV y soporte para 5 idiomas.
+        <p data-en="I work mostly with React, TypeScript, Node and Laravel. I care about code another developer can pick up without asking me, and about screens people understand without instructions. My freelance work has me talking to clients directly, so I'm used to turning a vague request into something concrete."
+           data-es="Trabajo sobre todo con React, TypeScript, Node y Laravel. Me importa que otro desarrollador pueda tomar mi código sin tener que preguntarme, y que las pantallas se entiendan sin instrucciones. Con el trabajo freelance hablo directo con los clientes, así que estoy acostumbrado a convertir un pedido vago en algo concreto.">
+          Trabajo sobre todo con React, TypeScript, Node y Laravel. Me importa que otro desarrollador pueda tomar mi código sin tener que preguntarme, y que las pantallas se entiendan sin instrucciones. Con el trabajo freelance hablo directo con los clientes, así que estoy acostumbrado a convertir un pedido vago en algo concreto.
         </p>
-        <div class="tags">
-          <span class="tag">JavaScript</span><span class="tag">CSS3</span><span class="tag">HTML5</span>
-          <span class="tag">OpenWeather API</span><span class="tag">SVG</span>
-        </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://weather-app-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/Weather-App" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
-          </div>
       </div>
-          </article>
 
-      <article class="proj reveal" data-cursor="card" data-embed="1"
-      data-img="images/task.webp"
-      data-title="Task Tracker"
-      data-techs="React,CSS3,LocalStorage,Drag & Drop API"
-      data-demo="https://task-tracker-santiago.vercel.app/"
-      data-repo="https://github.com/santiagohdev/Task-Tracker"
-      data-long-es="Gestor de tareas en React con CRUD completo y reordenamiento drag & drop usando la HTML Drag & Drop API nativa. Incluye sistema de prioridades alta / media / baja, edición inline con atajos de teclado, filtros por Todas / Activas / Hechas, barra de progreso general, modo claro y oscuro, y persistencia total en localStorage: cerrás el navegador y todo sigue exactamente donde lo dejaste."
-      data-long-en="React task manager with full CRUD and drag & drop reordering using the native HTML Drag & Drop API. It includes a high / medium / low priority system, inline editing with keyboard shortcuts, All / Active / Done filters, an overall progress bar, light and dark mode, and full localStorage persistence: close the browser and everything stays exactly where you left it.">
-      <div class="proj__media" data-cursor="hidden">
-        <button class="proj__live" type="button"
-                data-en="Try it live" data-es="Probar acá"
-                aria-label="Probar la demo en vivo">
-          <span class="proj__live-dot" aria-hidden="true"></span>
-          <span data-en="Try it live" data-es="Probar acá">Probar acá</span>
-        </button>
-
-        <img src="images/task.webp" alt="Task Tracker" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+      <dl class="specs reveal">
+        <div class="specs__row">
+          <dt class="mono" data-en="Location" data-es="Ubicación">Ubicación</dt>
+          <dd>Buenos Aires, Argentina 🇦🇷</dd>
         </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">06</span>
-        <p class="proj__kicker mono">React · LocalStorage</p>
-        <h3 class="proj__title">Task Tracker</h3>
-        <p class="proj__desc"
-           data-en="React task manager with full CRUD, drag & drop reordering, priorities, inline editing with keyboard shortcuts, filters, progress bar and localStorage persistence."
-           data-es="Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.">
-          Gestor de tareas en React con CRUD completo, reordenamiento drag & drop, prioridades, edición inline con atajos de teclado, filtros, barra de progreso y persistencia en localStorage.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span><span class="tag">CSS3</span><span class="tag">LocalStorage</span><span class="tag">Drag &amp; Drop API</span>
+        <div class="specs__row">
+          <dt class="mono">Email</dt>
+          <dd><a href="mailto:santiagohermosilla76@gmail.com" data-cursor="link">santiagohermosilla76@gmail.com</a></dd>
         </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://task-tracker-santiago.vercel.app/" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/Task-Tracker" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
-          </div>
-      </div>
-          </article>
-
-      <article class="proj reveal" data-cursor="card"
-      data-img="images/bruma.webp"
-      data-title="Bruma — Café de especialidad"
-      data-techs="HTML,CSS,JavaScript,Diseño UI"
-      data-demo="https://cafe-theta-one.vercel.app"
-      data-repo="https://github.com/santiagohdev/cafe"
-      data-long-es="Bruma no existe: es una cafetería inventada que usé como pretexto para construir un sitio institucional completo desde cero, sin frameworks ni plantillas. No hubo cliente ni encargo — el objetivo era ejercitar un proyecto entero de punta a punta y tener algo con lo que practicar diseño y estructura. Incluye menú de cinco categorías con etiquetas de dieta, ficha de siete orígenes de café con notas de cata, galería con lightbox navegable por teclado, mapa embebido y formulario de reserva con validación propia. Dos detalles que lo separan de una maqueta: el estado de apertura del local se calcula contra la hora real del visitante, y todo el contenido —precios, platos, horarios— vive en un único archivo de datos, para que el dueño pueda actualizar la carta sin tocar una línea de código. Responsive, accesible y sin dependencias."
-      data-long-en="Bruma doesn&#39;t exist: it&#39;s an invented coffee shop I used as a pretext to build a complete business site from scratch, with no frameworks or templates. There was no client and no brief — the point was to exercise a whole project end to end and have something to practise design and structure on. It includes a five-category menu with dietary tags, seven coffee origins with tasting notes, a keyboard-navigable lightbox gallery, an embedded map and a booking form with custom validation. Two details set it apart from a mockup: the open/closed status is computed against the visitor&#39;s real clock, and all content — prices, dishes, opening hours — lives in a single data file so the owner can update the menu without touching code. Responsive, accessible and dependency-free.">
-      <div class="proj__media" data-cursor="hidden">
-        <img src="images/bruma.webp" alt="Bruma — Café de especialidad" loading="lazy">
-        <div class="proj__veil">
-          <button type="button" class="btn btn--solid btn--sm" data-en="See details and code" data-es="Ver detalles y código">Ver detalles y código</button>
+        <div class="specs__row">
+          <dt class="mono">GitHub</dt>
+          <dd><a href="https://github.com/santiagohdev" target="_blank" rel="noopener" data-cursor="link">@santiagohdev</a></dd>
         </div>
-      </div>
-      <div class="proj__body">
-        <span class="proj__idx mono">07</span>
-        <p class="proj__kicker mono" data-en="Concept project · Practice piece" data-es="Proyecto conceptual · Pieza de práctica">Proyecto conceptual · Pieza de práctica</p>
-        <h3 class="proj__title">Bruma — <span data-en="Specialty Coffee (concept)" data-es="Café de especialidad (concepto)">Café de especialidad (concepto)</span></h3>
-        <p class="proj__desc"
-           data-en="A fictional coffee shop I invented as an excuse to build a complete site from scratch, with no framework. Not a real client: a practice piece to exercise the whole thing end to end — menu, gallery with lightbox, map and booking form."
-           data-es="Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.">
-          Una cafetería ficticia que me inventé como excusa para construir un sitio completo desde cero y sin frameworks. No es un cliente real: es una pieza de práctica para ejercitar todo de punta a punta — menú, galería con lightbox, mapa y formulario de reserva.
-        </p>
-        <div class="tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-          <span class="tag">Diseño UI</span><span class="tag">Responsive</span>
+        <div class="specs__row">
+          <dt class="mono">LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/santiagohermosilla/" target="_blank" rel="noopener" data-cursor="link">/santiagohermosilla</a></dd>
         </div>
-          <!-- Enlaces reales, no sólo en data-*: los filtros de currículums
-               y los buscadores leen el HTML, no ejecutan el modal. -->
-          <div class="proj__links">
-            <a class="proj__link" href="https://cafe-theta-one.vercel.app" target="_blank" rel="noopener" data-cursor="link" data-en="Live demo" data-es="Ver demo">Ver demo</a>
-            <a class="proj__link" href="https://github.com/santiagohdev/cafe" target="_blank" rel="noopener" data-cursor="link" data-en="Code" data-es="Código">Código</a>
-          </div>
-      </div>
-          </article>
+        <div class="specs__row">
+          <dt class="mono" data-en="Status" data-es="Estado">Estado</dt>
+          <dd class="specs__live">
+            <span data-en="Available for opportunities" data-es="Disponible para oportunidades">Disponible para oportunidades</span>
+          </dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono" data-en="Looking for" data-es="Busco">Busco</dt>
+          <dd data-en="Full Stack, Frontend or Backend developer roles, full-time. I work well remotely and I also enjoy being in an office, so hybrid or on-site suit me just as well. Happy to relocate to Europe. I also take on freelance projects."
+              data-es="Puestos de desarrollador Full Stack, Frontend o Backend, jornada completa. Me manejo bien en remoto y también me gusta la oficina, así que híbrido o presencial me sirven igual. Estoy dispuesto a mudarme a Europa. Y tomo proyectos freelance.">Puestos de desarrollador Full Stack, Frontend o Backend, jornada completa. Me manejo bien en remoto y también me gusta la oficina, así que híbrido o presencial me sirven igual. Estoy dispuesto a mudarme a Europa. Y tomo proyectos freelance.</dd>
+        </div>
+        <div class="specs__row">
+          <dt class="mono" data-en="Languages" data-es="Idiomas">Idiomas</dt>
+          <dd data-en="Spanish (native) · English (C1)" data-es="Español (nativo) · Inglés (C1)">Español (nativo) · Inglés (C1)</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
-<!-- ══════════ EXPERIENCIA ══════════ -->
-<section class="sec sec--alt" id="experience">
-  <div class="wrap">
-    <div class="sec__head reveal">
-      <span class="sec__num mono">04</span>
-      <h2 class="sec__title" data-en="Experience" data-es="Experiencia">Experiencia</h2>
-      <span class="sec__rule"></span>
-    </div>
 
-    <p class="exp__lead reveal"
-       data-en="I work independently for real clients in Argentina, Chile and Spain — through Workana and by direct referral."
-       data-es="Trabajo de forma independiente para clientes reales de Argentina, Chile y España — por Workana y por contacto directo.">
-      Trabajo de forma independiente para clientes reales de Argentina, Chile y España — por Workana y por contacto directo.
-    </p>
-
-    <!-- ══════════ FREELANCE EN WORKANA ══════════
-         Va antes de la línea de tiempo y en grande a propósito: es lo primero
-         que tiene que ver quien evalúa si puede confiarme un proyecto. -->
-    <div class="wk" data-anim>
-      <div class="wk__hero">
-        <div class="wk__score">
-          <span class="wk__num" data-count="5" data-dec="1" aria-hidden="true">0.0</span>
-          <span class="sr-only">5.0</span>
-          <div class="wk__stars" role="img" aria-label="5 de 5 estrellas">
-            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>
-          </div>
-        </div>
-        <div class="wk__claim">
-          <span class="wk__eyebrow mono" data-en="Freelance · Workana" data-es="Freelance · Workana">Freelance · Workana</span>
-          <h3 class="wk__title">
-            <span data-en="Five stars." data-es="Cinco estrellas.">Cinco estrellas.</span>
-            <em data-en="Every single client." data-es="Todos los clientes.">Todos los clientes.</em>
-          </h3>
-          <p class="wk__txt"
-             data-en="Production systems for companies abroad: a real-time collaborative platform for Chile, and the security layer and a multi-site scale hub for a food factory in Spain. Remote, end to end, in production."
-             data-es="Sistemas en producción para empresas del exterior: una plataforma colaborativa en tiempo real para Chile, y la capa de seguridad y una central multi-báscula para una fábrica de alimentos en España. Remoto, de punta a punta, en producción.">
-            Sistemas en producción para empresas del exterior: una plataforma colaborativa en tiempo real para Chile, y la capa de seguridad y una central multi-báscula para una fábrica de alimentos en España. Remoto, de punta a punta, en producción.
-          </p>
-          <div class="wk__flags">
-            <span class="wk__flag"><b>🇨🇱</b> Chile</span>
-            <span class="wk__flag"><b>🇪🇸</b> <span data-en="Spain" data-es="España">España</span></span>
-            <span class="wk__flag"><b>🇦🇷</b> Argentina</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="wk__ticker" aria-hidden="true">
-        <div class="wk__track">
-          <span>★★★★★ 5.0</span><span>WORKANA</span><span>REAL-TIME · CRDT</span><span>API SECURITY</span><span>LARAVEL</span><span>REACT + NODE</span><span>🇨🇱 🇪🇸 🇦🇷</span>
-          <span>★★★★★ 5.0</span><span>WORKANA</span><span>REAL-TIME · CRDT</span><span>API SECURITY</span><span>LARAVEL</span><span>REACT + NODE</span><span>🇨🇱 🇪🇸 🇦🇷</span>
-        </div>
-      </div>
-
-      <div class="wk__cases">
-        <article class="wkc" data-cursor="card">
-          <span class="wkc__big" aria-hidden="true">LIVE</span>
-          <div class="wkc__top">
-            <span class="wkc__where mono">🇨🇱 Chile</span>
-            <span class="wkc__stars" aria-label="5 estrellas">★★★★★</span>
-          </div>
-          <h4 class="wkc__title" data-en="Collaborative event-layout platform" data-es="Plataforma colaborativa de planos para eventos">Plataforma colaborativa de planos para eventos</h4>
-          <p class="wkc__txt"
-             data-en="An editor where a whole team designs the floor plan of a wedding or event at the same time, like Figma for venues: tables, numbered seats, centimetre-accurate measurements, free-form shapes, drawing tools, undo/redo and PNG/PDF export. The sync engine is a CRDT written by hand, so simultaneous edits never clash."
-             data-es="Un editor donde todo un equipo arma el plano de un casamiento o evento a la vez, como un Figma para salones: mesas, sillas numeradas, medidas en centímetros, formas libres, herramientas de dibujo, deshacer/rehacer y exportación a PNG y PDF. El motor de sincronización es un CRDT escrito a mano, así las ediciones simultáneas nunca chocan.">
-            Un editor donde todo un equipo arma el plano de un casamiento o evento a la vez, como un Figma para salones: mesas, sillas numeradas, medidas en centímetros, formas libres, herramientas de dibujo, deshacer/rehacer y exportación a PNG y PDF. El motor de sincronización es un CRDT escrito a mano, así las ediciones simultáneas nunca chocan.
-          </p>
-          <ul class="wkc__facts mono">
-            <li><b>61</b> <span data-en="custom figures" data-es="figuras propias">figuras propias</span></li>
-            <li><b>∞</b> <span data-en="live editors" data-es="editores en vivo">editores en vivo</span></li>
-          </ul>
-          <div class="tags">
-            <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Node.js</span>
-            <span class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">CRDT</span>
-          </div>
-        </article>
-
-        <article class="wkc" data-cursor="card">
-          <span class="wkc__big" aria-hidden="true">401</span>
-          <div class="wkc__top">
-            <span class="wkc__where mono">🇪🇸 <span data-en="Spain" data-es="España">España</span></span>
-            <span class="wkc__stars" aria-label="5 estrellas">★★★★★</span>
-          </div>
-          <h4 class="wkc__title" data-en="Locking down a production API" data-es="Blindaje de una API en producción">Blindaje de una API en producción</h4>
-          <p class="wkc__txt"
-             data-en="Security audit and hardening of the Laravel API that runs a food factory. Mandatory API keys, a network allowlist so the plant&#39;s tablets keep working without a key, fixed CORS and XSS, SQL and command injection audited clean, and backups pulled out of public reach. Rolled out in monitor mode first, then enforced — without stopping production for a minute."
-             data-es="Auditoría y blindaje de la API en Laravel que mueve una fábrica de alimentos. API keys obligatorias, allowlist de red para que las tablets de planta sigan andando sin llave, CORS y XSS corregidos, inyección SQL y de comandos auditadas en limpio, y backups sacados del alcance público. Primero en modo monitor, después en enforce — sin frenar la producción ni un minuto.">
-            Auditoría y blindaje de la API en Laravel que mueve una fábrica de alimentos. API keys obligatorias, allowlist de red para que las tablets de planta sigan andando sin llave, CORS y XSS corregidos, inyección SQL y de comandos auditadas en limpio, y backups sacados del alcance público. Primero en modo monitor, después en enforce — sin frenar la producción ni un minuto.
-          </p>
-          <ul class="wkc__facts mono">
-            <li><b>401</b> <span data-en="for anyone without a key" data-es="para quien no tiene llave">para quien no tiene llave</span></li>
-            <li><b>0</b> <span data-en="minutes of downtime" data-es="minutos de corte">minutos de corte</span></li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag" data-en="API security" data-es="Seguridad de APIs">Seguridad de APIs</span>
-            <span class="tag">CORS</span><span class="tag">XSS</span><span class="tag" data-en="Audit" data-es="Auditoría">Auditoría</span>
-          </div>
-        </article>
-
-        <article class="wkc" data-cursor="card">
-          <span class="wkc__big" aria-hidden="true">N→1</span>
-          <div class="wkc__top">
-            <span class="wkc__where mono">🇪🇸 <span data-en="Spain" data-es="España">España</span></span>
-            <span class="wkc__stars" aria-label="5 estrellas">★★★★★</span>
-          </div>
-          <h4 class="wkc__title" data-en="Central hub for industrial scales" data-es="Central de básculas industriales">Central de básculas industriales</h4>
-          <p class="wkc__txt"
-             data-en="Took the scale app from one factory and turned it into a platform for many: a central panel that enrols each scale with a one-time code, per-device tokens, recipes filtered per account and every weighing stored on the server. The scale app works offline as a PWA with versioned updates. Live in production with real data."
-             data-es="Tomé la app de báscula de una fábrica y la convertí en una plataforma para muchas: un panel central que matricula cada báscula con un código de alta, tokens por dispositivo, recetas filtradas por cuenta y todas las pesadas guardadas en el servidor. La app de la báscula funciona offline como PWA, con actualizaciones versionadas. En producción con datos reales.">
-            Tomé la app de báscula de una fábrica y la convertí en una plataforma para muchas: un panel central que matricula cada báscula con un código de alta, tokens por dispositivo, recetas filtradas por cuenta y todas las pesadas guardadas en el servidor. La app de la báscula funciona offline como PWA, con actualizaciones versionadas. En producción con datos reales.
-          </p>
-          <ul class="wkc__facts mono">
-            <li><b>N</b> <span data-en="scales, one hub" data-es="básculas, una central">básculas, una central</span></li>
-            <li><b>100%</b> <span data-en="weighings on the server" data-es="de las pesadas en el server">de las pesadas en el server</span></li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Laravel</span><span class="tag">Sanctum</span><span class="tag">JavaScript</span>
-            <span class="tag">PWA</span><span class="tag">Service Worker</span><span class="tag">REST API</span>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <ol class="tl">
-
-      <li class="tl__item reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
-        <span class="tl__when mono">2026 — <span data-en="Present" data-es="Presente">Presente</span></span>
-        <div class="tl__body">
-          <h3 class="tl__role" data-en="Independent Web Developer" data-es="Desarrollador Web Independiente">Desarrollador Web Independiente</h3>
-          <p class="tl__txt"
-             data-en="I take on projects end to end: I talk to the client, build the system and keep it running afterwards. Online stores, real-time platforms, APIs and custom systems for clients in Argentina, Chile and Spain — with a 5-star rating on Workana."
-             data-es="Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sistema y después lo mantengo andando. Tiendas online, plataformas en tiempo real, APIs y sistemas a medida para clientes de Argentina, Chile y España — con calificación de 5 estrellas en Workana.">
-            Tomo los proyectos de punta a punta: hablo con el cliente, construyo el sistema y después lo mantengo andando. Tiendas online, plataformas en tiempo real, APIs y sistemas a medida para clientes de Argentina, Chile y España — con calificación de 5 estrellas en Workana.
-          </p>
-        </div>
-      </li>
-
-      <li class="tl__item reveal">
-        <span class="tl__dot tl__dot--hl" aria-hidden="true"></span>
-        <span class="tl__when mono">2026</span>
-        <div class="tl__body tl__body--cliente">
-          <!-- La cifra va de fondo, tenue: da la escala de un vistazo sin
-               convertir el bloque en un cartel de números. -->
-          <span class="tl__escala" aria-hidden="true">2,6 M</span>
-
-          <h3 class="tl__role">
-            <span data-en="First client" data-es="Primer cliente">Primer cliente</span>
-            <span class="tl__sep" aria-hidden="true">·</span>
-            <a href="https://www.eugeniaquevedo.com" target="_blank" rel="noopener" data-cursor="link">Eugenia Quevedo</a>
-          </h3>
-
-          <a class="tl__ig" href="https://instagram.com/soyeugequevedook" target="_blank" rel="noopener" data-cursor="link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-              <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5"/>
-              <circle cx="12" cy="12" r="4.2"/>
-              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="mono">@soyeugequevedook</span>
-            <span class="tl__ig-num mono" data-en="2.6M followers" data-es="2,6 M seguidores">2,6 M seguidores</span>
-          </a>
-
-          <div class="tags tl__tags">
-            <span class="tag">Tiendanube</span><span class="tag">Twig</span><span class="tag">JavaScript</span>
-            <span class="tag">CSS3</span><span class="tag">HTML5</span><span class="tag">Swiper</span>
-            <span class="tag" data-en="Responsive design" data-es="Diseño responsive">Diseño responsive</span>
-            <span class="tag">IntersectionObserver</span>
-          </div>
-          <p class="tl__txt"
-             data-en="Custom Tiendanube theme, built with Twig, HTML, CSS and JavaScript. I built the header from scratch, with styles that change per page type; a hand-written infinite product carousel with no libraries; scroll-triggered animations using IntersectionObserver; an HTML5 background video and a click-to-load YouTube player, so the first visit isn't penalised. Fully responsive. I still handle maintenance and UX improvements, working directly with the client on a live store with real traffic and active sales campaigns."
-             data-es="Tema propio sobre Tiendanube, desarrollado en Twig, HTML, CSS y JavaScript. Construí la cabecera desde cero, con estilos que cambian según el tipo de página; un carrusel infinito de productos hecho a mano, sin librerías; animaciones de entrada con IntersectionObserver; video de fondo en HTML5 y un reproductor de YouTube que sólo carga al hacer clic, para no penalizar la primera visita. Todo responsive. Sigo a cargo del mantenimiento y de las mejoras de experiencia de uso, coordinando directamente con la clienta sobre una tienda en producción con tráfico real y campañas de venta activas.">
-            Tema propio sobre Tiendanube, desarrollado en Twig, HTML, CSS y JavaScript. Construí la cabecera desde cero, con estilos que cambian según el tipo de página; un carrusel infinito de productos hecho a mano, sin librerías; animaciones de entrada con IntersectionObserver; video de fondo en HTML5 y un reproductor de YouTube que sólo carga al hacer clic, para no penalizar la primera visita. Todo responsive. Sigo a cargo del mantenimiento y de las mejoras de experiencia de uso, coordinando directamente con la clienta sobre una tienda en producción con tráfico real y campañas de venta activas.
-          </p>
-        </div>
-      </li>
-
-      <li class="tl__item reveal">
-        <span class="tl__dot" aria-hidden="true"></span>
-        <span class="tl__when mono" data-en="Sept 2025 — Jul 2026" data-es="sept 2025 — jul 2026">sept 2025 — jul 2026</span>
-        <div class="tl__body">
-          <h3 class="tl__role" data-en="Training at UTN" data-es="Formación en la UTN">Formación en la UTN</h3>
-          <p class="tl__txt"
-             data-en="Full Stack Web Development diploma at Universidad Tecnológica Nacional — two levelled courses, Front End and Back End — while I started taking on my first paid work."
-             data-es="Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.">
-            Diplomatura en Programación Web Full Stack en la Universidad Tecnológica Nacional — dos cursos nivelados, Front End y Back End — mientras empezaba a tomar mis primeros trabajos pagos.
-          </p>
-        </div>
-      </li>
-
-    </ol>
-  </div>
-</section>
 <!-- ══════════ CERTIFICADOS ══════════ -->
 <section class="sec" id="certs">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">05</span>
       <h2 class="sec__title" data-en="Certificates" data-es="Certificados">Certificados</h2>
       <span class="sec__rule"></span>
     </div>
@@ -1061,7 +1057,6 @@
 <section class="sec sec--alt" id="english">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">06</span>
       <h2 class="sec__title" data-en="English" data-es="Inglés">Inglés</h2>
       <span class="sec__rule"></span>
     </div>
@@ -1083,9 +1078,9 @@
           <span class="cam__eyebrow mono">Certificate in Advanced English</span>
           <h3 class="cam__title">C1 Advanced</h3>
           <p class="cam__txt"
-             data-en="I sat Cambridge&#39;s C1 Advanced exam (CAE) in Buenos Aires. In the two skills that matter most at work — speaking and writing — I scored at C1 level, and reading came in just two points short of it."
-             data-es="Rendí el examen C1 Advanced (CAE) de Cambridge en Buenos Aires. En las dos habilidades que más pesan en el trabajo — hablar y escribir — saqué nivel C1, y en lectura quedé a solo dos puntos.">
-            Rendí el examen C1 Advanced (CAE) de Cambridge en Buenos Aires. En las dos habilidades que más pesan en el trabajo — hablar y escribir — saqué nivel C1, y en lectura quedé a solo dos puntos.
+             data-en="I sat Cambridge&#39;s C1 Advanced exam (CAE) in Buenos Aires. In the two skills that matter most at work, speaking and writing, I scored at C1 level, and reading came in just two points short of it."
+             data-es="Rendí el examen C1 Advanced (CAE) de Cambridge en Buenos Aires. En las dos habilidades que más pesan en el trabajo, hablar y escribir, saqué nivel C1, y en lectura quedé a solo dos puntos.">
+            Rendí el examen C1 Advanced (CAE) de Cambridge en Buenos Aires. En las dos habilidades que más pesan en el trabajo, hablar y escribir, saqué nivel C1, y en lectura quedé a solo dos puntos.
           </p>
           <dl class="cam__ref">
             <dt class="mono" data-en="Centre reference" data-es="Referencia del centro">Referencia del centro</dt>
@@ -1146,13 +1141,10 @@
   </div>
 </section>
 
-
-
 <!-- ══════════ CONTACTO ══════════ -->
-<section class="sec sec--alt" id="contact">
+<section class="sec" id="contact">
   <div class="wrap">
     <div class="sec__head reveal">
-      <span class="sec__num mono">07</span>
       <h2 class="sec__title" data-en="Contact" data-es="Contacto">Contacto</h2>
       <span class="sec__rule"></span>
     </div>
@@ -1232,7 +1224,7 @@
 <footer class="foot">
   <div class="wrap foot__wrap">
     <span class="mono">© 2026 Santiago Hermosilla</span>
-    <span class="mono foot__right" data-en="Built from scratch in Buenos Aires." data-es="Hecho desde cero en Buenos Aires.">Hecho desde cero en Buenos Aires.</span>
+    <span class="mono foot__right" data-en="Designed and built by me." data-es="Diseñado y programado por mí.">Diseñado y programado por mí.</span>
   </div>
 </footer>
 
